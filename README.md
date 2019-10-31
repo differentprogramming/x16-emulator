@@ -1,6 +1,6 @@
 Purpose of the fork
 --------------------
-The original project is compiled on Linux and Macs.  Their PC version is cross compiled.  The purpose of this fork is to have a version that builds in Visual Studio. 
+The original project is compiled on Linux and Macs.  Their PC version is cross compiled.  The purpose of this fork is to have a version that builds in Visual Studio. Note, this is not a release version and doesn't work with the release roms. 
 
 
 <p align="center">
