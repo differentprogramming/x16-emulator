@@ -1,7 +1,21 @@
 Purpose of the fork
 --------------------
-The original project is compiled on Linux and Macs.  Their PC version is cross compiled.  The purpose of this fork is to have a version that builds in Visual Studio. Note, this is not a release version and doesn't work with the release roms. 
+It's interesting that I forked this before and then deleted my fork, and GITHUB remembered my original fork and restored my version of the README
 
+However this one has a slightly different purpose.  I'm working on SOLID, a language that will have a custom version on the CommanderX16. In order to help hack that, I wrote:
+1) an inline 65c02 assembler in C++
+2) an emulator for it
+3) a disassembler/tracer for it
+
+In order to test it and make developing for X16 easier, I tried cloning the emulator for that and replacing their 65c02 emulator with mine.  Current state is, it is SO close to working. Ie, it SEEMS to work, but the keyboard input is messed up, the shift and control keys are latching on and refusing to be recognized coming off.
+
+Anyway I'm going to make this fork a:
+1) Visual Studio project fork.  The original only built for PC by cross compiling with MingW on a Mac.  
+2) This will use my 65c02 emulator instead of the one they adapted for this project.
+
+I didn't put this in my other repostry for the language because I made a few mistakes setting up that repositry.  The directory structure is wrong, and I'm not sure about the choice of license, I don't want a viral license to get in the way of developers. 
+
+Currently this a mirror of Release 34 with the above changes. 
 
 <p align="center">
   <img src="./.gh/logo.png" />
