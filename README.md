@@ -1,8 +1,8 @@
 Purpose of the fork
 --------------------
-It's interesting that I forked this before and then deleted my fork, and GITHUB remembered my original fork and restored my version of the README
+It's interesting that I forked this before and then deleted my fork, and Github remembered my original fork and restored my version of the README
 
-However this one has a slightly different purpose.  I'm working on SOLID, a language that will have a custom version on the CommanderX16. In order to help hack that, I wrote:
+However this one has a slightly different purpose.  I'm working on Solid, a language that will have a custom version on the CommanderX16. In order to help hack that, I wrote:
 1) an inline 65c02 assembler in C++
 2) an emulator for it
 3) a disassembler/tracer for it
