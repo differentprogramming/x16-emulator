@@ -226,7 +226,7 @@ https://github.com/commanderx16/x16-emulator/wiki
 Features
 --------
 
-* CPU: Full 65C02 instruction set (improved "fake6502")
+* CPU: Full 65C02 instruction set ~~(improved "fake6502")~~ new C++ 65c02 emulator
 * VERA
 	* Mostly cycle exact emulation
 	* Supports almost all features:
