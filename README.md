@@ -7,7 +7,7 @@ However this one has a slightly different purpose.  I'm working on Solid, a lang
 2) an emulator for it
 3) a disassembler/tracer for it
 
-In order to test it and make developing for X16 easier, I tried cloning the emulator for that and replacing their 65c02 emulator with mine.  Current state is, it is SO close to working. Ie, it SEEMS to work, but the keyboard input is messed up, the shift and control keys are latching on and refusing to be recognized coming off.
+In order to test it and make developing for X16 easier, I tried cloning the emulator for that and replacing their 65c02 emulator with mine.  
 
 Anyway I'm going to make this fork a:
 1) Visual Studio project fork.  The original only built for PC by cross compiling with MingW on a Mac.  
