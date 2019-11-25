@@ -82,7 +82,7 @@ spi_step()
 	static uint8_t inbyte, outbyte;
 	bool bit = mosi;
 	inbyte <<= 1;
-	inbyte |= bit;
+	inbyte |= bit?1:0;
 //	printf("BIT: %d BYTE =$%02x\n", bit, inbyte);
 	bit_counter++;
 	if (bit_counter != 8) {

@@ -7,9 +7,13 @@
 
 #include "65c02incpp.h"
 #include <string>
+#include "debugger.h"
+
 
 void emulate65c02::write6502(uint16_t address, uint8_t value)
 {
+	if (address >= protected_start && address <= protected_end)
+		std::cout << "**************************************\nWrite to protected area " << std::hex << address << "\n**************************************\n";
 #ifdef WITH_YM2151
 	static uint8_t lastAudioAdr = 0;
 #endif
@@ -52,7 +56,7 @@ void emulate65c02::write6502(uint16_t address, uint8_t value)
 		}
 	}
 	else if (address < 0xc000) { // banked RAM
-		memory[0xa000 + (effective_ram_bank() << 13) + address - 0xa000] = value;
+		memory[(effective_ram_bank() << 13) + address] = value;
 	}
 	else { // ROM
 	 // ignore
@@ -417,7 +421,7 @@ uint8_t emulate65c02::real_read6502(uint16_t address, bool debugOn, uint8_t bank
 		}
 	}
 	else if (address < 0xc000) { // banked RAM
-		return	memory[0xa000 + ((debugOn ? bank : effective_ram_bank()) << 13) + address - 0xa000];
+		return	memory[((debugOn ? bank : effective_ram_bank()) << 13) + address];
 
 
 	}
@@ -448,7 +452,9 @@ int ADDR_DELAY[NUM_WRITE_MODES*NUM_ADDRESSING_MODES] =
 	4,4,0, //zpy
 };
 int RMB_BY_BIT[8] = { 0x07,0x17,0x27,0x37,0x47,0x57,0x67,0x77 };
+int SMB_BY_BIT[8] = { 0x87,0x97,0xA7,0xB7,0xC7,0xD7,0xE7,0xF7 };
 int BBR_BY_BIT[8] = { 0x0F,0x1F,0x2F,0x3F,0x4F,0x5F,0x6F,0x7F };
+int BBS_BY_BIT[8] = { 0x8F,0x9F,0xAF,0xBF,0xCF,0xDF,0xEF,0xFF };
 
 
 void LabelFixup::update_target(emulate65c02 *emulate, int t) {
@@ -460,7 +466,7 @@ void LabelFixup::update_target(emulate65c02 *emulate, int t) {
 	}
 	else {
 		emulate->write6502(instruction_field_address, target & 0xff);
-		emulate->write6502(instruction_field_address + 1, (target >> 8) & 0xff);
+		if (!single_byte) emulate->write6502(instruction_field_address + 1, (target >> 8) & 0xff);
 	}
 }
 
@@ -487,12 +493,17 @@ void ORA_izx01(emulate65c02 *self)
 }
 void NOP_imm02(emulate65c02 *self)
 {
-	self->pc += 2;
+//	++self->pc;
+//	DEBUGBreakToDebugger();
+#ifdef ADD_OFFICIAL_EMULATOR_BUGS
 	self->time += 2;
+#else
+	self->decode_addr_readIMM();
+#endif
+
 }
 void NOP03(emulate65c02 *self)
 {
-	self->pc += 1;
 	self->time += 1;
 }
 void TSB_zp04(emulate65c02 *self)
@@ -546,6 +557,7 @@ void ASL0A(emulate65c02 *self)
 
 void NOP0B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void TSB_abs0C(emulate65c02 *self)
@@ -607,6 +619,7 @@ void ORA_izp12(emulate65c02 *self)
 
 void NOP13(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void TRB_zp14(emulate65c02 *self)
@@ -661,6 +674,7 @@ void INC1A(emulate65c02 *self)
 
 void NOP1B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void TRB_abs1C(emulate65c02 *self)
@@ -738,10 +752,12 @@ void AND_izx21(emulate65c02 *self)
 
 void NOP_imm22(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOP23(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void BIT_zp24(emulate65c02 *self)
@@ -808,6 +824,7 @@ void ROL2A(emulate65c02 *self)
 
 void NOP2B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void BIT_abs2C(emulate65c02 *self)
@@ -815,11 +832,12 @@ void BIT_abs2C(emulate65c02 *self)
 	int m = self->decode_addr_readABS();
 	int v = self->a & m;
 
-	if (0 != (m & 0x40)) self->p |= (int)FLAG_V;
-	else self->p &= ~(int)FLAG_V;
+	//if (0 != (m & 0x40)) self->p |= (int)FLAG_V;
+	//else self->p &= ~(int)FLAG_V;
 
 	self->test_for_Z(v);
-	self->test_for_N(m);
+	//self->test_for_N(m);
+	self->p = (self->p & 0x3F) | (uint8_t)(m & 0xC0);
 }
 
 void AND_abs2D(emulate65c02 *self)
@@ -875,6 +893,7 @@ void AND_izp32(emulate65c02 *self)
 
 void NOP33(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void BIT_zpx34(emulate65c02 *self)
@@ -935,6 +954,7 @@ void DEC3A(emulate65c02 *self)
 
 void NOP3B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void BIT_abx3C(emulate65c02 *self)
@@ -993,14 +1013,17 @@ void EOR_izx41(emulate65c02 *self)
 
 void NOP_imm42(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOP43(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_zp44(emulate65c02 *self)
 {
+	self->decode_addr_readZP();
 }
 
 void EOR_zp45(emulate65c02 *self)
@@ -1049,6 +1072,7 @@ void LSR4A(emulate65c02 *self)
 
 void NOP4B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void JMP_abs4C(emulate65c02 *self)
@@ -1108,10 +1132,12 @@ void EOR_izp52(emulate65c02 *self)
 
 void NOP53(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_zpx54(emulate65c02 *self)
 {
+	self->decode_addr_readZPX();
 }
 
 void EOR_zpx55(emulate65c02 *self)
@@ -1158,10 +1184,12 @@ void PHY5A(emulate65c02 *self)
 
 void NOP5B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_abs5C(emulate65c02 *self)
 {
+	self->decode_addr_readABS();
 }
 
 void EOR_abx5D(emulate65c02 *self)
@@ -1203,10 +1231,12 @@ void ADC_izx61(emulate65c02 *self)
 
 void NOP_imm62(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOP63(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STZ_zp64(emulate65c02 *self)
@@ -1266,6 +1296,7 @@ void ROR6A(emulate65c02 *self)
 
 void NOP6B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void JMP_ind6C(emulate65c02 *self)
@@ -1323,6 +1354,7 @@ void ADC_izp72(emulate65c02 *self)
 
 void NOP73(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STZ_zpx74(emulate65c02 *self)
@@ -1375,6 +1407,7 @@ void PLY7A(emulate65c02 *self)
 
 void NOP7B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void JMP_iax7C(emulate65c02 *self)
@@ -1425,10 +1458,12 @@ void STA_izx81(emulate65c02 *self)
 
 void NOP_imm82(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOP83(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STY_zp84(emulate65c02 *self)
@@ -1482,6 +1517,7 @@ void TXA8A(emulate65c02 *self)
 
 void NOP8B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STY_abs8C(emulate65c02 *self)
@@ -1531,6 +1567,7 @@ void STA_izp92(emulate65c02 *self)
 
 void NOP93(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STY_zpx94(emulate65c02 *self)
@@ -1575,6 +1612,7 @@ void TXS9A(emulate65c02 *self)
 
 void NOP9B(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void STZ_abs9C(emulate65c02 *self)
@@ -1622,6 +1660,7 @@ void LDX_immA2(emulate65c02 *self)
 
 void NOPA3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void LDY_zpA4(emulate65c02 *self)
@@ -1671,6 +1710,7 @@ void TAXAA(emulate65c02 *self)
 
 void NOPAB(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void LDY_absAC(emulate65c02 *self)
@@ -1725,6 +1765,7 @@ void LDA_izpB2(emulate65c02 *self)
 
 void NOPB3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void LDY_zpxB4(emulate65c02 *self)
@@ -1773,6 +1814,7 @@ void TSXBA(emulate65c02 *self)
 
 void NOPBB(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void LDY_abxBC(emulate65c02 *self)
@@ -1815,10 +1857,12 @@ void CMP_izxC1(emulate65c02 *self)
 
 void NOP_immC2(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOPC3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void CPY_zpC4(emulate65c02 *self)
@@ -1923,10 +1967,12 @@ void CMP_izpD2(emulate65c02 *self)
 
 void NOPD3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_zpxD4(emulate65c02 *self)
 {
+	self->decode_addr_readZPX();
 }
 
 void CMP_zpxD5(emulate65c02 *self)
@@ -1975,6 +2021,7 @@ void STPDB(emulate65c02 *self)
 
 void NOP_absDC(emulate65c02 *self)
 {
+	self->decode_addr_readABS();
 }
 
 void CMP_abxDD(emulate65c02 *self)
@@ -2013,10 +2060,12 @@ void SBC_izxE1(emulate65c02 *self)
 
 void NOP_immE2(emulate65c02 *self)
 {
+	self->decode_addr_readIMM();
 }
 
 void NOPE3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void CPX_zpE4(emulate65c02 *self)
@@ -2059,10 +2108,12 @@ void SBC_immE9(emulate65c02 *self)
 
 void NOPEA(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOPEB(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void CPX_absEC(emulate65c02 *self)
@@ -2116,10 +2167,12 @@ void SBC_izpF2(emulate65c02 *self)
 
 void NOPF3(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_zpxF4(emulate65c02 *self)
 {
+	self->decode_addr_readZPX();
 }
 
 void SBC_zpxF5(emulate65c02 *self)
@@ -2163,10 +2216,12 @@ void PLXFA(emulate65c02 *self)
 
 void NOPFB(emulate65c02 *self)
 {
+	self->time += 1;
 }
 
 void NOP_absFC(emulate65c02 *self)
 {
+	self->decode_addr_readABS();
 }
 
 void SBC_abxFD(emulate65c02 *self)
@@ -2185,12 +2240,16 @@ void INC_abxFE(emulate65c02 *self)
 
 void BBS7_ZprFF(emulate65c02 *self)
 {
+#ifdef ADD_OFFICIAL_EMULATOR_BUGS
+		DEBUGBreakToDebugger();
+#else
 	int v = self->decode_addr_readZP() & 0x80;
 	int taken_time, new_pc;
 	new_pc = self->decode_branch(&taken_time);
 	if (0 != v) {
 		self->pc = new_pc;
 	}
+#endif
 }
 
 
@@ -2331,7 +2390,7 @@ char * emulate65c02::disassemble()
 	throw("never gets here");
 }
 
-extern void do_compile();
+//extern void do_compile();
 
 //emulate65c02 Emulate;
 /*

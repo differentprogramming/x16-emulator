@@ -141,14 +141,14 @@ video_reset()
 }
 
 bool
-video_init(int window_scale, char *quality)
+video_init(int window_scale, const char *quality)
 {
 	video_reset();
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, quality);
 	SDL_CreateWindowAndRenderer(SCREEN_WIDTH * window_scale, SCREEN_HEIGHT * window_scale, 0, &window, &renderer);
 #ifndef __MORPHOS__
-	SDL_SetWindowResizable(window, true);
+	SDL_SetWindowResizable(window, true?SDL_TRUE:SDL_FALSE);
 #endif
 	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -553,16 +553,16 @@ render_line(uint16_t y)
 				uint8_t l2_col_index = layer_line_empty[1] ? 0 : layer_line[1][eff_x];
 				switch (spr_zindex) {
 					case 3:
-						col_index = spr_col_index ?: l2_col_index ?: l1_col_index;
+						col_index = spr_col_index ? spr_col_index : (l2_col_index ? l2_col_index : l1_col_index);
 						break;
 					case 2:
-						col_index = l2_col_index ?: spr_col_index ?: l1_col_index;
+						col_index = l2_col_index ? l2_col_index : (spr_col_index ? spr_col_index : l1_col_index);
 						break;
 					case 1:
-						col_index = l2_col_index ?: l1_col_index ?: spr_col_index;
+						col_index = l2_col_index ? l2_col_index : (l1_col_index ? l1_col_index : spr_col_index);
 						break;
 					case 0:
-						col_index = l2_col_index ?: l1_col_index;
+						col_index = l2_col_index ? l2_col_index : l1_col_index;
 						break;
 				}
 			}

@@ -1,4 +1,5 @@
 #include <SDL.h>
+#undef main
 #include <stdio.h>
 #include <stdbool.h>
 #include "glue.h"
@@ -232,19 +233,19 @@ handle_keyboard(bool down, SDL_Keycode sym, SDL_Scancode scancode)
 		int ps2_scancode = ps2_scancode_from_SDL_Scancode(scancode);
 		if (ps2_scancode == 0xff) {
 			// "Pause/Break" sequence
-			ps2_buffer_add(0, 0xe1);
-			ps2_buffer_add(0, 0x14);
-			ps2_buffer_add(0, 0x77);
-			ps2_buffer_add(0, 0xe1);
-			ps2_buffer_add(0, 0xf0);
-			ps2_buffer_add(0, 0x14);
-			ps2_buffer_add(0, 0xf0);
-			ps2_buffer_add(0, 0x77);
+			if (!ps2_buffer_add(0, 0xe1)) std::cout<< "1fail\b";
+			if (!ps2_buffer_add(0, 0x14)) std::cout << "2fail\b";
+			if (!ps2_buffer_add(0, 0x77)) std::cout << "3fail\b";
+			if (!ps2_buffer_add(0, 0xe1)) std::cout << "4fail\b";
+			if (!ps2_buffer_add(0, 0xf0)) std::cout << "5fail\b";
+			if (!ps2_buffer_add(0, 0x14)) std::cout << "6fail\b";
+			if (!ps2_buffer_add(0, 0xf0)) std::cout << "7fail\b";
+			if (!ps2_buffer_add(0, 0x77)) std::cout << "8fail\b";
 		} else {
 			if (ps2_scancode & EXTENDED_FLAG) {
-				ps2_buffer_add(0, 0xe0);
+				if (!ps2_buffer_add(0, 0xe0)) std::cout << "9fail\b";
 			}
-			ps2_buffer_add(0, ps2_scancode & 0xff);
+			if (!ps2_buffer_add(0, ps2_scancode & 0xff)) std::cout << "afail\b";
 		}
 	} else {
 		if (log_keyboard) {
@@ -254,10 +255,10 @@ handle_keyboard(bool down, SDL_Keycode sym, SDL_Scancode scancode)
 
 		int ps2_scancode = ps2_scancode_from_SDL_Scancode(scancode);
 		if (ps2_scancode & EXTENDED_FLAG) {
-			ps2_buffer_add(0, 0xe0);
+			if (!ps2_buffer_add(0, 0xe0)) std::cout << "bfail\b";
 		}
-		ps2_buffer_add(0, 0xf0); // BREAK
-		ps2_buffer_add(0, ps2_scancode & 0xff);
+		if (!ps2_buffer_add(0, 0xf0)) std::cout << "cfail\b"; // BREAK
+		if (!ps2_buffer_add(0, ps2_scancode & 0xff)) std::cout << "dfail\b";
 	}
 }
 

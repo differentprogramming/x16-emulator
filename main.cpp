@@ -1,6 +1,10 @@
 // Commander X16 Emulator
 // Copyright (c) 2019 Michael Steil
 // All rights reserved. License: 2-clause BSD
+#ifdef _MSC_VER
+#include <../include/limits.h>
+#include <windows.h>
+#endif
 
 #define _XOPEN_SOURCE   600
 #define _POSIX_C_SOURCE 1
@@ -14,7 +18,8 @@
 #ifdef __MINGW32__
 #include <ctype.h>
 #endif
-#include "cpu/fake6502.h"
+#include "65c02incpp.h"
+//#include "cpu/fake6502.h"
 #include "disasm.h"
 #include "memory.h"
 #include "video.h"
@@ -33,6 +38,12 @@
 #ifdef WITH_YM2151
 #include "ym2151.h"
 #endif
+#ifdef _MSC_VER
+#include "usleep.h"
+#ifndef PATH_MAX
+#define PATH_MAX MAX_PATH
+#endif
+#endif
 
 #define AUDIO_SAMPLES 4096
 #define SAMPLERATE 22050
@@ -48,7 +59,7 @@ void *emulator_loop(void *param);
 void emscripten_main_loop(void);
 
 // This must match the KERNAL's set!
-char *keymaps[] = {
+const char *keymaps[] = {
 	"en-us",
 	"en-gb",
 	"de",
@@ -87,7 +98,7 @@ gif_recorder_state_t record_gif = RECORD_GIF_DISABLED;
 char *gif_path = NULL;
 uint8_t keymap = 0; // KERNAL's default
 int window_scale = 1;
-char *scale_quality = "best";
+const char *scale_quality = "best";
 char window_title[30];
 int32_t last_perf_update = 0;
 int32_t perf_frame_count = 0;
@@ -144,12 +155,14 @@ machine_dump()
 	}
 
 	if (dump_cpu) {
-		fwrite(&a, sizeof(uint8_t), 1, f);
-		fwrite(&x, sizeof(uint8_t), 1, f);
-		fwrite(&y, sizeof(uint8_t), 1, f);
-		fwrite(&sp, sizeof(uint8_t), 1, f);
-		fwrite(&status, sizeof(uint8_t), 1, f);
-		fwrite(&pc, sizeof(uint16_t), 1, f);
+		uint8_t temp;
+		uint16_t temp2;
+		temp = emulator.a; fwrite(&temp, sizeof(uint8_t), 1, f);
+		temp = emulator.x; fwrite(&temp, sizeof(uint8_t), 1, f);
+		temp = emulator.y; fwrite(&temp, sizeof(uint8_t), 1, f);
+		temp = emulator.s; fwrite(&temp, sizeof(uint8_t), 1, f);
+		temp = emulator.p; fwrite(&temp, sizeof(uint8_t), 1, f);
+		temp2 = emulator.pc; fwrite(&temp2, sizeof(uint16_t), 1, f);
 	}
 	memory_save(f, dump_ram, dump_bank);
 
@@ -169,7 +182,7 @@ machine_reset()
 	via1_init();
 	via2_init();
 	video_reset();
-	reset6502();
+	emulator.reset();
 }
 
 void
@@ -417,10 +430,11 @@ void closeAudio()
 }
 #endif
 
+emulate65c02 emulator;
+
 int
-main(int argc, char **argv)
-{
-	char *rom_filename = "rom.bin";
+main(int argc, char *argv[]){
+	const char *rom_filename = "rom.bin";
 	char rom_path_data[PATH_MAX];
 
 	char *rom_path = rom_path_data;
@@ -702,13 +716,14 @@ main(int argc, char **argv)
 			usage();
 		}
 	}
+	emulator.init(num_ram_banks * 8192);
 
 	FILE *f = fopen(rom_path, "rb");
 	if (!f) {
 		printf("Cannot open %s!\n", rom_path);
 		exit(1);
 	}
-	int rom_size = fread(ROM, 1, ROM_SIZE, f);
+	int rom_size = fread(emulator.rom, 1, ROM_SIZE, f);
 	(void)rom_size;
 	fclose(f);
 
@@ -762,10 +777,13 @@ main(int argc, char **argv)
 	init_audio();
 #endif
 
-	memory_init();
+	//memory_init();
+
 	video_init(window_scale, scale_quality);
 
 	joystick_init();
+
+	//emulator.test_assembler();
 
 	machine_reset();
 
@@ -774,6 +792,11 @@ main(int argc, char **argv)
 #ifdef __EMSCRIPTEN__
 	emscripten_set_main_loop(emscripten_main_loop, 0, 1);
 #else
+	bool do_test = true;
+	if (do_test) {
+		emulator.build_solid();
+	} else
+
 	emulator_loop(NULL);
 #endif
 
@@ -821,6 +844,7 @@ emscripten_main_loop(void) {
 void*
 emulator_loop(void *param)
 {
+	//emulator.trace = true;
 	for (;;) {
 
 		if (debugger_enabled) {
@@ -837,22 +861,22 @@ emulator_loop(void *param)
 		if (memory_get_rom_bank() == 3) {
 			static uint8_t old_sp;
 			static uint16_t base_pc;
-			if (sp < old_sp) {
-				base_pc = pc;
+			if ((uint8_t)emulator.s < old_sp) {
+				base_pc = (uint16_t)emulator.pc;
 			}
-			old_sp = sp;
+			old_sp = (uint8_t)emulator.s;
 			stat[base_pc]++;
 		}
 #endif
 
 #ifdef TRACE
-		if (pc == trace_address && trace_address != 0) {
+		if ((uint16_t)emulator.pc == trace_address && trace_address != 0) {
 			trace_mode = true;
 		}
 		if (trace_mode) {
 			printf("\t\t\t\t[%6d] ", instruction_counter);
 
-			char *label = label_for_address(pc);
+			char *label = label_for_address((uint16_t)emulator.pc);
 			int label_len = label ? strlen(label) : 0;
 			if (label) {
 				printf("%s", label);
@@ -860,11 +884,11 @@ emulator_loop(void *param)
 			for (int i = 0; i < 10 - label_len; i++) {
 				printf(" ");
 			}
-			printf(" .,%04x ", pc);
+			printf(" .,%04x ", (uint16_t)emulator.pc);
 			char disasm_line[15];
-			int len = disasm(pc, RAM, disasm_line, sizeof(disasm_line), false, 0);
+			int len = disasm((uint16_t)emulator.pc, emulator.memory, disasm_line, sizeof(disasm_line), false, 0);
 			for (int i = 0; i < len; i++) {
-				printf("%02x ", read6502(pc + i));
+				printf("%02x ", read6502((uint16_t)(emulator.pc + i)));
 			}
 			for (int i = 0; i < 9 - 3 * len; i++) {
 				printf(" ");
@@ -874,30 +898,30 @@ emulator_loop(void *param)
 				printf(" ");
 			}
 
-			printf("a=$%02x x=$%02x y=$%02x s=$%02x p=", a, x, y, sp);
+			printf("a=$%02x x=$%02x y=$%02x s=$%02x p=", a, x, y, emulator.s);
 			for (int i = 7; i >= 0; i--) {
-				printf("%c", (status & (1 << i)) ? "czidb.vn"[i] : '-');
+				printf("%c", (emulator.p & (1 << i)) ? "czidb.vn"[i] : '-');
 			}
-			printf(" --- %04x :%02x", RAM[0xc] | RAM[0xd] << 8, RAM[0x9000]);
+			printf(" --- %04x :%02x", emulator.memory[0xc] | emulator.memory[0xd] << 8, emulator.memory[0x9000]);
 			printf("\n");
 		}
 #endif
 
 #ifdef LOAD_HYPERCALLS
-		if ((pc == 0xffd5 || pc == 0xffd8) && is_kernal() && RAM[FA] == 1) {
-			if (pc == 0xffd5) {
+		if (((uint16_t)emulator.pc == 0xffd5 || (uint16_t)emulator.pc == 0xffd8) && is_kernal() && emulator.memory[FA] == 1) {
+			if ((uint16_t)emulator.pc == 0xffd5) {
 				LOAD();
 			} else {
 				SAVE();
 			}
-			pc = (RAM[0x100 + sp + 1] | (RAM[0x100 + sp + 2] << 8)) + 1;
-			sp += 2;
+			emulator.pc = (emulator.memory[0x100 + (uint8_t)(emulator.s + 1)] | (emulator.memory[0x100 + (uint8_t)(emulator.s + 2)] << 8)) + 1;
+			emulator.s = (uint8_t)(emulator.s+2);
 		}
 #endif
 
-		uint32_t old_clockticks6502 = clockticks6502;
-		step6502();
-		uint8_t clocks = clockticks6502 - old_clockticks6502;
+		long long old_clockticks6502 = emulator.time;
+		emulator.step6502();
+		uint8_t clocks = emulator.time - old_clockticks6502;
 		bool new_frame = false;
 		for (uint8_t i = 0; i < clocks; i++) {
 			ps2_step(0);
@@ -955,26 +979,24 @@ emulator_loop(void *param)
 		}
 
 		if (video_get_irq_out()) {
-			if (!(status & 4)) {
-				irq6502();
-			}
+			emulator.irq();
 		}
 
 #if 0
-		if (clockticks6502 >= 5 * MHZ * 1000 * 1000) {
+		if (emulator.time >= 5 * MHZ * 1000 * 1000) {
 			break;
 		}
 #endif
 
-		if (pc == 0xffff) {
+		if ((uint16_t)emulator.pc == 0xffff) {
 			if (save_on_exit) {
 				machine_dump();
 			}
 			break;
 		}
 
-		if (echo_mode != ECHO_MODE_NONE && pc == 0xffd2 && is_kernal()) {
-			uint8_t c = a;
+		if (echo_mode != ECHO_MODE_NONE && (uint16_t)emulator.pc == 0xffd2 && is_kernal()) {
+			uint8_t c = (uint8_t)emulator.a;
 			if (echo_mode == ECHO_MODE_COOKED) {
 				if (c == 0x0d) {
 					printf("\n");
@@ -1001,7 +1023,7 @@ emulator_loop(void *param)
 			fflush(stdout);
 		}
 
-		if (pc == 0xffcf && is_kernal()) {
+		if ((uint16_t)emulator.pc == 0xffcf && is_kernal()) {
 			// as soon as BASIC starts reading a line...
 			if (prg_file) {
 				// ...inject the app into RAM
@@ -1013,18 +1035,18 @@ emulator_loop(void *param)
 				} else {
 					start = start_hi << 8 | start_lo;
 				}
-				uint16_t end = start + fread(RAM + start, 1, 65536-start, prg_file);
+				uint16_t end = start + fread(emulator.memory + start, 1, 65536-start, prg_file);
 				fclose(prg_file);
 				prg_file = NULL;
 				if (start == 0x0801) {
 					// set start of variables
-					RAM[VARTAB] = end & 0xff;
-					RAM[VARTAB + 1] = end >> 8;
+					emulator.memory[VARTAB] = end & 0xff;
+					emulator.memory[VARTAB + 1] = end >> 8;
 				}
 
 				if (run_after_load) {
 					if (start == 0x0801) {
-						paste_text = "RUN\r";
+						paste_text = const_cast<char *>("RUN\r");
 					} else {
 						paste_text = paste_text_data;
 						snprintf(paste_text, sizeof(paste_text_data), "SYS$%04x\r", start);
@@ -1038,22 +1060,30 @@ emulator_loop(void *param)
 			}
 		}
 
-		while (pasting_bas && RAM[NDX] < 10) {
+		while (pasting_bas && emulator.memory[NDX] < 10) {
 			uint32_t c;
 			int e = 0;
+			char buff1[2];
+			char buff2[2];
+
+
 
 			if (paste_text[0] == '\\' && paste_text[1] == 'X' && paste_text[2] && paste_text[3]) {
-				uint8_t hi = strtol((char[]){paste_text[2], 0}, NULL, 16);
-				uint8_t lo = strtol((char[]){paste_text[3], 0}, NULL, 16);
+				buff1[0] = paste_text[2];
+				buff1[1] = 0;
+				buff2[0] = paste_text[3];
+				buff2[1] = 0;
+				uint8_t hi = strtol(buff1, NULL, 16);
+				uint8_t lo = strtol(buff2, NULL, 16);
 				c = hi << 4 | lo;
 				paste_text += 4;
 			} else {
-				paste_text = utf8_decode(paste_text, &c, &e);
+				paste_text = (char *) utf8_decode(paste_text, &c, &e);
 				c = iso8859_15_from_unicode(c);
 			}
 			if (c && !e) {
-				RAM[KEYD + RAM[NDX]] = c;
-				RAM[NDX]++;
+				emulator.memory[KEYD + emulator.memory[NDX]] = c;
+				emulator.memory[NDX]++;
 			} else {
 				pasting_bas = false;
 				paste_text = NULL;

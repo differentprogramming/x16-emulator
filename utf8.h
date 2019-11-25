@@ -34,7 +34,7 @@ utf8_decode(void *buf, uint32_t *c, int *e)
 	static const int shiftc[] = {0, 18, 12, 6, 0};
 	static const int shifte[] = {0, 6, 4, 2, 0};
 
-	unsigned char *s = buf;
+	unsigned char *s = (unsigned char *)buf;
 	int len = lengths[s[0] >> 3];
 
 	/* Compute the pointer to the next character early so that the next

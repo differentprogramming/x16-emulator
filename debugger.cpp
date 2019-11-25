@@ -13,11 +13,13 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <SDL.h>
+#undef main
+#include <string.h>
 #include "glue.h"
 #include "disasm.h"
 #include "memory.h"
 #include "video.h"
-#include "cpu/fake6502.h"
+//#include "cpu/fake6502.h"
 #include "debugger.h"
 #include "rendertext.h"
 
@@ -30,7 +32,7 @@ static void DEBUGRenderData(int y,int data);
 static int DEBUGRenderRegisters(void);
 static void DEBUGRenderCode(int lines,int initialPC);
 static void DEBUGRenderStack(int bytesCount);
-static void DEBUGRenderCmdLine();
+static void DEBUGRenderCmdLine(int,int,int);
 static bool DEBUGBuildCmdLine(SDL_Keycode key);
 static void DEBUGExecCmd();
 
@@ -119,22 +121,22 @@ SDL_Renderer *dbgRenderer; 										// Renderer passed in.
 int  DEBUGGetCurrentStatus(void) {
 
 	SDL_Event event;
-	if (currentPC < 0) currentPC = pc;							// Initialise current PC displayed.
+	if (currentPC < 0) currentPC = emulator.pc;							// Initialise current PC displayed.
 
 	if (currentMode == DMODE_STEP) {							// Single step before
-		currentPC = pc;											// Update current PC
+		currentPC = emulator.pc;											// Update current PC
 		currentMode = DMODE_STOP;								// So now stop, as we've done it.
 	}
 
-	if (pc == breakPoint || pc == stepBreakPoint) {				// Hit a breakpoint.
-		currentPC = pc;											// Update current PC
+	if (emulator.pc == breakPoint || emulator.pc == stepBreakPoint) {				// Hit a breakpoint.
+		currentPC = emulator.pc;											// Update current PC
 		currentMode = DMODE_STOP;								// So now stop, as we've done it.
 		stepBreakPoint = -1;									// Clear step breakpoint.
 	}
 
 	if (SDL_GetKeyboardState(NULL)[DBGSCANKEY_BRK]) {			// Stop on break pressed.
 		currentMode = DMODE_STOP;
-		currentPC = pc; 										// Set the PC to what it is.
+		currentPC = emulator.pc; 										// Set the PC to what it is.
 	}
 
 	if(currentPCBank<0 && currentPC >= 0xA000) {
@@ -202,7 +204,7 @@ void DEBUGSetBreakPoint(int newBreakPoint) {
 
 void DEBUGBreakToDebugger(void) {
 	currentMode = DMODE_STOP;
-	currentPC = pc;
+	currentPC = emulator.pc;
 }
 
 // *******************************************************************************************
@@ -221,9 +223,9 @@ static void DEBUGHandleKeyEvent(SDL_Keycode key,int isShift) {
 			break;
 
 		case DBGKEY_STEPOVER:								// Step over (F10 by default)
-			opcode = real_read6502(pc, false, 0);							// What opcode is it ?
+			opcode = real_read6502(emulator.pc, false, 0);							// What opcode is it ?
 			if (opcode == 0x20) { 							// Is it JSR ?
-				stepBreakPoint = pc + 3;					// Then break 3 on.
+				stepBreakPoint = emulator.pc + 3;					// Then break 3 on.
 				currentMode = DMODE_RUN;					// And run.
 			} else {
 				currentMode = DMODE_STEP;					// Otherwise single step.
@@ -239,13 +241,13 @@ static void DEBUGHandleKeyEvent(SDL_Keycode key,int isShift) {
 			break;
 
 		case DBGKEY_HOME:									// F1 sets the display PC to the actual one.
-			currentPC = pc;
+			currentPC = emulator.pc;
 			currentPCBank= currentPC < 0xC000 ? memory_get_ram_bank() : memory_get_rom_bank();
 			break;
 
 		case DBGKEY_RESET:									// F2 reset the 6502
-			reset6502();
-			currentPC = pc;
+			emulator.reset();
+			currentPC = emulator.pc;
 			currentPCBank= -1;
 			break;
 
@@ -348,19 +350,19 @@ static void DEBUGExecCmd() {
 			sscanf(line, "%s %x", reg, &number);
 
 			if(!strcmp(reg, "pc")) {
-				pc= number & 0xFFFF;
+				emulator.pc= number & 0xFFFF;
 			}
 			if(!strcmp(reg, "a")) {
-				a= number & 0x00FF;
+				emulator.a= number & 0x00FF;
 			}
 			if(!strcmp(reg, "x")) {
-				x= number & 0x00FF;
+				emulator.x= number & 0x00FF;
 			}
 			if(!strcmp(reg, "y")) {
-				y= number & 0x00FF;
+				emulator.y= number & 0x00FF;
 			}
 			if(!strcmp(reg, "sp")) {
-				sp= number & 0x00FF;
+				emulator.s= number & 0x00FF;
 			}
 			break;
 
@@ -443,9 +445,9 @@ static void DEBUGRenderCode(int lines, int initialPC) {
 
 		DEBUGAddress(DBG_ASMX, y, currentPCBank, initialPC, col_label);
 
-		int size = disasm(initialPC, RAM, buffer, sizeof(buffer), true, currentPCBank);	// Disassemble code
+		int size = disasm(initialPC, emulator.memory, buffer, sizeof(buffer), true, currentPCBank);	// Disassemble code
 		// Output assembly highlighting PC
-		DEBUGString(dbgRenderer, DBG_ASMX+8, y, buffer, initialPC == pc ? col_highlight : col_data);
+		DEBUGString(dbgRenderer, DBG_ASMX+8, y, buffer, initialPC == emulator.pc ? col_highlight : col_data);
 		initialPC += size;										// Forward to next
 	}
 }
@@ -456,7 +458,7 @@ static void DEBUGRenderCode(int lines, int initialPC) {
 //
 // *******************************************************************************************
 
-static char *labels[] = { "NV-BDIZC","","","A","X","Y","","BKA","BKO", "PC","SP","","BRK","", "VA","VD0","VD1","VCT", NULL };
+static const char *labels[] = { "NV-BDIZC","","","A","X","Y","","BKA","BKO", "PC","SP","","BRK","", "VA","VD0","VD1","VCT", NULL };
 
 
 static int DEBUGRenderRegisters(void) {
@@ -465,24 +467,24 @@ static int DEBUGRenderRegisters(void) {
 		DEBUGString(dbgRenderer, DBG_LBLX,n,labels[n], col_label);n++;
 	}
 	yc++;
-	DEBUGNumber(DBG_LBLX, yc, (status >> 7) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+1, yc, (status >> 6) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+3, yc, (status >> 4) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+4, yc, (status >> 3) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+5, yc, (status >> 2) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+6, yc, (status >> 1) & 1, 1, col_data);
-	DEBUGNumber(DBG_LBLX+7, yc, (status >> 0) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX, yc, (emulator.p >> 7) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+1, yc, (emulator.p >> 6) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+3, yc, (emulator.p >> 4) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+4, yc, (emulator.p >> 3) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+5, yc, (emulator.p >> 2) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+6, yc, (emulator.p >> 1) & 1, 1, col_data);
+	DEBUGNumber(DBG_LBLX+7, yc, (emulator.p >> 0) & 1, 1, col_data);
 	yc+= 2;
 
-	DEBUGNumber(DBG_DATX, yc++, a, 2, col_data);
-	DEBUGNumber(DBG_DATX, yc++, x, 2, col_data);
-	DEBUGNumber(DBG_DATX, yc++, y, 2, col_data);
+	DEBUGNumber(DBG_DATX, yc++, emulator.a, 2, col_data);
+	DEBUGNumber(DBG_DATX, yc++, emulator.x, 2, col_data);
+	DEBUGNumber(DBG_DATX, yc++, emulator.y, 2, col_data);
 	yc++;
 
 	DEBUGNumber(DBG_DATX, yc++, memory_get_ram_bank(), 2, col_data);
 	DEBUGNumber(DBG_DATX, yc++, memory_get_rom_bank(), 2, col_data);
-	DEBUGNumber(DBG_DATX, yc++, pc, 4, col_data);
-	DEBUGNumber(DBG_DATX, yc++, sp|0x100, 4, col_data);
+	DEBUGNumber(DBG_DATX, yc++, emulator.pc, 4, col_data);
+	DEBUGNumber(DBG_DATX, yc++, emulator.s|0x100, 4, col_data);
 	yc++;
 
 	DEBUGNumber(DBG_DATX, yc++, breakPoint & 0xFFFF, 4, col_data);
@@ -503,7 +505,7 @@ static int DEBUGRenderRegisters(void) {
 // *******************************************************************************************
 
 static void DEBUGRenderStack(int bytesCount) {
-	int data= (sp+1) | 0x100;
+	int data= (emulator.s+1) | 0x100;
 	int y= 0;
 	while (y < bytesCount) {
 		DEBUGNumber(DBG_STCK,y,data & 0xFFFF,4, col_label);

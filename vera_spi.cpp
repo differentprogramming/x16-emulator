@@ -42,7 +42,7 @@ vera_spi_read(uint8_t reg)
 		case 0:
 			return received_byte;
 		case 1:
-			return busy << 7 | ss;
+			return busy << 7 | (ss?1:0);
 	}
 	return 0;
 }

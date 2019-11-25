@@ -101,7 +101,7 @@ create_directory_listing(uint8_t *data)
 	*data++ = 255; // "65535"
 	*data++ = 255;
 
-	char *blocks_free = "BLOCKS FREE.";
+	const char *blocks_free = "BLOCKS FREE.";
 	memcpy(data, blocks_free, strlen(blocks_free));
 	data += strlen(blocks_free);
 	*data++ = 0;
@@ -117,43 +117,58 @@ void
 LOAD()
 {
 	char filename[41];
-	uint8_t len = MIN(RAM[FNLEN], sizeof(filename) - 1);
-	memcpy(filename, (char *)&RAM[RAM[FNADR] | RAM[FNADR + 1] << 8], len);
+	uint8_t len = MIN(emulator.memory[FNLEN], sizeof(filename) - 1);
+	memcpy(filename, (char *)&emulator.memory[emulator.memory[FNADR] | emulator.memory[FNADR + 1] << 8], len);
 	filename[len] = 0;
 
-	uint16_t override_start = (x | (y << 8));
+	uint16_t override_start = (emulator.x | (emulator.y << 8));
 
 	if (filename[0] == '$') {
-		uint16_t dir_len = create_directory_listing(RAM + override_start);
+		uint16_t dir_len = create_directory_listing(emulator.memory + override_start);
 		uint16_t end = override_start + dir_len;
-		x = end & 0xff;
-		y = end >> 8;
-		status &= 0xfe;
-		RAM[STATUS] = 0;
-		a = 0;
+		emulator.x = end & 0xff;
+		emulator.y = end >> 8;
+		emulator.p &= 0xfe;
+		emulator.memory[STATUS] = 0;
+		emulator.a = 0;
+	}
+	else if (strncmp(filename,"solid",6)==0 ) {
+		uint16_t start = 0x801;
+		emulator.memory[SA] = 0;
+		video_write(0, start & 0xff);
+		video_write(1, start >> 8);
+		video_write(2, ((emulator.a - 2) & 0xf) | 0x10);
+
+		uint16_t end = emulator.build_solid();
+
+		emulator.x = end & 0xff;
+		emulator.y = end >> 8;
+		emulator.p &= 0xfe;
+		emulator.memory[STATUS] = 0;
+		emulator.a = 0; 
 	} else {
 		FILE *f = fopen(filename, "rb");
 		if (!f) {
-			a = 4; // FNF
-			RAM[STATUS] = a;
-			status |= 1;
+			emulator.a = 4; // FNF
+			emulator.memory[STATUS] = emulator.a;
+			emulator.p |= 1;
 			return;
 		}
 		uint8_t start_lo = fgetc(f);
 		uint8_t start_hi = fgetc(f);
 		uint16_t start;
-		if (!RAM[SA]) {
+		if (!emulator.memory[SA]) {
 			start = override_start;
 		} else {
 			start = start_hi << 8 | start_lo;
 		}
 
 		size_t bytes_read = 0;
-		if(a > 1) {
+		if(emulator.a > 1) {
 			// Video RAM
 			video_write(0, start & 0xff);
 			video_write(1, start >> 8);
-			video_write(2, ((a - 2) & 0xf) | 0x10);
+			video_write(2, ((emulator.a - 2) & 0xf) | 0x10);
 			uint8_t buf[2048];
 			while(1) {
 				size_t n = fread(buf, 1, sizeof buf, f);
@@ -165,14 +180,14 @@ LOAD()
 			}
 		} else if(start < 0x9f00) {
 			// Fixed RAM
-			bytes_read = fread(RAM + start, 1, 0x9f00 - start, f);
+			bytes_read = fread(emulator.memory + start, 1, 0x9f00 - start, f);
 		} else if(start < 0xa000) {
 			// IO addresses
 		} else if(start < 0xc000) {
 			// banked RAM
 			while(1) {
 				size_t len = 0xc000 - start;
-				bytes_read = fread(RAM + ((uint16_t)memory_get_ram_bank() << 13) + start, 1, len, f);
+				bytes_read = fread(emulator.memory + ((uint16_t)memory_get_ram_bank() << 13) + start, 1, len, f);
 				if(bytes_read < len) break;
 
 				// Wrap into the next bank
@@ -186,11 +201,11 @@ LOAD()
 		fclose(f);
 
 		uint16_t end = start + bytes_read;
-		x = end & 0xff;
-		y = end >> 8;
-		status &= 0xfe;
-		RAM[STATUS] = 0;
-		a = 0;
+		emulator.x = end & 0xff;
+		emulator.y = end >> 8;
+		emulator.p &= 0xfe;
+		emulator.memory[STATUS] = 0;
+		emulator.a = 0;
 	}
 }
 
@@ -198,34 +213,34 @@ void
 SAVE()
 {
 	char filename[41];
-	uint8_t len = MIN(RAM[FNLEN], sizeof(filename) - 1);
-	memcpy(filename, (char *)&RAM[RAM[FNADR] | RAM[FNADR + 1] << 8], len);
+	uint8_t len = MIN(emulator.memory[FNLEN], sizeof(filename) - 1);
+	memcpy(filename, (char *)&emulator.memory[emulator.memory[FNADR] | emulator.memory[FNADR + 1] << 8], len);
 	filename[len] = 0;
 
-	uint16_t start = RAM[a] | RAM[a + 1] << 8;
-	uint16_t end = x | y << 8;
+	uint16_t start = emulator.memory[emulator.a] | emulator.memory[emulator.a + 1] << 8;
+	uint16_t end = emulator.x | emulator.y << 8;
 	if (end < start) {
-		status |= 1;
-		a = 0;
+		emulator.p |= 1;
+		emulator.a = 0;
 		return;
 	}
 
 	FILE *f = fopen(filename, "wb");
 	if (!f) {
-		a = 4; // FNF
-		RAM[STATUS] = a;
-		status |= 1;
+		emulator.a = 4; // FNF
+		emulator.memory[STATUS] = emulator.a;
+		emulator.p |= 1;
 		return;
 	}
 
 	fputc(start & 0xff, f);
 	fputc(start >> 8, f);
 
-	fwrite(RAM + start, 1, end - start, f);
+	fwrite(emulator.memory + start, 1, end - start, f);
 	fclose(f);
 
-	status &= 0xfe;
-	RAM[STATUS] = 0;
-	a = 0;
+	emulator.p &= 0xfe;
+	emulator.memory[STATUS] = 0;
+	emulator.a = 0;
 }
 

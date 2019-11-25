@@ -4,7 +4,13 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <iostream>
 #include "ps2.h"
+
+#ifdef _MSC_VER
+#include <intrin.h>
+#define __builtin_parity(x) (__popcnt(x)&1)
+#endif
 
 #define HOLD 25 * 8 /* 25 x ~3 cycles at 8 MHz = 75µs */
 
@@ -39,15 +45,16 @@ ps2_buffer_can_fit(int i, int n)
 	return true;
 }
 
-void
+bool 
 ps2_buffer_add(int i, uint8_t byte)
 {
 	if (!ps2_buffer_can_fit(i, 1)) {
-		return;
+		return false;
 	}
 
 	state[i].buffer.data[state[i].buffer.write] = byte;
 	state[i].buffer.write = (state[i].buffer.write + 1) % PS2_BUFFER_SIZE;
+	return true;
 }
 
 int

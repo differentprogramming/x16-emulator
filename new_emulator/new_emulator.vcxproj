@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\65c02incpp.cpp" />
+    <ClCompile Include="..\compile.cpp" />
     <ClCompile Include="..\debugger.cpp" />
     <ClCompile Include="..\disasm.cpp" />
+    <ClCompile Include="..\fake65c02.cpp" />
     <ClCompile Include="..\javascript_interface.cpp" />
     <ClCompile Include="..\joystick.cpp" />
     <ClCompile Include="..\keyboard.cpp" />
@@ -192,6 +194,7 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

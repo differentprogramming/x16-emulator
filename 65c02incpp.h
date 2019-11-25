@@ -3,6 +3,11 @@
 #include <memory>
 #include <iostream>
 
+//With this defined the $02 NOP is one byte instead of 2
+//and $FF is a debug break instead of being a BBR
+//#define ADD_OFFICIAL_EMULATOR_BUGS
+
+extern void fake_emulator(uint8_t op);
 //#define TRACE
 //#define PERFSTAT
 #define LOAD_HYPERCALLS
@@ -79,8 +84,9 @@ struct LabelFixup
 	bool relative;
 	int  instruction_field_address;
 	int target;
-	LabelFixup():instruction_field_address(-1), target(-1), relative(false){}
-	LabelFixup(int f, bool r) :instruction_field_address(f), relative(r), target(-1) {}
+	bool single_byte;//not used yet, for using labels for zero page immediate targets
+	LabelFixup():instruction_field_address(-1), target(-1), relative(false), single_byte(false){}
+	LabelFixup(int f, bool r) :instruction_field_address(f), relative(r), target(-1), single_byte(false) {}
 	LabelFixup(const LabelFixup &) = default;
 	LabelFixup(LabelFixup &&) = default;
 	void  update_target(emulate65c02 *emulate, int t);
@@ -96,13 +102,17 @@ struct Label
 
 	bool has_target() { return target != -1; }
 	void set_target(emulate65c02 *emulate, int t = -1);
+	void here(emulate65c02 *emulate, int offset = 0);
+	void here(int offset = 0);
 	void add_fixup(int instruction_field_address, bool relative) {
 		fixups->push_back(LabelFixup(instruction_field_address, relative));
 	}
 };
 
 extern int RMB_BY_BIT[8];
+extern int SMB_BY_BIT[8];
 extern int BBR_BY_BIT[8];
+extern int BBS_BY_BIT[8];
 
 struct emulate65c02 {
 	enum dissassembly_modes
@@ -127,6 +137,7 @@ struct emulate65c02 {
 	long long clockgoal6502;
 	bool waiting;
 	bool stop;
+	int protected_start, protected_end;
 	
 	int last_address;
 	bool trace;
@@ -264,12 +275,39 @@ struct emulate65c02 {
 		stop = waiting = false;
 
 		while (time < clockgoal6502) {
-			instructions[read6502(pc++)](this);
+			instructions[read6502(pc)](this);
 
 			if (callexternal) (*loopexternal)();
 			if (stop || waiting) time = clockgoal6502;
+			++pc;
 		}
 	}
+
+	void exec(int address=-1) {
+		stop = waiting = false;
+		if (address != -1) pc = address;
+		while (!stop && !waiting) {
+			if (trace) {
+				disassembly_point = pc;
+				std::cout << disassemble();
+			}
+			instructions[read6502(pc)](this);
+			if (trace) {
+				std::cout << std::hex << "\ta=" << a << " x=" << x << " y=" << y << " pc=" << pc << " (C" <<
+					((p&(FLAG_C)) == 0 ? 0 : 1)
+					<< 'Z' << ((p&(FLAG_Z)) == 0 ? 0 : 1)
+					<< 'I' << ((p&(FLAG_I)) == 0 ? 0 : 1)
+					<< 'D' << ((p&(FLAG_D)) == 0 ? 0 : 1)
+					<< 'B' << ((p&(FLAG_B)) == 0 ? 0 : 1)
+					<< 'V' << ((p&(FLAG_V)) == 0 ? 0 : 1)
+					<< 'N' << ((p&(FLAG_N)) == 0 ? 0 : 1)
+					<< ") s= " << s << '\n';
+			}
+			++pc;
+			//if (callexternal) (*loopexternal)();
+		}
+	}
+
 
 	void step6502() {
 
@@ -277,7 +315,13 @@ struct emulate65c02 {
 			disassembly_point = pc;
 			std::cout << disassemble();
 		}
-		instructions[read6502(pc)](this);
+
+		uint8_t opcode = read6502(pc);
+		if (true) instructions[opcode](this);
+		else {
+			fake_emulator(opcode);
+			--pc;
+		}
 		if (trace) {
 			std::cout << std::hex << "\ta=" << a << " x=" << x << " y=" << y << " pc=" << pc << " (C" <<
 				((p&(FLAG_C)) == 0 ? 0 : 1)
@@ -460,6 +504,16 @@ struct emulate65c02 {
 		return real_read6502(address, false, 0);
 	}
 
+	uint8_t *map_addr(int address) {
+		if (address < 0xa000) return &memory[address];
+		else if (address < 0xc000) { // banked RAM
+			return	&memory[((effective_ram_bank()) << 13) + address];
+		}
+		else { // banked ROM
+			return &rom[((rom_bank) << 14) + address - 0xc000];
+		}
+	}
+
 	//uint8_t* map_addr(int addr)
 	//{
 	//	last_address = addr;
@@ -551,7 +605,8 @@ struct emulate65c02 {
 
 	emulate65c02() :a(0), x(0), y(0), p((int)FLAG_I), s(0xff), pc(0x100),compile_point(0x100), data_point(0x8000),
 		waiting(false), stop(false),last_address(-1),
-		disassembly_point(0), external_disassembly_point(nullptr), trace(false),rom_bank(0), ram_bank(0),num_banks(0),memory(nullptr), rom(nullptr), callexternal(false)
+		disassembly_point(0), external_disassembly_point(nullptr), trace(false),rom_bank(0), ram_bank(0),num_banks(0),
+		memory(nullptr), rom(nullptr), callexternal(false),protected_start(-1), protected_end(-1)
 	{
 	}
 
@@ -597,16 +652,77 @@ struct emulate65c02 {
 		comp_byte(RMB_BY_BIT[bit]);
 		comp_byte(zp);
 	}
+	void smb(int bit, int zp)
+	{
+		comp_byte(SMB_BY_BIT[bit]);
+		comp_byte(zp);
+	}
 	void php() { comp_byte(8); }
 	void ora_imm(int v) { comp_byte(9); comp_byte(v); }
 	void asl() { comp_byte(0x0a); }
 	void tsb_abs(int v) { comp_byte(0x0c); comp_word(v); }
+	void tsb_abs(Label &label) { comp_ab_label(label, 0x0c); }
+	void tsb_ab(int v) { if (v < 256) tsb_zp(v); else tsb_abs(v); }
+	void tsb_ab(Label &label) { if (label.has_target() && label.target<256) tsb_zp(label.target);  tsb_abs(label); }
+
 	void ora_abs(int v) { comp_byte(0x0d); comp_word(v); }
+	void ora_abs(Label &label) { comp_ab_label(label, 0x0d); }
+	void ora_ab(int v) { if (v < 256) ora_zp(v); else ora_abs(v); }
+	void ora_ab(Label &label) { if (label.has_target() && label.target < 256) ora_zp(label.target);  ora_abs(label); }
+
 	void asl_abs(int v) { comp_byte(0x0e); comp_word(v); }
-	void bbr(int bit, int zp)//needs address too
+	void asl_abs(Label &label) { comp_ab_label(label, 0x0e); }
+	void asl_ab(int v) { if (v < 256) asl_zp(v); else asl_abs(v); }
+	void asl_ab(Label &label) { if (label.has_target() && label.target < 256) asl_zp(label.target);  asl_abs(label); }
+
+	void bbr(int bit, int zp, Label& label, bool force_short = true)
 	{
-		comp_byte(BBR_BY_BIT[bit]);
-		comp_byte(zp);
+		int cur_add = (compile_point + 3) & 0xffff;
+		if (label.has_target() && label.target - cur_add <= 128 && cur_add - label.target <= 127){
+			comp_byte(BBR_BY_BIT[bit]);
+			comp_byte(zp);
+			comp_byte(label.target - cur_add);
+		} else if (force_short) {
+			comp_byte(BBR_BY_BIT[bit]);
+			comp_byte(zp);
+			label.add_fixup((cur_add - 1) & 0xffff, true);
+			comp_byte(0);
+		}
+		else {
+			comp_byte(BBS_BY_BIT[bit]);
+			label.add_fixup((cur_add + 1) & 0xffff, false);
+			comp_byte(zp); //the code is designed so that if you try to run it when the fixup hasn't happened, the branch falls through
+			comp_byte(3);//over jump
+			comp_byte(0x4c);//jmp
+			cur_add = (compile_point + 2) & 0xffff;
+			comp_byte(cur_add & 0xff);
+			comp_byte((cur_add >> 8) & 0xff);
+		}
+	}
+	void bbs(int bit, int zp, Label& label, bool force_short = true)
+	{
+		int cur_add = (compile_point + 3) & 0xffff;
+		if (label.has_target() && label.target - cur_add <= 128 && cur_add - label.target <= 127) {
+			comp_byte(BBS_BY_BIT[bit]);
+			comp_byte(zp);
+			comp_byte(label.target - cur_add);
+		}
+		else if (force_short) {
+			comp_byte(BBS_BY_BIT[bit]);
+			comp_byte(zp);
+			label.add_fixup((cur_add - 1) & 0xffff, true);
+			comp_byte(0);
+		}
+		else {
+			comp_byte(BBR_BY_BIT[bit]);
+			label.add_fixup((cur_add + 1) & 0xffff, false);
+			comp_byte(zp); //the code is designed so that if you try to run it when the fixup hasn't happened, the branch falls through
+			comp_byte(3);//over jump
+			comp_byte(0x4c);//jmp
+			cur_add = (compile_point + 2) & 0xffff;
+			comp_byte(cur_add & 0xff);
+			comp_byte((cur_add >> 8) & 0xff);
+		}
 	}
 	inline void setcarry() {
 		p |= (int)FLAG_C;
@@ -692,7 +808,7 @@ struct emulate65c02 {
 		}
 	}
 
-	void bpl(Label& label, bool force_short=false) {
+	void bpl(Label& label, bool force_short=true) {
 		compile_branch(0x10, 0x30, label, force_short);
 	}
 	void ora_izy(int v) { comp_byte(0x11); comp_byte(v); }
@@ -701,15 +817,27 @@ struct emulate65c02 {
 	void ora_zpx(int v){ comp_byte(0x15); comp_byte(v); }
 	void asl_zpx(int v) { comp_byte(0x16); comp_byte(v); }
 	void clc() { comp_byte(0x18); }
+
 	void ora_aby(int v) { comp_byte(0x19); comp_word(v); }
 	void ora_aby(Label &label) { comp_ab_label(label, 0x19); }
+
 	void inc() { comp_byte(0x1a); }
 	void trb_abs(int v) { comp_byte(0x1c); comp_word(v); }
 	void trb_abs(Label &label) { comp_ab_label(label, 0x1c); }
+	void trb_ab(int v) { if (v < 256) trb_zp(v); else trb_abs(v); }
+	void trb_ab(Label &label) { if (label.has_target() && label.target < 256) trb_zp(label.target);  trb_abs(label); }
+
+
 	void ora_abx(int v) { comp_byte(0x1d); comp_word(v); }
 	void ora_abx(Label &label) { comp_ab_label(label, 0x1d); }
+	void ora_ax(int v) { if (v < 256) ora_zpx(v); else ora_abx(v); }
+	void ora_ax(Label &label) { if (label.has_target() && label.target < 256) ora_zpx(label.target);  ora_abx(label); }
+
 	void asl_abx(int v) { comp_byte(0x1e); comp_word(v); }
 	void asl_abx(Label &label) { comp_ab_label(label, 0x1e); }
+	void asl_ax(int v) { if (v < 256) asl_zpx(v); else asl_abx(v); }
+	void asl_ax(Label &label) { if (label.has_target() && label.target < 256) asl_zpx(label.target);  asl_abx(label); }
+
 	void jsr(Label& label) { comp_ab_label(label, 0x20); }
 	void and_izx(int v) { comp_byte(0x21); comp_byte(v); }
 	void bit_zp(int v) { comp_byte(0x24); comp_byte(v); }
@@ -724,7 +852,10 @@ struct emulate65c02 {
 	void and_abs(Label &label) { comp_ab_label(label, 0x2d); }
 	void rol_abs(int v) { comp_byte(0x2e); comp_word(v); }
 	void rol_abs(Label &label) { comp_ab_label(label, 0x2e); }
-	void bmi(Label& label, bool force_short = false) {
+	void rol_ab(int v) { if (v < 256) rol_zp(v); else rol_abs(v); }
+	void rol_ab(Label &label) { if (label.has_target() && label.target < 256) rol_zp(label.target);  rol_abs(label); }
+
+	void bmi(Label& label, bool force_short = true) {
 		compile_branch(0x30, 0x10, label, force_short);
 	}
 	void and_izy(int v) { comp_byte(0x31); comp_byte(v); }
@@ -738,10 +869,19 @@ struct emulate65c02 {
 	void dec(){ comp_byte(0x3a); }
 	void bit_abx(int v){ comp_byte(0x3c); comp_word(v); }
 	void bit_abx(Label &label) { comp_ab_label(label, 0x3c); }
+	void bit_ax(int v) { if (v < 256) bit_zpx(v); else bit_abx(v); }
+	void bit_ax(Label &label) { if (label.has_target() && label.target < 256) bit_zpx(label.target);  bit_abx(label); }
+
 	void and_abx(int v){ comp_byte(0x3d); comp_word(v); }
 	void and_abx(Label &label) { comp_ab_label(label, 0x3d); }
+	void and_ax(int v) { if (v < 256) and_zpx(v); else and_abx(v); }
+	void and_ax(Label &label) { if (label.has_target() && label.target < 256) and_zpx(label.target);  and_abx(label); }
+
 	void rol_abx(int v){ comp_byte(0x3e); comp_word(v); }
 	void rol_abx(Label &label) { comp_ab_label(label, 0x3e); }
+	void rol_ax(int v) { if (v < 256) rol_zpx(v); else rol_abx(v); }
+	void rol_ax(Label &label) { if (label.has_target() && label.target < 256) rol_zpx(label.target);  rol_abx(label); }
+
 	void rti(){ comp_byte(0x40); }
 	void eor_izx(int v){ comp_byte(0x41); comp_byte(v); }
 	void eor_zp(int v){ comp_byte(0x45); comp_byte(v); }
@@ -753,9 +893,15 @@ struct emulate65c02 {
 	void jmp(Label &label)  { comp_ab_label(label, 0x4c); }
 	void eor_abs(int v){ comp_byte(0x4d); comp_word(v); }
 	void eor_abs(Label &label) { comp_ab_label(label, 0x4d); }
+	void eor_ab(int v) { if (v < 256) eor_zp(v); else eor_abs(v); }
+	void eor_ab(Label &label) { if (label.has_target() && label.target < 256) eor_zp(label.target);  eor_abs(label); }
+
 	void lsr_abs(int v){ comp_byte(0x4e); comp_word(v); }
 	void lsr_abs(Label &label) { comp_ab_label(label, 0x4e); }
-	void bvc(Label &label, bool force_short=false){ compile_branch(0x50, 0x70, label, force_short); }
+	void lsr_ab(int v) { if (v < 256) lsr_zp(v); else lsr_abs(v); }
+	void lsr_ab(Label &label) { if (label.has_target() && label.target < 256) lsr_zp(label.target);  lsr_abs(label); }
+
+	void bvc(Label &label, bool force_short=true){ compile_branch(0x50, 0x70, label, force_short); }
 	void eor_izy(int v){ comp_byte(0x51); comp_byte(v); }
 	void eor_izp(int v){ comp_byte(0x52); comp_byte(v); }
 	void eor_zpx(int v){ comp_byte(0x55); comp_byte(v); }
@@ -766,8 +912,14 @@ struct emulate65c02 {
 	void phy(){ comp_byte(0x5a); }
 	void eor_abx(int v){ comp_byte(0x5d); comp_word(v); }
 	void eor_abx(Label &label) { comp_ab_label(label, 0x5d); }
+	void eor_ax(int v) { if (v < 256) eor_zpx(v); else eor_abx(v); }
+	void eor_ax(Label &label) { if (label.has_target() && label.target < 256) eor_zpx(label.target);  eor_abx(label); }
+
 	void lsr_abx(int v){ comp_byte(0x5e); comp_word(v); }
 	void lsr_abx(Label &label) { comp_ab_label(label, 0x5e); }
+	void lsr_ax(int v) { if (v < 256) lsr_zpx(v); else lsr_abx(v); }
+	void lsr_ax(Label &label) { if (label.has_target() && label.target < 256) lsr_zpx(label.target);  lsr_abx(label); }
+
 	void rts(){ comp_byte(0x60); }
 	void adc_izx(int v){ comp_byte(0x61); comp_byte(v); }
 	void stz_zp(int v){ comp_byte(0x64); comp_byte(v); }
@@ -779,9 +931,16 @@ struct emulate65c02 {
 	void jmp_ind(int v){ comp_byte(0x6c); comp_word(v); }
 	void adc_abs(int v){ comp_byte(0x6d); comp_word(v); }
 	void adc_abs(Label &label) { comp_ab_label(label, 0x6d); }
+	void adc_ab(int v) { if (v < 256) adc_zp(v); else adc_abs(v); }
+	void adc_ab(Label &label) { if (label.has_target() && label.target < 256) adc_zp(label.target);  adc_abs(label); }
+
 	void ror_abs(int v){ comp_byte(0x6e); comp_word(v); }
 	void ror_abs(Label &label) { comp_ab_label(label, 0x6e); }
-	void bvs(Label &label, bool force_short = false) { compile_branch(0x70, 0x50, label, force_short); }
+	void ror_ab(int v) { if (v < 256) ror_zp(v); else ror_abs(v); }
+	void ror_ab(Label &label) { if (label.has_target() && label.target < 256) ror_zp(label.target);  ror_abs(label); }
+
+
+	void bvs(Label &label, bool force_short = true) { compile_branch(0x70, 0x50, label, force_short); }
 	void adc_izy(int v){ comp_byte(0x71); comp_byte(v); }
 	void adc_izp(int v){ comp_byte(0x72); comp_byte(v); }
 	void stz_zpx(int v){ comp_byte(0x74); comp_byte(v); }
@@ -794,9 +953,15 @@ struct emulate65c02 {
 	void jmp_iax(int v){ comp_byte(0x7c); comp_word(v); }
 	void adc_abx(int v){ comp_byte(0x7d); comp_word(v); }
 	void adc_abx(Label &label) { comp_ab_label(label, 0x7d); }
+	void adc_ax(int v) { if (v < 256) adc_zpx(v); else adc_abx(v); }
+	void adc_ax(Label &label) { if (label.has_target() && label.target < 256) adc_zpx(label.target);  adc_abx(label); }
+
 	void ror_abx(int v){ comp_byte(0x7e); comp_word(v); }
 	void ror_abx(Label &label) { comp_ab_label(label, 0x7e); }
-	void bra(Label& label, bool force_short=false) {
+	void ror_ax(int v) { if (v < 256) ror_zpx(v); else ror_abx(v); }
+	void ror_ax(Label &label) { if (label.has_target() && label.target < 256) ror_zpx(label.target);  ror_abx(label); }
+
+	void bra(Label& label, bool force_short=true) {
 		int cur_add = (compile_point + 2) & 0xffff;
 		if (label.has_target() && label.target - cur_add <= 128 && cur_add - label.target <= 127) {
 			comp_byte(0x80);
@@ -822,11 +987,18 @@ struct emulate65c02 {
 	void txa(){ comp_byte(0x8a); }
 	void sty_abs(int v){ comp_byte(0x8c); comp_word(v); }
 	void sty_abs(Label &label) { comp_ab_label(label, 0x8c); }
+	void sty_ab(int v) { if (v < 256) sty_zp(v); else sty_abs(v); }
+	void sty_ab(Label &label) { if (label.has_target() && label.target < 256) sty_zp(label.target);  sty_abs(label); }
 	void sta_abs(int v){ comp_byte(0x8d); comp_word(v); }
 	void sta_abs(Label &label) { comp_ab_label(label, 0x8d); }
+	void sta_ab(int v) { if (v < 256) sta_zp(v); else sta_abs(v); }
+	void sta_ab(Label &label) { if (label.has_target() && label.target < 256) sta_zp(label.target);  sta_abs(label); }
 	void stx_abs(int v){ comp_byte(0x8e); comp_word(v); }
 	void stx_abs(Label &label) { comp_ab_label(label, 0x8e); }
-	void bcc(Label &label, bool force_short = false) { compile_branch(0x90, 0xb0, label, force_short); }
+	void stx_ab(int v) { if (v < 256) stx_zp(v); else stx_abs(v); }
+	void stx_ab(Label &label) { if (label.has_target() && label.target < 256) stx_zp(label.target);  stx_abs(label); }
+	void bcc(Label &label, bool force_short = true) { compile_branch(0x90, 0xb0, label, force_short); }
+	void blt(Label &label, bool force_short = true) { compile_branch(0x90, 0xb0, label, force_short); }
 	void sta_izy(int v){ comp_byte(0x91); comp_byte(v); }
 	void sta_izp(int v){ comp_byte(0x92); comp_byte(v); }
 	void sty_zpx(int v){ comp_byte(0x94); comp_byte(v); }
@@ -839,11 +1011,16 @@ struct emulate65c02 {
 	void txs(){ comp_byte(0x9a); }
 	void stz_abs(int v){ comp_byte(0x9c); comp_word(v); }
 	void stz_abs(Label &label) { comp_ab_label(label, 0x9c); }
+	void stz_ab(int v) { if (v < 256) stz_zp(v); else stz_abs(v); }
+	void stz_ab(Label &label) { if (label.has_target() && label.target < 256) stz_zp(label.target);  stz_abs(label); }
 	void sta_abx(int v){ comp_byte(0x9d); comp_word(v); }
 	void sta_abx(Label& label) { comp_ab_label(label, 0x9d); }
 
 	void stz_abx(int v){ comp_byte(0x9e); comp_word(v); }
 	void stz_abx(Label &label) { comp_ab_label(label, 0x9e); }
+	void stz_ax(int v) { if (v < 256) stz_zpx(v); else stz_abx(v); }
+	void stz_ax(Label &label) { if (label.has_target() && label.target < 256) stz_zpx(label.target);  stz_abx(label); }
+
 	void ldy_imm(int v){ comp_byte(0xa0); comp_byte(v); }
 	void lda_izx(int v){ comp_byte(0xa1); comp_byte(v); }
 	void ldx_imm(int v){ comp_byte(0xa2); comp_byte(v); }
@@ -855,11 +1032,21 @@ struct emulate65c02 {
 	void tax(){ comp_byte(0xaa); }
 	void ldy_abs(int v){ comp_byte(0xac); comp_word(v); }
 	void ldy_abs(Label &label) { comp_ab_label(label, 0xac); }
+	void ldy_ab(int v) { if (v < 256) ldy_zp(v); else ldy_abs(v); }
+	void ldy_ab(Label &label) { if (label.has_target() && label.target < 256) ldy_zp(label.target);  ldy_abs(label); }
+
 	void lda_abs(int v){ comp_byte(0xad); comp_word(v); }
 	void lda_abs(Label &label) { comp_ab_label(label, 0xad); }
+	void lda_ab(int v) { if (v < 256) lda_zp(v); else lda_abs(v); }
+	void lda_ab(Label &label) { if (label.has_target() && label.target < 256) lda_zp(label.target);  lda_abs(label); }
+
 	void ldx_abs(int v){ comp_byte(0xae); comp_word(v); }
 	void ldx_abs(Label &label) { comp_ab_label(label, 0xae); }
-	void bcs(Label &label, bool force_short = false) { compile_branch(0xb0, 0x90, label, force_short); }
+	void ldx_ab(int v) { if (v < 256) ldx_zp(v); else ldx_abs(v); }
+	void ldx_ab(Label &label) { if (label.has_target() && label.target < 256) ldx_zp(label.target);  ldx_abs(label); }
+
+	void bcs(Label &label, bool force_short = true) { compile_branch(0xb0, 0x90, label, force_short); }
+	void bge(Label &label, bool force_short = true) { compile_branch(0xb0, 0x90, label, force_short); }
 	void lda_izy(int v){ comp_byte(0xb1); comp_byte(v); }
 	void lda_izp(int v){ comp_byte(0xb2); comp_byte(v); }
 	void ldy_zpx(int v){ comp_byte(0xb4); comp_byte(v); }
@@ -872,11 +1059,20 @@ struct emulate65c02 {
 	void tsx(){ comp_byte(0xba); }
 	void ldy_abx(int v){ comp_byte(0xbc); comp_word(v); }
 	void ldy_abx(Label &label) { comp_ab_label(label, 0xbc); }
+	void ldy_ax(int v) { if (v < 256) ldy_zpx(v); else ldy_abx(v); }
+	void ldy_ax(Label &label) { if (label.has_target() && label.target < 256) ldy_zpx(label.target);  ldy_abx(label); }
+
 	void lda_abx(int v){ comp_byte(0xbd); comp_word(v); }
 	void lda_abx(Label& label) { comp_ab_label(label, 0xbd); }
+	void lda_ax(int v) { if (v < 256) lda_zpx(v); else lda_abx(v); }
+	void lda_ax(Label &label) { if (label.has_target() && label.target < 256) lda_zpx(label.target);  lda_abx(label); }
 
 	void ldx_aby(int v){ comp_byte(0xbe); comp_word(v); }
 	void ldx_aby(Label &label) { comp_ab_label(label, 0xbe); }
+	void ldx_ay(int v) { if (v < 256) ldx_zpy(v); else ldx_aby(v); }
+	void ldx_ay(Label &label) { if (label.has_target() && label.target < 256) ldx_zpy(label.target);  ldx_aby(label); }
+
+
 	void cpy_imm(int v){ comp_byte(0xc0); comp_byte(v); }
 	void cmp_izx(int v){ comp_byte(0xc1); comp_byte(v); }
 	void cpy_zp(int v){ comp_byte(0xc4); comp_byte(v); }
@@ -888,11 +1084,20 @@ struct emulate65c02 {
 	void wai(){ comp_byte(0xcb); }
 	void cpy_abs(int v){ comp_byte(0xcc); comp_word(v); }
 	void cpy_abs(Label &label) { comp_ab_label(label, 0xcc); }
+	void cpy_ab(int v) { if (v < 256) cpy_zp(v); else cpy_abs(v); }
+	void cpy_ab(Label &label) { if (label.has_target() && label.target < 256) cpy_zp(label.target);  cpy_abs(label); }
+
 	void cmp_abs(int v){ comp_byte(0xcd); comp_word(v); }
 	void cmp_abs(Label &label) { comp_ab_label(label, 0xcd); }
+	void cmp_ab(int v) { if (v < 256) cmp_zp(v); else cmp_abs(v); }
+	void cmp_ab(Label &label) { if (label.has_target() && label.target < 256) cmp_zp(label.target);  cmp_abs(label); }
+
 	void dec_abs(int v){ comp_byte(0xce); comp_word(v); }
 	void dec_abs(Label &label) { comp_ab_label(label, 0xce); }
-	void bne(Label &label, bool force_short = false) { compile_branch(0xd0, 0xf0, label, force_short); }
+	void dec_ab(int v) { if (v < 256) dec_zp(v); else dec_abs(v); }
+	void dec_ab(Label &label) { if (label.has_target() && label.target < 256) dec_zp(label.target);  dec_abs(label); }
+
+	void bne(Label &label, bool force_short = true) { compile_branch(0xd0, 0xf0, label, force_short); }
 	void cmp_izy(int v){ comp_byte(0xd1); comp_byte(v); }
 	void cmp_izp(int v){ comp_byte(0xd2); comp_byte(v); }
 	void cmp_zpx(int v){ comp_byte(0xd5); comp_byte(v); }
@@ -904,8 +1109,14 @@ struct emulate65c02 {
 	void stp(){ comp_byte(0xdb); }
 	void cmp_abx(int v){ comp_byte(0xdd); comp_word(v); }
 	void cmp_abx(Label &label) { comp_ab_label(label, 0xdd); }
+	void cmp_ax(int v) { if (v < 256) cmp_zpx(v); else cmp_abx(v); }
+	void cmp_ax(Label &label) { if (label.has_target() && label.target < 256) cmp_zpx(label.target);  cmp_abx(label); }
+
 	void dec_abx(int v){ comp_byte(0xde); comp_word(v); }
 	void dec_abx(Label &label) { comp_ab_label(label, 0xde); }
+	void dec_ax(int v) { if (v < 256) dec_zpx(v); else dec_abx(v); }
+	void dec_ax(Label &label) { if (label.has_target() && label.target < 256) dec_zpx(label.target);  dec_abx(label); }
+
 	void cpx_imm(int v){ comp_byte(0xe0); comp_byte(v); }
 	void sbc_izx(int v){ comp_byte(0xe1); comp_byte(v); }
 	void cpx_zp(int v){ comp_byte(0xe4); comp_byte(v); }
@@ -915,11 +1126,20 @@ struct emulate65c02 {
 	void sbc_imm(int v){ comp_byte(0xe9); comp_byte(v); }
 	void cpx_abs(int v){ comp_byte(0xec); comp_word(v); }
 	void cpx_abs(Label &label) { comp_ab_label(label, 0xec); }
+	void cpx_ab(int v) { if (v < 256) cpx_zp(v); else cpx_abs(v); }
+	void cpx_ab(Label &label) { if (label.has_target() && label.target < 256) cpx_zp(label.target);  cpx_abs(label); }
+
 	void sbc_abs(int v){ comp_byte(0xed); comp_word(v); }
 	void sbc_abs(Label &label) { comp_ab_label(label, 0xed); }
+	void sbc_ab(int v) { if (v < 256) sbc_zp(v); else sbc_abs(v); }
+	void sbc_ab(Label &label) { if (label.has_target() && label.target < 256) sbc_zp(label.target);  sbc_abs(label); }
+
 	void inc_abs(int v){ comp_byte(0xee); comp_word(v); }
 	void inc_abs(Label &label) { comp_ab_label(label, 0xee); }
-	void beq(Label &label, bool force_short = false) { compile_branch(0xf0, 0xd0, label, force_short); }
+	void inc_ab(int v) { if (v < 256) inc_zp(v); else inc_abs(v); }
+	void inc_ab(Label &label) { if (label.has_target() && label.target < 256) inc_zp(label.target);  inc_abs(label); }
+
+	void beq(Label &label, bool force_short = true) { compile_branch(0xf0, 0xd0, label, force_short); }
 	void sbc_izy(int v){ comp_byte(0xf1); comp_byte(v); }
 	void sbc_izp(int v){ comp_byte(0xf2); comp_byte(v); }
 	void sbc_zpx(int v){ comp_byte(0xf5); comp_byte(v); }
@@ -930,8 +1150,12 @@ struct emulate65c02 {
 	void plx(){ comp_byte(0xfa); }
 	void sbc_abx(int v){ comp_byte(0xfd); comp_word(v); }
 	void sbc_abx(Label &label) { comp_ab_label(label, 0xfd); }
+	void sbc_ax(int v) { if (v < 256) sbc_zpx(v); else sbc_abx(v); }
+	void sbc_ax(Label &label) { if (label.has_target() && label.target < 256) sbc_zpx(label.target);  sbc_abx(label); }
 	void inc_abx(int v){ comp_byte(0xfe); comp_word(v); }
 	void inc_abx(Label &label){ comp_ab_label(label, 0xfe); }
+	void inc_ax(int v) { if (v < 256) inc_zpx(v); else inc_abx(v); }
+	void inc_ax(Label &label) { if (label.has_target() && label.target < 256) inc_zpx(label.target);  inc_abx(label); }
 
 	bool test_assembler();
 
@@ -977,5 +1201,6 @@ struct emulate65c02 {
 	static dissassembly_modes modes[256];
 	int disassembly_point;
 	uint8_t * external_disassembly_point;
+	uint16_t build_solid();
 };
 

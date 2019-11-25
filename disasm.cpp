@@ -7,8 +7,9 @@
 #include <inttypes.h>
 #include <string.h>
 #include "memory.h"
+#include "cpu/mnemonics.h"
 
-#include "cpu/mnemonics.h"				// Automatically generated mnemonic table.
+//#include "cpu/mnemonics.h"				// Automatically generated mnemonic table.
 
 // *******************************************************************************************
 //
@@ -19,7 +20,7 @@
 
 int disasm(uint16_t pc, uint8_t *RAM, char *line, unsigned int max_line, bool debugOn, uint8_t bank) {
 	uint8_t opcode = real_read6502(pc, debugOn, bank);
-	char *mnemonic = mnemonics[opcode];
+	const char *mnemonic = mnemonics[opcode];
 
 	//
 	//		Test for branches, relative address. These are BRA ($80) and
