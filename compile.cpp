@@ -4006,20 +4006,28 @@ ascii2screen.here(this);
 uint16_t emulate65c02::build_solid()
 {
 
-	const int MLEN1 = 71;
-	const int MLAG1 = 65;
-	const int MLEN2 = 55;
-	const int MLAG2 = 24;
+	const int MLEN1 = 44;
+	const int MLAG1 = 14;
+	const int MLEN2 = 24;
+	const int MLAG2 = 23;
 
-	Label rngstate1, rngstate2, rngcache, rngcarry1, rngcarry2, rngi1, rngs1, rngi2, rngs2, rngseed1, rngseed2;
+	Label rngstate1, rngstate2, rngcarry2, rngi2, rngs2, rngseed1, rngseed2;
+//	Label rngi1, rngs1, rngcarry1, rngcache;
 	Label conditionshiftseedgen, shft3left, shft3right, rot3right, eor3shftright, eor3shftleft, seedshiftreggen;
 	Label seedrandom, rndbyte, rndbytevalue, rnd_mask_table, starttest, dotest, dorndbytevalue, dorndwordvalue,  rndwordvalue;
 	Label t1, t2, t3, t4, t5, t6, t7, a1, a2, a3, a4, a5, b1, b2, b3, b4, mff, m7f, m3f;
 	Label c1, c2, c3, c4, c5, c6, cmff, cm7f, cm3f;
 
+	/* ******************************************************************
+	The only variables that HAVE to be on zero page are rngseed1tmp-rngseed5tmp and those are only used in initialization.
+	The rest that are on zero page are only there for speed, feel free to take them off of zero page.
 
+	Note that on entry to seedrandom(), rngseed1tmp and rngseed3tmp each hold 3 bytes each of a seed.
+
+	 ******************************************************************** */
 	const int rngseed1tmp = 0x2, rngseed2tmp = 0x5, rngseed3tmp = 0x8, rngseed4tmp = 0xb, rngseed5tmp = 0xe,
 		rngtmp = 0x10, rngtmp2 = 0x11, rngtmp3 = 0x12, rngtmp4 = 0x14;
+	const int rngi1 = 0x15, rngs1 = 0x16, rngcarry1 = 0x17, rngcache = 0x18;
 
 
 	compile_point = 0x801;
@@ -4037,16 +4045,16 @@ uint16_t emulate65c02::build_solid()
 	compile_point += MLEN1;
 	rngstate2.here();
 	compile_point += MLEN2;
-	rngcache.here();
-	compile_point += 1;
-	rngcarry1.here();
-	compile_point += 1;
+//	rngcache.here();
+//	compile_point += 1;
+//	rngcarry1.here();
+//	compile_point += 1;
 	rngcarry2.here();
 	compile_point += 1;
-	rngi1.here();
-	compile_point += 1;
-	rngs1.here();
-	compile_point += 1;
+//	rngi1.here();
+//	compile_point += 1;
+//	rngs1.here();
+//	compile_point += 1;
 	rngi2.here();
 	compile_point += 1;
 	rngs2.here();
@@ -4277,8 +4285,7 @@ t6.here();
 	stz_ab(rngi2);
 	stz_ab(rngcache);
 	//initializing the carries isn't necessary but except for testing
-	lda_imm(0xff);
-	sta_ab(rngcarry2);
+	stz_ab(rngcarry2);
 	stz_ab(rngcarry1);
 
 	lda_imm(MLAG1);
@@ -4352,11 +4359,10 @@ a4.here();
 	sta_ab(rngs2);
 a5.here();
 	lsr_ab(rngcarry2);
-	ldx_ab(rngi2);
-	lda_abx(rngstate2);
 	ldx_ab(rngs2);
-	sbc_abx(rngstate2);
+	lda_abx(rngstate2);
 	ldx_ab(rngi2);
+	adc_abx(rngstate2);
 	sta_abx(rngstate2);
 	rol_ab(rngcarry2); //save the carry
 	sta_ab(rngcache);
@@ -4369,10 +4375,10 @@ a5.here();
 rndbytevalue.here();
 	tay();
 	beq(b1); //if the range is 0 to 0 then just return 0
-	sta_zp(rngtmp);
 	inc(); 
 	beq(rndbyte,false); //if the range is up to 255, no need for testing, just call rndbyte
 	sta_zp(rngtmp2); //number to compare against after rndbyte is incremented because there's no branch less than
+	sty_zp(rngtmp);
 	lda_imm(0x20);
 	bit_zp(rngtmp); //bit is clever because it tests three things, top bit, second bit and third bit at once
 	bmi(mff);//high bit, mask is ff
@@ -4387,9 +4393,7 @@ b3.here();
 	and_zp(rngtmp);
 	cmp_zp(rngtmp2);
 	bcs(b3);
-	rts();
 b1.here();
-	lda_imm(0);
 	rts();
 mff.here();
 	lda_imm(0xff);
@@ -4468,17 +4472,17 @@ c6.here();//special case 65535
 	jmp(rndbyte);
 
 starttest.here();
-	lda_abs(rngseed1);
+	lda_ab(rngseed1);
 	sta_zp(rngseed1tmp);
-	lda_abs(rngseed1.target+1);
+	lda_ab(rngseed1.target+1);
 	sta_zp(rngseed1tmp+1);
-	lda_abs(rngseed1.target+2);
+	lda_ab(rngseed1.target+2);
 	sta_zp(rngseed1tmp+2);
-	lda_abs(rngseed2);
+	lda_ab(rngseed2);
 	sta_zp(rngseed2tmp);
-	lda_abs(rngseed2.target + 1);
+	lda_ab(rngseed2.target + 1);
 	sta_zp(rngseed2tmp + 1);
-	lda_abs(rngseed2.target + 2);
+	lda_ab(rngseed2.target + 2);
 	sta_zp(rngseed2tmp + 2);
 	jsr(seedrandom);
 	stp();
