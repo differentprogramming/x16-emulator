@@ -17,6 +17,8 @@ I didn't put this in my other repostry for the language because I made a few mis
 
 Currently this a mirror of Release 34 with the above changes. 
 
+By the way, unless you uncomment the line "#define ADD_OFFICIAL_EMULATOR_BUGS" at the beginning of 65c02incpp.h then you'll need a newer version of the Rom than release 34.  Note it DOES come with one in the main directory. 
+
 <p align="center">
   <img src="./.gh/logo.png" />
 </p>
