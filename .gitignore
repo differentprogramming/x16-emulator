@@ -1,4 +1,6 @@
 *.o
+*.ipch
+*.db
 x16emu
 x16emu.exe
 x16emu_mac.zip
