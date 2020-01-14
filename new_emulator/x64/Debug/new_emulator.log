@@ -1,0 +1,102 @@
+﻿cl : Command line warning D9025: overriding '/sdl-' with '/GS-'
+  65c02incpp.cpp
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2318): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2320): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2331): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2336): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2340): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2344): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2348): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2352): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2356): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2360): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2364): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2368): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2373): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2379): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2383): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\65c02incpp.cpp(2387): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+  compile.cpp
+  debugger.cpp
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(319): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(2263): note: see declaration of 'sscanf'
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(329): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(2263): note: see declaration of 'sscanf'
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(339): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(2263): note: see declaration of 'sscanf'
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(350): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(2263): note: see declaration of 'sscanf'
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(413): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\debugger.cpp(544): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+  fake65c02.cpp
+  javascript_interface.cpp
+c:\commanderx16\github\different_programming\x16-emulator\javascript_interface.cpp(22): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+  joystick.cpp
+  keyboard.cpp
+  loadsave.cpp
+c:\commanderx16\github\different_programming\x16-emulator\loadsave.cpp(87): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\loadsave.cpp(113): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\loadsave.cpp(203): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\loadsave.cpp(150): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\loadsave.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+  main.cpp
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(142): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(144): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(151): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(726): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(452): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\string.h(338): note: see declaration of 'strncpy'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(721): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(731): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(747): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(755): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(208): note: see declaration of 'fopen'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(763): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\string.h(338): note: see declaration of 'strncpy'
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(924): warning C4244: 'initializing': conversion from '__int64' to 'uint8_t', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(966): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(1038): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(1076): warning C4244: 'initializing': conversion from 'long' to 'uint8_t', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(1077): warning C4244: 'initializing': conversion from 'long' to 'uint8_t', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\main.cpp(955): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  e:\windows kits\10\include\10.0.18362.0\ucrt\stdio.h(1774): note: see declaration of 'sprintf'
+  memory.cpp
+  test.cpp
+  via.cpp
+c:\commanderx16\github\different_programming\x16-emulator\via.cpp(33): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  video.cpp
+c:\commanderx16\github\different_programming\x16-emulator\extern\include\gif.h(371): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
+c:\commanderx16\github\different_programming\x16-emulator\video.cpp(520): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\video.cpp(521): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\video.cpp(529): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\video.cpp(549): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\commanderx16\github\different_programming\x16-emulator\video.cpp(610): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  new_emulator.vcxproj -> C:\commanderx16\github\different_programming\x16-emulator\new_emulator\x64\Debug\new_emulator.exe

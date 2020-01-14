@@ -131,21 +131,6 @@ LOAD()
 		emulator.p &= 0xfe;
 		emulator.memory[STATUS] = 0;
 		emulator.a = 0;
-	}
-	else if (strncmp(filename,"solid",6)==0 ) {
-		uint16_t start = 0x801;
-		emulator.memory[SA] = 0;
-		video_write(0, start & 0xff);
-		video_write(1, start >> 8);
-		video_write(2, ((emulator.a - 2) & 0xf) | 0x10);
-
-		uint16_t end = emulator.build_solid();
-
-		emulator.x = end & 0xff;
-		emulator.y = end >> 8;
-		emulator.p &= 0xfe;
-		emulator.memory[STATUS] = 0;
-		emulator.a = 0; 
 	} else {
 		FILE *f = fopen(filename, "rb");
 		if (!f) {

@@ -27,6 +27,7 @@
 #include "ps2.h"
 #include "spi.h"
 #include "vera_spi.h"
+#include "vera_uart.h"
 #include "sdcard.h"
 #include "loadsave.h"
 #include "glue.h"
@@ -53,7 +54,7 @@
 #include <pthread.h>
 #endif
 
-#define MHZ 8
+//#define MHZ 8
 
 void *emulator_loop(void *param);
 void emscripten_main_loop(void);
@@ -179,6 +180,7 @@ machine_reset()
 {
 	spi_init();
 	vera_spi_init();
+	vera_uart_init();
 	via1_init();
 	via2_init();
 	video_reset();
@@ -303,6 +305,10 @@ usage()
 	printf("\tEnable a specific keyboard layout decode table.\n");
 	printf("-sdcard <sdcard.img>\n");
 	printf("\tSpecify SD card image (partition map + FAT32)\n");
+	printf("-uart-in <filename>\n");
+	printf("\tSpecify filename to read RS232 input from.\n");
+	printf("-uart-out <filename>\n");
+	printf("\tSpecify filename to write RS232 output to.\n");
 	printf("-prg <app.prg>[,<load_addr>]\n");
 	printf("\tLoad application from the local disk into RAM\n");
 	printf("\t(.PRG file with 2 byte start address header)\n");
@@ -313,6 +319,8 @@ usage()
 	printf("-run\n");
 	printf("\tStart the -prg/-bas program using RUN or SYS, depending\n");
 	printf("\ton the load address.\n");
+	printf("-geos\n");
+	printf("\tLaunch GEOS at startup.\n");
 	printf("-echo [{iso|raw}]\n");
 	printf("\tPrint all KERNAL output to the host's stdout.\n");
 	printf("\tBy default, everything but printable ASCII characters get\n");
@@ -441,6 +449,12 @@ main(int argc, char *argv[]){
 	char *prg_path = NULL;
 	char *bas_path = NULL;
 	char *sdcard_path = NULL;
+	bool run_geos = false;
+	bool run_test = false;
+	int test_number = 0;
+
+	char *uart_in_path = NULL;
+	char *uart_out_path = NULL;
 
 	run_after_load = false;
 
@@ -521,6 +535,20 @@ main(int argc, char *argv[]){
 				usage();
 			}
 			bas_path = argv[0];
+			argc--;
+			argv++;
+		} else if (!strcmp(argv[0], "-geos")) {
+			argc--;
+			argv++;
+			run_geos = true;
+		} else if (!strcmp(argv[0], "-test")) {
+			argc--;
+			argv++;
+			if (!argc || argv[0][0] == '-') {
+				usage();
+			}
+			test_number = atoi(argv[0]);
+			run_test = true;
 			argc--;
 			argv++;
 		} else if (!strcmp(argv[0], "-sdcard")) {
@@ -712,6 +740,24 @@ main(int argc, char *argv[]){
 			argc--;
 			argv++;
 #endif
+		} else if (!strcmp(argv[0], "-uart-in")) {
+			argc--;
+			argv++;
+			if (!argc || argv[0][0] == '-') {
+				usage();
+			}
+			uart_in_path = argv[0];
+			argc--;
+			argv++;
+		} else if (!strcmp(argv[0], "-uart-out")) {
+			argc--;
+			argv++;
+			if (!argc || argv[0][0] == '-') {
+				usage();
+			}
+			uart_out_path = argv[0];
+			argc--;
+			argv++;
 		} else {
 			usage();
 		}
@@ -735,6 +781,21 @@ main(int argc, char *argv[]){
 		}
 	}
 
+	if (uart_in_path) {
+		uart_in_file = fopen(uart_in_path, "r");
+		if (!uart_in_file) {
+			printf("Cannot open %s!\n", uart_in_path);
+			exit(1);
+		}
+	}
+
+	if (uart_out_path) {
+		uart_out_file = fopen(uart_out_path, "w");
+		if (!uart_out_file) {
+			printf("Cannot open %s!\n", uart_out_path);
+			exit(1);
+		}
+	}
 
 	prg_override_start = -1;
 	if (prg_path) {
@@ -767,6 +828,14 @@ main(int argc, char *argv[]){
 		fclose(bas_file);
 	}
 
+	if (run_geos) {
+		paste_text = (char *)"GEOS\r";
+	}
+	if (run_test) {
+		paste_text = paste_text_data;
+		snprintf(paste_text, sizeof(paste_text_data), "TEST %d\r", test_number);
+	}
+
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER
 #ifdef WITH_YM2151
 		| SDL_INIT_AUDIO
@@ -792,7 +861,7 @@ main(int argc, char *argv[]){
 #ifdef __EMSCRIPTEN__
 	emscripten_set_main_loop(emscripten_main_loop, 0, 1);
 #else
-	bool do_test = true;
+	bool do_test = false;// true;
 	if (do_test) {
 		emulator.build_solid();
 	} else
@@ -884,7 +953,7 @@ emulator_loop(void *param)
 			for (int i = 0; i < 10 - label_len; i++) {
 				printf(" ");
 			}
-			printf(" .,%04x ", (uint16_t)emulator.pc);
+			printf(" %02x:.,%04x ", memory_get_rom_bank(), (uint16_t)emulator.pc);
 			char disasm_line[15];
 			int len = disasm((uint16_t)emulator.pc, emulator.memory, disasm_line, sizeof(disasm_line), false, 0);
 			for (int i = 0; i < len; i++) {
@@ -902,13 +971,18 @@ emulator_loop(void *param)
 			for (int i = 7; i >= 0; i--) {
 				printf("%c", (emulator.p & (1 << i)) ? "czidb.vn"[i] : '-');
 			}
-			printf(" --- %04x :%02x", emulator.memory[0xc] | emulator.memory[0xd] << 8, emulator.memory[0x9000]);
+			printf(" --- rambank:%01x", memory_get_ram_bank());
+			printf(" ---");
+			for (int i = 0; i < 8; i++) {
+				printf(" r%i:%04x", i, emulator.memory[2 + i*2] | emulator.memory[3 + i*2] << 8);
+			}
+
 			printf("\n");
 		}
 #endif
 
 #ifdef LOAD_HYPERCALLS
-		if (((uint16_t)emulator.pc == 0xffd5 || (uint16_t)emulator.pc == 0xffd8) && is_kernal() && emulator.memory[FA] == 1) {
+		if (((uint16_t)emulator.pc == 0xffd5 || (uint16_t)emulator.pc == 0xffd8) && is_kernal() && emulator.memory[FA] == 8 && !sdcard_file) {
 			if ((uint16_t)emulator.pc == 0xffd5) {
 				LOAD();
 			} else {
@@ -929,6 +1003,7 @@ emulator_loop(void *param)
 			spi_step();
 			joystick_step();
 			vera_spi_step();
+			vera_uart_step();
 			new_frame |= video_step(MHZ);
 		}
 

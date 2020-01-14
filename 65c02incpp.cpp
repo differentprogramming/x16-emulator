@@ -421,12 +421,12 @@ uint8_t emulate65c02::real_read6502(uint16_t address, bool debugOn, uint8_t bank
 		}
 	}
 	else if (address < 0xc000) { // banked RAM
-		return	memory[((debugOn ? bank : effective_ram_bank()) << 13) + address];
+		return	memory[((debugOn ? bank % num_banks : effective_ram_bank()) << 13) + address];
 
 
 	}
 	else { // banked ROM
-		return rom[((debugOn ? bank : rom_bank) << 14) + address - 0xc000];
+		return rom[((debugOn ? bank % NUM_ROM_BANKS : rom_bank) << 14) + address - 0xc000];
 	}
 }
 

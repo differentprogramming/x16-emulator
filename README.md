@@ -31,14 +31,18 @@ This is an emulator for the Commander X16 computer system. It only depends on SD
 Binaries & Compiling
 --------------------
 
-Binary releases for MacOS, Windows and x86_64 Linux are available on the [releases page][releases].
+Binary releases for macOS, Windows and x86_64 Linux are available on the [releases page][releases].
 
 The emulator itself is dependent only on SDL2. However, to run the emulated system you will also need a compatible `rom.bin` ROM image. This will be
 loaded from the directory containing the emulator binary, or you can use the `-rom .../path/to/rom.bin` option.
 
 > __WARNING:__ Older versions of the ROM might not work in newer versions of the emulator, and vice versa.
 
-You can build a ROM image yourself using the [build instructions][x16rom-build] in the [x16rom] repo. The `rom.bin` included in the [_latest_ release][releases] of the emulator may also work with the HEAD of this repo, but this is not guaranteed.
+You can build a ROM image yourself using the [build instructions][x16rom-build] in the [x16-rom] repo. The `rom.bin` included in the [_latest_ release][releases] of the emulator may also work with the HEAD of this repo, but this is not guaranteed.
+
+### macOS Build
+
+Install SDL2 using `brew install sdl2`.
 
 ### Linux Build
 
@@ -62,13 +66,14 @@ You can start `x16emu`/`x16emu.exe` either by double-clicking it, or from the co
 * The system ROM filename/path can be overridden with the `-rom` command line argument.
 * `-keymap` tells the KERNAL to switch to a specific keyboard layout. Use it without an argument to view the supported layouts.
 * `-sdcard` lets you specify an SD card image (partition table + FAT32).
+* `-uart-in` and `-uart-out` lets you specify files for RS232 input and output
 * `-prg` lets you specify a `.prg` file that gets injected into RAM after start.
 * `-bas` lets you specify a BASIC program in ASCII format that automatically typed in (and tokenized).
 * `-run` executes the application specified through `-prg` or `-bas` using `RUN` or `SYS`, depending on the load address.
+* `-geos` launches GEOS at startup.
 * `-scale` scales video output to an integer multiple of 640x480
 * `-echo` causes all KERNAL/BASIC output to be printed to the host's terminal. Enable this and use the BASIC command "LIST" to convert a BASIC program to ASCII (detokenize).
 * `-gif <filename>[,wait]` to record the screen into a GIF. See below for more info.
-* `-scale` scales video output to an integer multiple of 640x480
 * `-quality` change image scaling algorithm quality
 	* `nearest`: nearest pixel sampling
 	* `linear`: linear filtering
@@ -133,12 +138,12 @@ The following keys can be used for controlling games:
 Functions while running
 -----------------------
 
-* Ctrl + R will reset the computer.
-* Ctrl + V will paste the clipboard by injecting key presses.
-* Ctrl + S will save a system dump (configurable with `-dump`) to disk.
-* Ctrl + Return will toggle full screen mode.
+* `Ctrl + R` will reset the computer.
+* `Ctrl + V` will paste the clipboard by injecting key presses.
+* `Ctrl + S` will save a system dump (configurable with `-dump`) to disk.
+* `Ctrl + Return` will toggle full screen mode.
 
-On the Mac, use the Cmd key instead.
+On the Mac, use the `Cmd` key instead.
 
 
 GIF Recording
@@ -154,10 +159,10 @@ BASIC and the Screen Editor
 
 On startup, the X16 presents direct mode of BASIC V2. You can enter BASIC statements, or line numbers with BASIC statements and `RUN` the program, just like on Commodore computers.
 
-* To stop execution of a BASIC program, hit the RUN/STOP key (Esc in the emulator), or Ctrl + C.
-* To insert a character, press Shift + Backspace.
-* To clear the screen, press Shift + Home.
-* The X16 does not have a STOP+RESTORE function.
+* To stop execution of a BASIC program, hit the `RUN/STOP` key (`Esc` in the emulator), or `Ctrl + C`.
+* To insert characters, first insert spaces by pressing `Shift + Backspaces`, then type over those spaces.
+* To clear the screen, press `Shift + Home`.
+* The X16 does not have a `STOP + RESTORE` function.
 
 
 Host Filesystem Interface
@@ -172,7 +177,7 @@ If the system ROM contains any version of the KERNAL, the LOAD (`$FFD5`) and SAV
 
 will target the host computer's local filesystem.
 
-The emulator will interpret filesnames relative to the directory it was started in. Note that on macOS, when double-clicking the executable, this is the home directory.
+The emulator will interpret filenames relative to the directory it was started in. Note that on macOS, when double-clicking the executable, this is the home directory.
 
 To avoid incompatibility problems between the PETSCII and ASCII encodings, use lower case filenames on the host side, and unshifted filenames on the X16 side.
 
@@ -182,8 +187,8 @@ Dealing with BASIC Programs
 
 BASIC programs are encoded in a tokenized form, they are not simply ASCII files. If you want to edit BASIC programs on the host's text editor, you need to convert it between tokenized BASIC form and ASCII.
 
-* To convert ASCII to BASIC, reboot the machine and paste the ASCII text using Ctrl + V (Mac: Cmd + V). You can now run the program, or use the `SAVE` BASIC command to write the tokenized version to disk.
-* To convert BASIC to ASCII, start x16emu with the -echo argument, `LOAD` the BASIC file, and type `LIST`. Now copy the ASCII version from the terminal.
+* To convert ASCII to BASIC, reboot the machine and paste the ASCII text using `Ctrl + V` (Mac: `Cmd + V`). You can now run the program, or use the `SAVE` BASIC command to write the tokenized version to disk.
+* To convert BASIC to ASCII, start x16emu with the `-echo` argument, `LOAD` the BASIC file, and type `LIST`. Now copy the ASCII version from the terminal.
 
 
 Using the KERNAL/BASIC environment
@@ -197,7 +202,16 @@ Debugger
 
 The debugger requires `-debug` to start. Without it it is effectively disabled.
 
-There are 2 panels you can control. The code panel, the top left half, and the data panel, the bottom half of the screen. The displayed address can be changed using keys 0-9 and A-F, in a 'shift and roll' manner (easier to see than explain). To change the data panel address, press the shift key and type 0-9 A-F. The top write panel is fixed.
+There are 2 panels you can control. The code panel, the top left half, and the data panel, the bottom half of the screen. You can also edit the contents of the registers PC, A, X, Y, and SP.
+
+The debugger uses its own command line with the following syntax:
+
+|Statement|Description|
+|---------|----------------------------------------------------------------------------------------------------|
+|d %x|Change the code panel to view disassembly starting from the address %x.|
+|m %x|Change the data panel to view memory starting from the address %x.|
+|b %s %d|Changes the current memory bank for disassembly and data. The %s param can be either 'ram' or 'rom', the %d is the memory bank to display.|
+|r %s %x|Changes the value in the specified register. Valid registers in the %s param are 'pc', 'a', 'x', 'y', and 'sp'. %x is the value to store in that register.|
 
 The debugger keys are similar to the Microsoft Debugger shortcut keys, and work as follows
 
@@ -212,7 +226,7 @@ The debugger keys are similar to the Microsoft Debugger shortcut keys, and work 
 |F12|is used to break back into the debugger. This does not happen if you do not have -debug|
 |TAB|when stopped, or single stepping, hides the debug information when pressed 			|
 
-When -debug is selected the No-Operation $FF will break into the debugger automatically.
+When `-debug` is selected the No-Operation $FF will break into the debugger automatically.
 
 Effectively keyboard routines only work when the debugger is running normally. Single stepping through keyboard code will not work at present.
 
@@ -226,7 +240,7 @@ https://github.com/commanderx16/x16-emulator/wiki
 Features
 --------
 
-* CPU: Full 65C02 instruction set ~~(improved "fake6502")~~ new C++ 65c02 emulator
+* CPU: Full 65C02 instruction set (improved "fake6502")
 * VERA
 	* Mostly cycle exact emulation
 	* Supports almost all features:
@@ -237,7 +251,9 @@ Features
 		* VSYNC and raster IRQ
 * VIA
 	* ROM/RAM banking
-	* PS/2 keyboard
+	* keyboard
+	* mouse
+	* gamepad
 	* SD card (SPI)
 
 
@@ -246,8 +262,8 @@ Missing Features
 
 * VERA
 	* Does not support the "CURRENT_FIELD" bit
-	* Does not sprite collisions
-	*	* Interlaced modes (NTSC/RGB) don't render at the full horizontal fidelity
+	* Does not support sprite collisions
+	*	Interlaced modes (NTSC/RGB) don't render at the full horizontal fidelity
 * VIA
 	* Does not support counters/timers/IRQs
 * Sound
@@ -264,11 +280,42 @@ All rights reserved. License: 2-clause BSD
 Known Issues
 ------------
 
-* Emulator: LOAD"$ (and LOAD"$",1) will show host uppercase filenames as garbage. Use Ctrl+N to switch to the X16 upper/lower character set for a workaround.
+* Emulator: `LOAD"$` (and `LOAD"$",1`) will show host uppercase filenames as garbage. Use `Ctrl+N` to switch to the X16 upper/lower character set for a workaround.
 
 
 Release Notes
 -------------
+
+### Release 36 ("Berlin")
+
+* added VERA UART emulation (`-uart-in`, `-uart-out`)
+* correctly emulate missing SD card
+* moved host filesystem interface from device 1 to device 8, only available if no SD card is attached
+* require numeric argument for `-test` to auto-run test
+* fixed JMP (a,x) for 65c02
+* Fixed ESC as RUN/STOP [Ingo Hinterding]
+
+### Release 35
+
+* video optimization [Neil Forbes-Richardson]
+* added `-geos` to launch GEOS on startup
+* added `-test` to launch (graphics) unit test on startup
+* debugger
+	* switch viewed RAM/ROM bank with `numpad +` and `numpad -` [Kobrasadetin]
+	* optimized character printing [Kobrasadetin]
+* trace mode:
+	* prepend ROM bank to address in trace
+	* also prints 16 bit virtual regs (graph/GEOS)
+* fixes
+	* initialize memory to 0 [Kobrasadetin]
+	* fixed SYS hex argument
+	* disabled "buffer full, skipping" and SD card debug text, it was too noisy
+
+### Release 34
+
+* PS/2 mouse
+* support for text mode with tiles other than 8x8 [Serentty]
+* fix: programmatic echo mode control [Mikael O. Bonnier]
 
 ### Release 33
 
@@ -284,9 +331,9 @@ Release Notes
 * GIF recording can now be controlled from inside the machine [Randall Bohn]
 * Debugging
 	* Major enhancements to the debugger [kktos]
-	* `-echo` will now encode non-printable characters like this: \X93 for CHR$(93), -bas as 	well as pasting accepts this convention again
+	* `-echo` will now encode non-printable characters like this: \X93 for CHR$(93), `-bas` as 	well as pasting accepts this convention again
 	* `-echo raw` for the original behavior
-	* `-echo iso` to for correct character encoding in ISO mode
+	* `-echo iso` for correct character encoding in ISO mode
 	* `-ram` to specify RAM size; now defaults to 512
 
 ### Release 32
@@ -304,27 +351,27 @@ Release Notes
 ### Release 31
 
 * VERA 0.8 register layout
-* removed "-char" (character ROM is now part of rom.bin)
-* GIF recording using -gif [Neil Forbes-Richardson]
+* removed `-char` (character ROM is now part of `rom.bin`)
+* GIF recording using `-gif` [Neil Forbes-Richardson]
 * numpad support [Maurizio Porrato]
 * fake support of VIA timers to work around BASIC RND(0)
 * default ROM is taken from executable's directory [Michael Watters]
 * emulator window has a title [Michael Watters]
-* -debug allows specifying a breakpoint [Frank Buss]
-* package contains the ROM symbols in rom.txt
+* `-debug` allows specifying a breakpoint [Frank Buss]
+* package contains the ROM symbols in `rom.txt`
 * support for VERA SPI
 
 ### Release 30
 
 Emulator:
 * VERA can now generate VSYNC interrupts
-* added -keymap for setting the keyboard layout
-* added -scale for integer scaling of the window [Stephen Horn]
-* added -log to enable various logging features (can also be enabled at runtime (POKE $9FB0+) [Randall Bohn])
-* changed -run to be an option to -prg and -bas
+* added `-keymap` for setting the keyboard layout
+* added `-scale` for integer scaling of the window [Stephen Horn]
+* added `-log` to enable various logging features (can also be enabled at runtime (POKE $9FB0+) [Randall Bohn])
+* changed `-run` to be an option to `-prg` and `-bas`
 * emulator detection: read $9FBE/$9FBF, must read 0x31 and 0x36
-* fix: -prg and -run no longer corrupt BASIC programs.
-* fix: LOAD,1 into RAM bank [Stephen Horn]
+* fix: `-prg` and `-run` no longer corrupt BASIC programs.
+* fix: `LOAD,1` into RAM bank [Stephen Horn]
 * fix: 2bpp and 4bpp drawing [Stephen Horn]
 * fix: 4bpp sprites [MonstersGoBoom]
 * fix: build on Linux/ARM
@@ -332,14 +379,14 @@ Emulator:
 ### Release 29
 
 * better keyboard support: if you pretend you have a US keyboard layout when typing, all keys should now be reachable [Paul Robson]
-* -debug will enable the new debugger [Paul Robson]
+* `-debug` will enable the new debugger [Paul Robson]
 * runs at the correct speed (was way too slow on most machines)
-* keyboard shortcuts work on Windows/Linux: Ctrl + F/R/S/V
-* Ctrl + V pastes the clipboard as keypresses
-* -bas file.txt loads a BASIC program in ASCII encoding
-* -echo prints all BASIC/KERNAL output to the terminal, use it with LIST to convert a BASIC program to ASCII
-* -run acts like -prg, but also autostarts the program
-* JMP $FFFF and SYS 65535 exit the emulator and save memory the host's storage
+* keyboard shortcuts work on Windows/Linux: `Ctrl + F/R/S/V`
+* `Ctrl + V` pastes the clipboard as keypresses
+* `-bas file.txt` loads a BASIC program in ASCII encoding
+* `-echo` prints all BASIC/KERNAL output to the terminal, use it with LIST to convert a BASIC program to ASCII
+* `-run` acts like `-prg`, but also autostarts the program
+* `JMP $FFFF` and `SYS 65535` exit the emulator and save memory into the host's storage
 * the packages now contain the current version of the Programmer's Reference Guide (HTML)
 * fix: on Windows, some file load/saves may be been truncated
 
@@ -354,7 +401,7 @@ Emulator:
 
 * Command line overhaul. Supports `-rom`, `-char`, `-sdcard` and `-prg`.
 * ROM and char filename defaults, so x16emu can be started without arguments.
-* Host Filesystem Interface supports LOAD"$"
+* Host Filesystem Interface supports `LOAD"$"`
 * macOS and Windows packaging logic in Makefile
 
 ### Release 26
@@ -365,10 +412,10 @@ Emulator:
 
 ### Release 25
 
-* sdcard: fixed LOAD,x,1 to load to the correct addressg
+* sdcard: fixed `LOAD,x,1` to load to the correct addressg
 * sdcard: all temp data will be on bank #255; current bank will remain unchanged
 * DOS: support for DOS commands ("UI", "I", "V", ...) and more status messages (e.g. 26,WRITE PROTECT ON,00,00)
-* BASIC: "DOS" command. Without argument: print disk status; with "$" argument: show directory; with "8" or "9" argument: switch default drive; otherwise: send DOS command; also accessible through F7/F8
+* BASIC: `DOS` command. Without argument: print disk status; with "$" argument: show directory; with "8" or "9" argument: switch default drive; otherwise: send DOS command; also accessible through F7/F8
 * Vera: cycle exact rendering, NTSC, interlacing, border
 
 ### Release 24
@@ -394,12 +441,12 @@ SYS65375 (SWAPPER) now also clears the screen, avoid ing side effects.
 
 ### Release 20
 
-* Toggle fullscreen using Cmd+F or Cmd+return
+* Toggle fullscreen using `Cmd + F` or `Cmd + return`
 * new BASIC instructions and functions:
-	* MON: enter monitor; no more SYS65280 required
-	* VPEEK(bank, address)
-	* VPOKE bank, address, value
-example: VPOKE4,0,VPEEK(4,0) OR 32 [for 256 color BASIC]
+	* `MON`: enter monitor; no more SYS65280 required
+	* `VPEEK(bank, address)`
+	* `VPOKE bank, address, value`
+example: `VPOKE4,0,VPEEK(4,0) OR 32` [for 256 color BASIC]
 
 ### Release 19
 
@@ -427,7 +474,7 @@ F8: DOS &lt;doesn't work yet&gt;
 ### Release 16
 
 * Integrated monitor, start with SYS65280
-rom.bin is now 3*8 KB:
+`rom.bin` is now 3*8 KB:
 	* 0: BASIC (bank 0 at $C000)
 	* 1: KERNAL ($E000)
 	* 2: UTIL (bank 1 at $C000)
@@ -480,7 +527,7 @@ updated KERNAL with proper power-on message
 
 ### Release 7
 
-* Now with banking. POKE40801,n to switch the RAM bank at $A000. POKE40800,n to switch the ROM bank at $C000. The ROM file at the command line can be up to 72 KB now (layout: 0: bank 0, 1: KERNAL, 2: bank 1, 3: bank 2 etc.), and the RAM that Cmd+S saves is 2088KB ($0000-$9F00: regular RAM, $9F00-$9FFF: unused, $A000+: extra banks)
+* Now with banking. `POKE40801,n` to switch the RAM bank at $A000. `POKE40800,n` to switch the ROM bank at $C000. The ROM file at the command line can be up to 72 KB now (layout: 0: bank 0, 1: KERNAL, 2: bank 1, 3: bank 2 etc.), and the RAM that `Cmd + S` saves is 2088KB ($0000-$9F00: regular RAM, $9F00-$9FFF: unused, $A000+: extra banks)
 
 ### Release 6
 
@@ -492,7 +539,7 @@ updated KERNAL with proper power-on message
 
 ### Release 4
 
-* Cmd+S now saves all of memory (linear 64 KB for now, including ROM) to "memory.bin", "memory-1.bin", "memory-2.bin", etc. You can extract parts of it with Unix "dd", like: dd if=memory.bin of=basic.bin bs=1 skip=2049 count=38655
+* `Cmd + S` now saves all of memory (linear 64 KB for now, including ROM) to `memory.bin`, `memory-1.bin`, `memory-2.bin`, etc. You can extract parts of it with Unix "dd", like: `dd if=memory.bin of=basic.bin bs=1 skip=2049 count=38655`
 
 ### Release 3
 

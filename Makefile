@@ -34,7 +34,7 @@ ifdef EMSCRIPTEN
 	OUTPUT=x16emu.html
 endif
 
-OBJS = cpu/fake6502.o memory.o disasm.o video.o ps2.o via.o loadsave.o spi.o vera_spi.o sdcard.o main.o debugger.o javascript_interface.o joystick.o rendertext.o keyboard.o
+OBJS = cpu/fake6502.o memory.o disasm.o video.o ps2.o via.o loadsave.o spi.o vera_uart.o vera_spi.o sdcard.o main.o debugger.o javascript_interface.o joystick.o rendertext.o keyboard.o
 
 HEADERS = disasm.h cpu/fake6502.h glue.h memory.h video.h ps2.h via.h loadsave.h joystick.h keyboard.h
 
@@ -101,6 +101,7 @@ define add_extra_files_to_package
 	pandoc --from gfm --to html -c github-pandoc.css --standalone --metadata pagetitle="Commander X16 KERNAL/BASIC/DOS ROM"  ../x16-rom/README.md --output $(TMPDIR_NAME)/docs/KERNAL-BASIC.html
 	pandoc --from gfm --to html -c github-pandoc.css --standalone --metadata pagetitle="Commander X16 Programmer's Reference Guide"  ../x16-docs/Commander\ X16\ Programmer\'s\ Reference\ Guide.md --output $(TMPDIR_NAME)/docs/Programmer\'s\ Reference\ Guide.html --lua-filter=mdtohtml.lua
 	pandoc --from gfm --to html -c github-pandoc.css --standalone --metadata pagetitle="VERA Programmer's Reference.md"  ../x16-docs/VERA\ Programmer\'s\ Reference.md --output $(TMPDIR_NAME)/docs/VERA\ Programmer\'s\ Reference.html
+	cp github-pandoc.css $(TMPDIR_NAME)/docs
 endef
 
 package: package_mac package_win package_linux

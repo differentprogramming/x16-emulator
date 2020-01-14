@@ -12,6 +12,8 @@ extern void fake_emulator(uint8_t op);
 //#define PERFSTAT
 #define LOAD_HYPERCALLS
 
+#define MHZ 8
+
 #define RAM_SIZE (0xa000 + num_ram_banks * 8192) /* $0000-$9FFF + banks at $A000-$BFFF */
 #define ROM_SIZE (NUM_ROM_BANKS * 16384)   /* banks at $C000-$FFFF */
 
@@ -265,7 +267,7 @@ struct emulate65c02 {
 		else if (reg == 15) {
 			return '6'; // emulator detection
 		}
-		printf("WARN: Read Invalid register %x\n", DEVICE_EMULATOR + reg);
+		//printf("WARN: Read Invalid register %x\n", DEVICE_EMULATOR + reg);
 		return 0xff;
 	}
 

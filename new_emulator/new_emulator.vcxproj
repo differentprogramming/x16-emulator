@@ -37,6 +37,7 @@
     <ClCompile Include="..\test.cpp" />
     <ClCompile Include="..\usleep.cpp" />
     <ClCompile Include="..\vera_spi.cpp" />
+    <ClCompile Include="..\vera_uart.cpp" />
     <ClCompile Include="..\via.cpp" />
     <ClCompile Include="..\video.cpp" />
   </ItemGroup>

@@ -4003,6 +4003,53 @@ ascii2screen.here(this);
 }
 
 #else
+#define TEST_VLOAD
+
+#ifdef TEST_VLOAD
+
+uint16_t emulate65c02::build_solid()
+{
+	Label starttest, spriteFileName, setlfs, setname, load, andmask;
+
+	setlfs.set_target(this, 0xffba);
+	setname.set_target(this, 0xffbd);
+	load.set_target(this, 0xffd5);
+	andmask.set_target(this, 0xc5);
+	const char filename[] = "testfile.txt";
+
+	compile_point = 0x801;
+	for (int i = 0; i < sizeof(header); ++i) comp_byte(header[i]);
+	jmp(starttest);
+	spriteFileName.here();
+	int i = 0;
+	do {
+		comp_byte(filename[i]);
+	} while (0 != filename[i++]);
+	starttest.here();
+	lda_imm(0);
+	sta_ab(0x9F60);// enable the KERNAL to be sure sure
+	lda_imm(1);
+	ldx_imm(1);
+	ldy_imm(0);// custom address
+	jsr(setlfs);
+	lda_imm(sizeof(spriteFileName) - 1);//not counting trailing 0 in this test
+	ldx_imm(spriteFileName.target & 0xff);// these values match what basic makes
+	ldy_imm(spriteFileName.target >> 8);
+	jsr(setname);
+	lda_imm(1);
+	sta_ab(andmask);// BANK 1
+	lda_imm(2);// VLOAD
+	ldx_imm(0);
+	ldy_imm(0);// $0000 VRAM
+	jsr(load);
+	stp();
+	trace = true;
+	exec(starttest.target);
+	return 0;
+}
+
+#else
+
 uint16_t emulate65c02::build_solid()
 {
 
@@ -4578,4 +4625,5 @@ dorndwordvalue.here();
 
 	return compile_point;
 }
+#endif
 #endif
