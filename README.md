@@ -15,7 +15,7 @@ Anyway I'm going to make this fork a:
 
 I didn't put this in my other repostry for the language because I made a few mistakes setting up that repositry.  The directory structure is wrong, and I'm not sure about the choice of license, I don't want a viral license to get in the way of developers. 
 
-Currently this a mirror of Release 34 with the above changes. 
+Currently this a mirror of Release 36 with the above changes. 
 
 <p align="center">
   <img src="./.gh/logo.png" />
