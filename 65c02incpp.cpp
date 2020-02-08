@@ -9,6 +9,13 @@
 #include <string>
 #include "debugger.h"
 
+void Label_Offset::set_target(emulate65c02 *emulate, int t)
+{
+	if (t == -1) t = emulate->compile_point;
+	label.set_target(emulate, t - offset);
+}
+void Label_Offset::here(emulate65c02 *emulate, int off) { label.here(emulate, off - offset); }
+
 
 void emulate65c02::write6502(uint16_t address, uint8_t value)
 {
@@ -459,14 +466,16 @@ int BBS_BY_BIT[8] = { 0x8F,0x9F,0xAF,0xBF,0xCF,0xDF,0xEF,0xFF };
 
 void LabelFixup::update_target(emulate65c02 *emulate, int t) {
 	target = t;
+	
 	if (relative) {
 		t = t - instruction_field_address - 1;
 		if (t > 127 || t < -128) throw std::range_error("branch out of range");;
 		 emulate->write6502(instruction_field_address,(uint8_t)t);
 	}
 	else {
-		emulate->write6502(instruction_field_address, target & 0xff);
-		if (!single_byte) emulate->write6502(instruction_field_address + 1, (target >> 8) & 0xff);
+		t += offset;
+		emulate->write6502(instruction_field_address, t & 0xff);
+		if (!single_byte) emulate->write6502(instruction_field_address + 1, (t >> 8) & 0xff);
 	}
 }
 

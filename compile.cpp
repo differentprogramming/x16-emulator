@@ -1,6 +1,12 @@
 #include "glue.h"
 #include <list>
-
+#include <cstdio>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <io.h>
+#include <cstdint>
+#include <limits.h>
+#include <iostream>
 void Label::here(emulate65c02 *emulate, int offset) { set_target(emulate, emulate->compile_point + offset); }
 void Label::here(int offset) { set_target(&emulator, emulator.compile_point + offset); }
 
@@ -4003,7 +4009,7 @@ ascii2screen.here(this);
 }
 
 #else
-#define TEST_VLOAD
+//#define TEST_VLOAD
 
 #ifdef TEST_VLOAD
 
@@ -4050,44 +4056,108 @@ uint16_t emulate65c02::build_solid()
 
 #else
 
+
+const int BYTE_F = 0x00;   //00000000
+const int WORD_F = 0x02;   //00000010
+const int BIG_F = 0x08;    //00001000
+const int FIXED_F = 0x0A;  //00001010
+const int ARR3_F = 0x20;   //00100000
+const int SYM_F = 0x22;    //00100010 interned string 2 bytes
+const int STR_F = 0x28;    //00101000 mutable string
+const int ARR2_F = 0x2A;   //00101010 
+const int OBJ_F = 0x80;    //10000000
+const int CLASS_F = 0x82;  //10000010
+const int MES_F = 0x88;    //10001000
+const int FUN_F = 0x8A;    //10001010
+const int CLOSURE_F = 0xA0;//10100000
+const int MEM_F = 0xA2;    //10100020
+
+
 uint16_t emulate65c02::build_solid()
 {
 
-	const int MLEN1 = 44;
-	const int MLAG1 = 14;
-	const int MLEN2 = 24;
+	const int MLEN1 = 47;
+	const int MLAG1 = 30;
+	const int MLEN2 = 31;
 	const int MLAG2 = 23;
 
 	Label rngstate1, rngstate2, rngcarry2, rngi2, rngs2, rngseed1, rngseed2;
 //	Label rngi1, rngs1, rngcarry1, rngcache;
 	Label conditionshiftseedgen, shft3left, shft3right, rot3right, eor3shftright, eor3shftleft, seedshiftreggen;
 	Label seedrandom, rndbyte, rndbytevalue, rnd_mask_table, starttest, dotest, dorndbytevalue, dorndwordvalue,  rndwordvalue;
-	Label t1, t2, t3, t4, t5, t6, t7, a1, a2, a3, a4, a5, b1, b2, b3, b4, mff, m7f, m3f;
+	Label t1, t2, t3, t4, t5, t6, t7, a1, a2, a3, a4, a5, a6, b1, b2, b3, b4, mff, m7f, m3f;
 	Label c1, c2, c3, c4, c5, c6, cmff, cm7f, cm3f;
+	const char test_string[] ="Now is the time for all good men to come to the aid of their country. Come on all you big strong men, uncle Sam needs your help again.  He got himself in a a terrible jam, way down yonder in Vietnam.  Be the first one on your block to have your son come home in a box. ";
+	Label IOTest;
 
 	/* ******************************************************************
-	The only variables that HAVE to be on zero page are rngseed1tmp-rngseed5tmp and those are only used in initialization.
+	The only variables that HAVE to be on zero page are rngseed1tmp-rngseed4tmp and those are only used in initialization.
 	The rest that are on zero page are only there for speed, feel free to take them off of zero page.
 
 	Note that on entry to seedrandom(), rngseed1tmp and rngseed3tmp each hold 3 bytes each of a seed.
 
 	 ******************************************************************** */
-	const int rngseed1tmp = 0x2, rngseed2tmp = 0x5, rngseed3tmp = 0x8, rngseed4tmp = 0xb, rngseed5tmp = 0xe,
-		rngtmp = 0x10, rngtmp2 = 0x11, rngtmp3 = 0x12, rngtmp4 = 0x14;
-	const int rngi1 = 0x15, rngs1 = 0x16, rngcarry1 = 0x17, rngcache = 0x18;
+	//kernal arguments r0-r5
+	const int r0 = 2, r0l = 2, r0h = 3;
+	const int r1 = 4, r1l = 4, r1h = 5;
+	const int r2 = 6, r2l = 6, r2h = 7;
+	const int r3 = 8, r3l = 8, r3h = 9;
+	const int r4 = 10, r4l = 10, r4h = 11;
+	const int r5 = 12, r5l = 12, r5h = 13;
+	//kernal saved registers? what does that mean?
+	const int r6 = 14, r6l = 14, r6h = 15;
+	const int r7 = 16, r7l = 16, r7h = 17;
+	const int r8 = 18, r8l = 18, r8h = 19;
+	const int r9 = 20, r9l = 20, r9h = 21;
+	const int r10 = 22, r10l = 22, r10h = 23;
+	//kernal scratch registers
+	const int r11 = 24, r11l = 24, r11h = 25;
+	const int r12 = 26, r12l = 26, r12h = 27;
+	const int r13 = 28, r13l = 28, r13h = 29;
+	const int r14 = 30, r14l = 30, r14h = 31;
+	const int r15 = 32, r15l = 32, r15h = 33;
+
+	//the rngseedNtmp variables HAVE to be on zero page
+	const int rngseed1tmp = 34, rngseed2tmp = 37, rngseed3tmp = r11, rngseed4tmp = r12h, //rngseed5tmp = 0xe,
+		rngtmp = 39, rngtmp2 = 40, rngtmp3 = 41, rngtmp4 = 42;
+	const int rngi1 = 43, rngs1 = 44, rngcarry1 = 45, rngcache = 46;
+	const int tos0 = 47;
+	const int tos1 = 48;
+	const int tos2 = 49;
+	const int tos3 = 50;
+	const int tos4 = 51;
+	const int tos5 = 52;
+	const int tos6 = 53;
+	const int sp = 54;
+	const int freepages_p = 55;
+	const int freepages_l = 56;
+	const int freepages_h = 57;
+	const int farnursery_p = 58;
+	const int farnursery_l = 59;
+	const int farnursery_h = 60;
+	const int nearnursery_l = 61;
+	const int nearnursery_h = 62;
+	const int ip_p = 63;
+	const int ip_l = 64;
+	const int ip_h = 65;
+	const int bp = 66;
+
+
+
 
 
 	compile_point = 0x801;
 	for (int i = 0; i < sizeof(header); ++i) comp_byte(header[i]);
+	jmp(IOTest);
 	jmp(starttest);
 	rngseed1.here();
-	comp_byte(0x0b);
-	comp_byte(0xb0);
 	comp_byte(0xef);
+	comp_byte(0xcd);
+	comp_byte(0xab);
 	rngseed2.here();
-	comp_byte(0xbe);
-	comp_byte(0xad);
-	comp_byte(0xde);
+	comp_byte(0x56);
+	comp_byte(0x34);
+	comp_byte(0x12);
 	rngstate1.here();
 	compile_point += MLEN1;
 	rngstate2.here();
@@ -4113,38 +4183,38 @@ uint16_t emulate65c02::build_solid()
 //inputs like 1 or 2 won't be kind of poor
 conditionshiftseedgen.here();
 	lda_imm(0xb5);
-	eor_zp(rngseed1tmp);
-	sta_zp(rngseed1tmp);
+	eor_ab(rngseed1tmp);
+	sta_ab(rngseed1tmp);
 	lda_imm(0xb0);
-	eor_zp(rngseed1tmp + 1);
-	sta_zp(rngseed1tmp + 1);
+	eor_ab(rngseed1tmp + 1);
+	sta_ab(rngseed1tmp + 1);
 	lda_imm(0xcc);
-	eor_zp(rngseed1tmp + 2);
-	sta_zp(rngseed1tmp + 2);
-	ora_zp(rngseed1tmp + 1);
-	ora_zp(rngseed1tmp);	//if seed is 0 then load something else
+	eor_ab(rngseed1tmp + 2);
+	sta_ab(rngseed1tmp + 2);
+	ora_ab(rngseed1tmp + 1);
+	ora_ab(rngseed1tmp);	//if seed is 0 then load something else
 	bne(t1);
 	lda_imm(0xf3);
-	sta_zp(rngseed1tmp);
-	sta_zp(rngseed1tmp + 1);
-	sta_zp(rngseed1tmp + 2);
+	sta_ab(rngseed1tmp);
+	sta_ab(rngseed1tmp + 1);
+	sta_ab(rngseed1tmp + 2);
 t1.here();
 	lda_imm(0xc7);
-	eor_zp(rngseed2tmp);
-	sta_zp(rngseed2tmp);
+	eor_ab(rngseed2tmp);
+	sta_ab(rngseed2tmp);
 	lda_imm(0x49);
-	eor_zp(rngseed2tmp + 1);
-	sta_zp(rngseed2tmp + 1);
+	eor_ab(rngseed2tmp + 1);
+	sta_ab(rngseed2tmp + 1);
 	lda_imm(0xd2);
-	eor_zp(rngseed2tmp + 2);
-	sta_zp(rngseed2tmp + 2);
-	ora_zp(rngseed2tmp + 1);
-	ora_zp(rngseed2tmp);
+	eor_ab(rngseed2tmp + 2);
+	sta_ab(rngseed2tmp + 2);
+	ora_ab(rngseed2tmp + 1);
+	ora_ab(rngseed2tmp);
 	bne(t2);
 	lda_imm(0x5a);
-	sta_zp(rngseed2tmp);
-	sta_zp(rngseed2tmp + 1);
-	sta_zp(rngseed2tmp + 2);
+	sta_ab(rngseed2tmp);
+	sta_ab(rngseed2tmp + 1);
+	sta_ab(rngseed2tmp + 2);
 t2.here();
 	rts();
 
@@ -4246,20 +4316,6 @@ seedshiftreggen.here();
 	ldy_imm(11);
 	jsr(eor3shftleft);
 
-	lda_zp(rngseed1tmp);
-	sta_zp(rngseed4tmp);
-	lda_zp(rngseed1tmp + 1);
-	sta_zp(rngseed4tmp + 1);
-	lda_zp(rngseed1tmp + 2);
-	sta_zp(rngseed4tmp + 2);
-
-	ldx_imm(rngseed4tmp);
-	ldy_imm(6);
-	jsr(eor3shftleft);
-	ldy_imm(1);
-	jsr(eor3shftright);
-	ldy_imm(9);
-	jsr(eor3shftleft);
 
 	ldx_imm(rngseed2tmp);
 
@@ -4270,35 +4326,22 @@ seedshiftreggen.here();
 	ldy_imm(8);
 	jsr(eor3shftleft);
 
-	lda_zp(rngseed2tmp);
-	sta_zp(rngseed5tmp);
-	lda_zp(rngseed2tmp + 1);
-	sta_zp(rngseed5tmp + 1);
-	lda_zp(rngseed2tmp + 2);
-	sta_zp(rngseed5tmp + 2);
-
-	ldx_imm(rngseed5tmp);
-	ldy_imm(11);
-	jsr(eor3shftleft);
-	ldy_imm(1);
-	jsr(eor3shftright);
-	ldy_imm(8);
-	jsr(eor3shftleft);
 
 	clc();
-	lda_zp(rngseed5tmp);
-	adc_zp(rngseed4tmp);
-	sta_zp(rngseed5tmp);
-	lda_zp(rngseed5tmp + 1);
-	adc_zp(rngseed4tmp + 1);
-	sta_zp(rngseed5tmp + 1);
-	lda_zp(rngseed5tmp + 2);
-	adc_zp(rngseed4tmp + 2);
-	sta_zp(rngseed5tmp + 2);
+	lda_zp(rngseed1tmp);
+	adc_zp(rngseed2tmp);
+	sta_zp(rngseed4tmp);
+	lda_zp(rngseed1tmp + 1);
+	adc_zp(rngseed2tmp + 1);
+	sta_zp(rngseed4tmp + 1);
+	lda_zp(rngseed1tmp + 2);
+	adc_zp(rngseed2tmp + 2);
+	sta_zp(rngseed4tmp + 2);
 
 	ldy_imm(4);
+	ldx_imm(rngseed4tmp);
 	jsr(shft3right);
-	lda_zp(rngseed5tmp + 1);
+	lda_zp(rngseed4tmp + 1);
 
 	ply();
 	plx();
@@ -4391,10 +4434,11 @@ a2.here();
 	lda_imm(MLEN1 - 1);
 	sta_ab(rngi1);
 	dec_ab(rngs1);
-	bpl(a1);
+	bpl(a6);
 a3.here();
 	lda_imm(MLEN1 - 1);
 	sta_ab(rngs1);
+a6.here();
 	dec_ab(rngi2);
 	bpl(a4);
 	lda_imm(MLEN2 - 1);
@@ -4424,21 +4468,21 @@ rndbytevalue.here();
 	beq(b1); //if the range is 0 to 0 then just return 0
 	inc(); 
 	beq(rndbyte,false); //if the range is up to 255, no need for testing, just call rndbyte
-	sta_zp(rngtmp2); //number to compare against after rndbyte is incremented because there's no branch less than
-	sty_zp(rngtmp);
+	sta_ab(rngtmp2); //number to compare against after rndbyte is incremented because there's no branch less than
+	sty_ab(rngtmp);
 	lda_imm(0x20);
-	bit_zp(rngtmp); //bit is clever because it tests three things, top bit, second bit and third bit at once
+	bit_ab(rngtmp); //bit is clever because it tests three things, top bit, second bit and third bit at once
 	bmi(mff);//high bit, mask is ff
 	bvs(m7f);//second bit mask is 7f
 	bne(m3f);//third bit mask is 3f
 b2.here();
 	lda_aby(rnd_mask_table);
 b4.here();
-	sta_zp(rngtmp);
+	sta_ab(rngtmp);
 b3.here();
 	jsr(rndbyte);
-	and_zp(rngtmp);
-	cmp_zp(rngtmp2);
+	and_ab(rngtmp);
+	cmp_ab(rngtmp2);
 	bcs(b3);
 b1.here();
 	rts();
@@ -4458,38 +4502,38 @@ m3f.here();
 rndwordvalue.here();
 	tay();
 	beq(c1);
-	sta_zp(rngtmp);//high for mask making
+	sta_ab(rngtmp);//high for mask making
 	txa();
 	clc();
 	adc_imm(1);
-	sta_zp(rngtmp3);//low for compare, incremented
+	sta_ab(rngtmp3);//low for compare, incremented
 	tya();
 	adc_imm(0);
 	bcs(c6);//special case, compare # overflowed, but that's ok because 65535 can just be two calls with no compare
-	sta_zp(rngtmp2);//high for compare (part of incremented value)
+	sta_ab(rngtmp2);//high for compare (part of incremented value)
 
 	lda_imm(0x20);
-	bit_zp(rngtmp); //bit is clever because it tests three things, top bit, second bit and third bit at once
+	bit_ab(rngtmp); //bit is clever because it tests three things, top bit, second bit and third bit at once
 	bmi(cmff);//high bit, mask is ff
 	bvs(cm7f);//second bit mask is 7f
 	bne(cm3f);//third bit mask is 3f
 c2.here();
 	lda_aby(rnd_mask_table);
 c4.here();
-	sta_zp(rngtmp);
+	sta_ab(rngtmp);
 c3.here();
 	jsr(rndbyte);
-	sta_zp(rngtmp4);
+	sta_ab(rngtmp4);
 	jsr(rndbyte);
-	and_zp(rngtmp);
+	and_ab(rngtmp);
 	tax();
-	lda_zp(rngtmp4);
-	cmp_zp(rngtmp3);
+	lda_ab(rngtmp4);
+	cmp_ab(rngtmp3);
 	txa();
-	sbc_zp(rngtmp2);
+	sbc_ab(rngtmp2);
 	bcs(c3);
 	txa();
-	ldx_zp(rngtmp4);
+	ldx_ab(rngtmp4);
 	rts();
 c1.here();
 	txa();
@@ -4543,17 +4587,33 @@ dorndwordvalue.here();
 	jsr(rndwordvalue);
 	stp();
 
+	Label test_string_at;
+	test_string_at.here();
+	comp_table(test_string);
+	IOTest.here();
+
+
 	protected_start = conditionshiftseedgen.target;
 	protected_end = compile_point;
 
 	exec(starttest.target);
-	for (int i = 0; i < 100; ++i) {
-		exec(dotest.target);
+	
+	setmode(fileno(stdout), O_BINARY);
+	//while (1) {
+	//	exec(dotest.target);
+	//	uint8_t value = (uint8_t)a;
+	//	fwrite((void*)&value, sizeof(value), 1, stdout);
+	//}
 
-		int v = a;
-		std::cout << std::hex << (v < 16 ? "0" : "") << v << ' ';
-		if ((i + 1) % 20 == 0) std::cout << '\n';
-	}
+
+	std::cout << std::hex <<"compiled to:"<<compile_point<<"\n";
+//	for (int i = 0; i < 100; ++i) {
+//		exec(dotest.target);
+//
+//		int v = a;
+//		std::cout << std::hex << (v < 16 ? "0" : "") << v << ' ';
+//		if ((i + 1) % 20 == 0) std::cout << '\n';
+//	}
 	for (;;) {
 		int tabulate[65536];
 		for (int i = 0; i < 65536; ++i) tabulate[i] = 0;

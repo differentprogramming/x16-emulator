@@ -909,6 +909,7 @@ emscripten_main_loop(void) {
 	emulator_loop(NULL);
 }
 
+bool do_compile = true;
 
 void*
 emulator_loop(void *param)
@@ -1127,6 +1128,11 @@ emulator_loop(void *param)
 						snprintf(paste_text, sizeof(paste_text_data), "SYS$%04x\r", start);
 					}
 				}
+			}
+			else if (do_compile) {
+				do_compile = false;
+				emulator.build_solid();
+				paste_text = const_cast<char *>("RUN\r");
 			}
 
 			if (paste_text) {
