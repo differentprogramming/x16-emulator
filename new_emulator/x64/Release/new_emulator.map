@@ -1,6 +1,6 @@
  new_emulator
 
- Timestamp is 5e3d4c33 (Fri Feb  7 03:38:27 2020)
+ Timestamp is 5e472591 (Fri Feb 14 14:56:17 2020)
 
  Preferred load address is 0000000140000000
 
@@ -41,7 +41,7 @@
  0002:00008d30 00000d52H .idata$6                DATA
  0003:00000000 00000110H .data                   DATA
  0003:00000110 00000200H .data$r                 DATA
- 0003:00000310 0016f230H .bss                    DATA
+ 0003:00000310 00170360H .bss                    DATA
  0004:00000000 00001548H .pdata                  DATA
  0005:00000000 00000060H .rsrc$01                DATA
  0005:00000060 00000180H .rsrc$02                DATA
@@ -69,12 +69,12 @@
  0001:00000080       sprintf                    0000000140001080 f i 65c02incpp.obj
  0001:000000e0       ??0exception@std@@QEAA@AEBV01@@Z 00000001400010e0 f i 65c02incpp.obj
  0001:00000120       ?what@exception@std@@UEBAPEBDXZ 0000000140001120 f i 65c02incpp.obj
- 0001:00000140       ??_Eexception@std@@UEAAPEAXI@Z 0000000140001140 f i * CIL library *:* CIL module *
  0001:00000140       ??_Erange_error@std@@UEAAPEAXI@Z 0000000140001140 f i * CIL library *:* CIL module *
- 0001:00000140       ??_Gexception@std@@UEAAPEAXI@Z 0000000140001140 f i 65c02incpp.obj
- 0001:00000140       ??_Grange_error@std@@UEAAPEAXI@Z 0000000140001140 f i 65c02incpp.obj
  0001:00000140       ??_Gruntime_error@std@@UEAAPEAXI@Z 0000000140001140 f i 65c02incpp.obj
+ 0001:00000140       ??_Eexception@std@@UEAAPEAXI@Z 0000000140001140 f i * CIL library *:* CIL module *
+ 0001:00000140       ??_Grange_error@std@@UEAAPEAXI@Z 0000000140001140 f i 65c02incpp.obj
  0001:00000140       ??_Eruntime_error@std@@UEAAPEAXI@Z 0000000140001140 f i * CIL library *:* CIL module *
+ 0001:00000140       ??_Gexception@std@@UEAAPEAXI@Z 0000000140001140 f i 65c02incpp.obj
  0001:00000190       ??0range_error@std@@QEAA@PEBD@Z 0000000140001190 f i 65c02incpp.obj
  0001:000001e0       ??1range_error@std@@UEAA@XZ 00000001400011e0 f i 65c02incpp.obj
  0001:00000200       ??0runtime_error@std@@QEAA@AEBV01@@Z 0000000140001200 f i 65c02incpp.obj
@@ -95,44 +95,44 @@
  0001:00000e50       ??0range_error@std@@QEAA@AEBV01@@Z 0000000140001e50 f i 65c02incpp.obj
  0001:00000e90       ?BRK00@@YAXPEAUemulate65c02@@@Z 0000000140001e90 f   65c02incpp.obj
  0001:00000f60       ?ORA_izx01@@YAXPEAUemulate65c02@@@Z 0000000140001f60 f   65c02incpp.obj
+ 0001:00000fb0       ?NOP_imm42@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
+ 0001:00000fb0       ?NOP_imm62@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
+ 0001:00000fb0       ?NOP_immE2@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
+ 0001:00000fb0       ?NOP_imm82@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
+ 0001:00000fb0       ?NOP_imm22@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
  0001:00000fb0       ?NOP_imm02@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
  0001:00000fb0       ?NOP_immC2@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
- 0001:00000fb0       ?NOP_immE2@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
- 0001:00000fb0       ?NOP_imm42@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
- 0001:00000fb0       ?NOP_imm22@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
- 0001:00000fb0       ?NOP_imm82@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
- 0001:00000fb0       ?NOP_imm62@@YAXPEAUemulate65c02@@@Z 0000000140001fb0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPB3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP03@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP43@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP0B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP23@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPEA@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP7B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP63@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP73@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOP6B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOP8B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP33@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPC3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP9B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOPA3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPD3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP23@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPAB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPFB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP43@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP83@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP1B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP7B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP13@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP03@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP2B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPEB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP73@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP0B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPB3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPE3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPBB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP5B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOPEA@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP9B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOPF3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP63@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPD3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP2B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOP53@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP3B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
- 0001:00000fd0       ?NOP4B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPFB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP83@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP5B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPE3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP33@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPAB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP13@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPBB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fd0       ?NOP93@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP1B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP4B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOP3B@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPC3@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
+ 0001:00000fd0       ?NOPEB@@YAXPEAUemulate65c02@@@Z 0000000140001fd0 f   65c02incpp.obj
  0001:00000fe0       ?TSB_zp04@@YAXPEAUemulate65c02@@@Z 0000000140001fe0 f   65c02incpp.obj
  0001:00001060       ?ORA_zp05@@YAXPEAUemulate65c02@@@Z 0000000140002060 f   65c02incpp.obj
  0001:000010d0       ?ASL_zp06@@YAXPEAUemulate65c02@@@Z 00000001400020d0 f   65c02incpp.obj
@@ -202,8 +202,8 @@
  0001:00002f50       ?EOR_izy51@@YAXPEAUemulate65c02@@@Z 0000000140003f50 f   65c02incpp.obj
  0001:00002fa0       ?EOR_izp52@@YAXPEAUemulate65c02@@@Z 0000000140003fa0 f   65c02incpp.obj
  0001:00002ff0       ?NOP_zpx54@@YAXPEAUemulate65c02@@@Z 0000000140003ff0 f   65c02incpp.obj
- 0001:00002ff0       ?NOP_zpxD4@@YAXPEAUemulate65c02@@@Z 0000000140003ff0 f   65c02incpp.obj
  0001:00002ff0       ?NOP_zpxF4@@YAXPEAUemulate65c02@@@Z 0000000140003ff0 f   65c02incpp.obj
+ 0001:00002ff0       ?NOP_zpxD4@@YAXPEAUemulate65c02@@@Z 0000000140003ff0 f   65c02incpp.obj
  0001:00003040       ?EOR_zpx55@@YAXPEAUemulate65c02@@@Z 0000000140004040 f   65c02incpp.obj
  0001:000030c0       ?LSR_zpx56@@YAXPEAUemulate65c02@@@Z 00000001400040c0 f   65c02incpp.obj
  0001:00003160       ?RMB5_zp57@@YAXPEAUemulate65c02@@@Z 0000000140004160 f   65c02incpp.obj
@@ -353,15 +353,15 @@
  0001:000073e0       ??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 00000001400083e0 f i 65c02incpp.obj
  0001:00007430       ??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 0000000140008430 f i 65c02incpp.obj
  0001:00007460       ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z 0000000140008460 f i 65c02incpp.obj
- 0001:00007630       __scrt_stub_for_initialize_mta 0000000140008630 f i MSVCRT:utility_desktop.obj
- 0001:00007630       ?_Get_deleter@_Ref_count_base@std@@UEBAPEAXAEBVtype_info@@@Z 0000000140008630 f i compile.obj
- 0001:00007630       ?get_offset@Label@@UEBAHXZ 0000000140008630 f i compile.obj
- 0001:00007630       __scrt_exe_initialize_mta  0000000140008630 f i MSVCRT:utility_desktop.obj
- 0001:00007630       _get_startup_new_mode      0000000140008630 f i MSVCRT:new_mode.obj
  0001:00007630       _get_startup_commit_mode   0000000140008630 f i MSVCRT:commit_mode.obj
+ 0001:00007630       _get_startup_new_mode      0000000140008630 f i MSVCRT:new_mode.obj
  0001:00007630       _matherr                   0000000140008630 f i MSVCRT:matherr.obj
- 0001:00007630       _get_startup_thread_locale_mode 0000000140008630 f i MSVCRT:thread_locale.obj
+ 0001:00007630       ?get_offset@Label@@UEBAHXZ 0000000140008630 f i compile.obj
+ 0001:00007630       ?_Get_deleter@_Ref_count_base@std@@UEBAPEAXAEBVtype_info@@@Z 0000000140008630 f i compile.obj
+ 0001:00007630       __scrt_exe_initialize_mta  0000000140008630 f i MSVCRT:utility_desktop.obj
  0001:00007630       __scrt_initialize_winrt    0000000140008630 f i MSVCRT:utility_desktop.obj
+ 0001:00007630       __scrt_stub_for_initialize_mta 0000000140008630 f i MSVCRT:utility_desktop.obj
+ 0001:00007630       _get_startup_thread_locale_mode 0000000140008630 f i MSVCRT:thread_locale.obj
  0001:00007640       ?dec@std@@YAAEAVios_base@1@AEAV21@@Z 0000000140008640 f i compile.obj
  0001:00007660       ?get_label@Label@@UEAAAEAU1@XZ 0000000140008660 f i compile.obj
  0001:00007670       ?get_target@Label@@UEBAHXZ 0000000140008670 f i compile.obj
@@ -381,17 +381,17 @@
  0001:0000c7e0       ??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 000000014000d7e0 f i compile.obj
  0001:0000c850       ?_Delete_this@?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@EEAAXXZ 000000014000d850 f i compile.obj
  0001:0000c870       ?_Destroy@?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@EEAAXXZ 000000014000d870 f i compile.obj
- 0001:0000c880       ??_E?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@UEAAPEAXI@Z 000000014000d880 f i * CIL library *:* CIL module *
  0001:0000c880       ??_G?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@UEAAPEAXI@Z 000000014000d880 f i compile.obj
+ 0001:0000c880       ??_E?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@UEAAPEAXI@Z 000000014000d880 f i * CIL library *:* CIL module *
  0001:0000c8b0       __local_stdio_scanf_options 000000014000d8b0 f i debugger.obj
  0001:0000c8c0       snprintf                   000000014000d8c0 f i debugger.obj
  0001:0000c920       sscanf                     000000014000d920 f i debugger.obj
  0001:0000c980       ?reset@emulate65c02@@QEAAXXZ 000000014000d980 f i debugger.obj
  0001:0000c9e0       ?DEBUGGetCurrentStatus@@YAHXZ 000000014000d9e0 f   debugger.obj
  0001:0000cff0       ?DEBUGRenderDisplay@@YAXHH@Z 000000014000dff0 f   debugger.obj
- 0001:0000db20       _initialize_invalid_parameter_handler 000000014000eb20 f   MSVCRT:invalid_parameter_handler.obj
- 0001:0000db20       _guard_check_icall_nop     000000014000eb20 f   MSVCRT:guard_support.obj
  0001:0000db20       _initialize_denormal_control 000000014000eb20 f   MSVCRT:denormal_control.obj
+ 0001:0000db20       _guard_check_icall_nop     000000014000eb20 f   MSVCRT:guard_support.obj
+ 0001:0000db20       _initialize_invalid_parameter_handler 000000014000eb20 f   MSVCRT:invalid_parameter_handler.obj
  0001:00010130       fprintf                    0000000140011130 f i joystick.obj
  0001:00010180       ?get_joystick_state@@YAGPEAU_SDL_GameController@@W4joy_status@@@Z 0000000140011180 f   joystick.obj
  0001:00010480       ?ps2_scancode_from_SDL_Scancode@@YAHW4SDL_Scancode@@@Z 0000000140011480 f   keyboard.obj
@@ -424,8 +424,8 @@
  0001:00017a90       ?video_read@@YAEE_N@Z      0000000140018a90 f   video.obj
  0001:00017bb0       ?video_write@@YAXEE@Z      0000000140018bb0 f   video.obj
  0001:00017ce4       ??3@YAXPEAX_K@Z            0000000140018ce4 f   MSVCRT:delete_scalar_size.obj
- 0001:00017cec       ??_Gtype_info@@UEAAPEAXI@Z 0000000140018cec f i MSVCRT:std_type_info_static.obj
  0001:00017cec       ??_Etype_info@@UEAAPEAXI@Z 0000000140018cec f i MSVCRT:std_type_info_static.obj
+ 0001:00017cec       ??_Gtype_info@@UEAAPEAXI@Z 0000000140018cec f i MSVCRT:std_type_info_static.obj
  0001:00017d18       ??2@YAPEAX_K@Z             0000000140018d18 f   MSVCRT:new_scalar.obj
  0001:00017d54       __scrt_acquire_startup_lock 0000000140018d54 f   MSVCRT:utility.obj
  0001:00017d90       __scrt_initialize_crt      0000000140018d90 f   MSVCRT:utility.obj
@@ -443,9 +443,9 @@
  0001:00018324       ??0bad_array_new_length@std@@QEAA@XZ 0000000140019324 f i MSVCRT:throw_bad_alloc.obj
  0001:00018344       ??1bad_alloc@std@@UEAA@XZ  0000000140019344 f i MSVCRT:throw_bad_alloc.obj
  0001:00018344       ??1bad_array_new_length@std@@UEAA@XZ 0000000140019344 f i MSVCRT:throw_bad_alloc.obj
- 0001:00018358       ??_Gbad_alloc@std@@UEAAPEAXI@Z 0000000140019358 f i MSVCRT:throw_bad_alloc.obj
  0001:00018358       ??_Ebad_array_new_length@std@@UEAAPEAXI@Z 0000000140019358 f i MSVCRT:throw_bad_alloc.obj
  0001:00018358       ??_Gbad_array_new_length@std@@UEAAPEAXI@Z 0000000140019358 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00018358       ??_Gbad_alloc@std@@UEAAPEAXI@Z 0000000140019358 f i MSVCRT:throw_bad_alloc.obj
  0001:00018358       ??_Ebad_alloc@std@@UEAAPEAXI@Z 0000000140019358 f i MSVCRT:throw_bad_alloc.obj
  0001:0001839c       ?__scrt_throw_std_bad_alloc@@YAXXZ 000000014001939c f   MSVCRT:throw_bad_alloc.obj
  0001:000183bc       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 00000001400193bc f   MSVCRT:throw_bad_alloc.obj
@@ -461,13 +461,13 @@
  0001:00018764       __security_init_cookie     0000000140019764 f   MSVCRT:gs_support.obj
  0001:00018810       _get_startup_file_mode     0000000140019810 f   MSVCRT:file_mode.obj
  0001:00018818       ?__scrt_initialize_type_info@@YAXXZ 0000000140019818 f   MSVCRT:tncleanup.obj
- 0001:00018828       __scrt_stub_for_acrt_uninitialize 0000000140019828 f   MSVCRT:ucrt_stubs.obj
  0001:00018828       _should_initialize_environment 0000000140019828 f   MSVCRT:env_mode.obj
- 0001:00018828       __vcrt_initialize          0000000140019828 f   MSVCRT:ucrt_stubs.obj
- 0001:00018828       __scrt_stub_for_acrt_initialize 0000000140019828 f   MSVCRT:ucrt_stubs.obj
+ 0001:00018828       __scrt_stub_for_acrt_uninitialize 0000000140019828 f   MSVCRT:ucrt_stubs.obj
  0001:00018828       __vcrt_uninitialize        0000000140019828 f   MSVCRT:ucrt_stubs.obj
+ 0001:00018828       __vcrt_initialize          0000000140019828 f   MSVCRT:ucrt_stubs.obj
  0001:00018828       __acrt_uninitialize        0000000140019828 f   MSVCRT:ucrt_stubs.obj
  0001:00018828       __acrt_initialize          0000000140019828 f   MSVCRT:ucrt_stubs.obj
+ 0001:00018828       __scrt_stub_for_acrt_initialize 0000000140019828 f   MSVCRT:ucrt_stubs.obj
  0001:0001882c       __scrt_initialize_default_local_stdio_options 000000014001982c f   MSVCRT:default_local_stdio_options.obj
  0001:00018848       __scrt_is_user_matherr_present 0000000140019848 f   MSVCRT:matherr_detection.obj
  0001:00018854       __scrt_get_dyn_tls_init_callback 0000000140019854 f   MSVCRT:dyn_tls_init.obj
@@ -633,10 +633,10 @@
  0002:000003a8       \177api-ms-win-crt-runtime-l1-1-0_NULL_THUNK_DATA 000000014001b3a8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
  0002:000003b0       __imp___p__commode         000000014001b3b0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003b8       __imp_fopen_s              000000014001b3b8     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0002:000003c0       __imp_fileno               000000014001b3c0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003c0       __imp__fileno              000000014001b3c0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0002:000003c8       __imp__setmode             000000014001b3c8     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:000003c0       __imp_fileno               000000014001b3c0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003c8       __imp_setmode              000000014001b3c8     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:000003c8       __imp__setmode             000000014001b3c8     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003d0       __imp_fopen                000000014001b3d0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003d8       __imp_fputs                000000014001b3d8     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000003e0       __imp__set_fmode           000000014001b3e0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
@@ -1331,17 +1331,17 @@
  0002:00006528       ??_C@_0CA@NOBEFIE@WRITE?5video_space?$FL$?$CFX?$FN?5?$DN?5$?$CF02X?6@ 0000000140021528     video.obj
  0002:000065c0       __real@3f800000            00000001400215c0     main.obj
  0002:000065c8       __real@3fc0000000000000    00000001400215c8     main.obj
- 0002:000065d0       __real@4009000000000000    00000001400215d0     main.obj
- 0002:000065d8       __real@4029333333333333    00000001400215d8     main.obj
+ 0002:000065d0       __real@4009000000000000    00000001400215d0     vera_uart.obj
+ 0002:000065d8       __real@4029333333333333    00000001400215d8     video.obj
  0002:000065e0       __real@4030aaaa9f7b5aea    00000001400215e0     main.obj
  0002:000065e8       __real@4038000000000000    00000001400215e8     video.obj
- 0002:000065f0       __real@40392ccccccccccd    00000001400215f0     main.obj
+ 0002:000065f0       __real@40392ccccccccccd    00000001400215f0     video.obj
  0002:000065f8       __real@404570a3d70a3d71    00000001400215f8     video.obj
  0002:00006600       __real@407c800000000000    0000000140021600     video.obj
  0002:00006608       __real@4082a8f5c28f5c29    0000000140021608     video.obj
  0002:00006610       __real@408f400000000000    0000000140021610     compile.obj
  0002:00006618       __real@42c80000            0000000140021618     main.obj
- 0002:0000661c       __real@44480000            000000014002161c     main.obj
+ 0002:0000661c       __real@44480000            000000014002161c     video.obj
  0002:00006620       __xmm@00000004000000000000000000000000 0000000140021620     main.obj
  0002:00006630       __xmm@80000000000000008000000000000000 0000000140021630     main.obj
  0002:00006750       _load_config_used          0000000140021750     MSVCRT:loadcfg.obj
@@ -1435,10 +1435,9 @@
  0003:0000005c       ?joy1_mode@@3W4joy_status@@A 000000014002505c     joystick.obj
  0003:00000060       ?scale_quality@@3PEBDEB    0000000140025060     main.obj
  0003:00000068       ?prg_override_start@@3HA   0000000140025068     main.obj
- 0003:0000006c       ?do_compile@@3_NA          000000014002506c     main.obj
- 0003:0000006d       ?dump_bank@@3_NA           000000014002506d     main.obj
- 0003:0000006e       ?dump_ram@@3_NA            000000014002506e     main.obj
- 0003:0000006f       ?save_on_exit@@3_NA        000000014002506f     main.obj
+ 0003:0000006c       ?dump_bank@@3_NA           000000014002506c     main.obj
+ 0003:0000006d       ?dump_ram@@3_NA            000000014002506d     main.obj
+ 0003:0000006e       ?save_on_exit@@3_NA        000000014002506e     main.obj
  0003:00000070       ?window_scale@@3HA         0000000140025070     main.obj
  0003:00000074       ?num_ram_banks@@3GA        0000000140025074     main.obj
  0003:00000080       ?emulator@@3Uemulate65c02@@A 0000000140025080     main.obj
@@ -1467,211 +1466,218 @@
  0003:0000038c       ?currentPosInLine@@3HA     000000014002538c     debugger.obj
  0003:00000390       ?cmdLine@@3PADA            0000000140025390     debugger.obj
  0003:000003d0       ?showFullDisplay@@3HA      00000001400253d0     debugger.obj
- 0003:000003d4       ?joystick2_data@@3_NA      00000001400253d4     joystick.obj
- 0003:000003d5       ?joystick_clock@@3_NA      00000001400253d5     joystick.obj
- 0003:000003d6       ?joystick1_data@@3_NA      00000001400253d6     joystick.obj
- 0003:000003d7       ?joystick_latch@@3_NA      00000001400253d7     joystick.obj
+ 0003:000003d4       ?mem@@3HA                  00000001400253d4     ym2151.obj
  0003:000003d8       ?dbgRenderer@@3PEAUSDL_Renderer@@EA 00000001400253d8     debugger.obj
- 0003:000003e0       ?javascript_text_data@@3PADA 00000001400253e0     javascript_interface.obj
- 0003:000103e0       ?run_after_load@@3_NA      00000001400353e0     main.obj
- 0003:000103e1       ?pasting_bas@@3_NA         00000001400353e1     main.obj
- 0003:000103e2       ?dump_vram@@3_NA           00000001400353e2     main.obj
- 0003:000103e3       ?log_speed@@3_NA           00000001400353e3     main.obj
- 0003:000103e4       ?instruction_counter@@3HA  00000001400353e4     main.obj
- 0003:000103e8       ?paste_text@@3PEADEA       00000001400353e8     main.obj
- 0003:000103f0       ?gif_path@@3PEADEA         00000001400353f0     main.obj
- 0003:000103f8       ?dump_cpu@@3_NA            00000001400353f8     main.obj
- 0003:000103f9       ?keymap@@3EA               00000001400353f9     main.obj
- 0003:000103fa       ?log_keyboard@@3_NA        00000001400353fa     main.obj
- 0003:000103fb       ?debugger_enabled@@3_NA    00000001400353fb     main.obj
- 0003:000103fc       ?last_perf_update@@3HA     00000001400353fc     main.obj
- 0003:00010400       ?window_title@@3PADA       0000000140035400     main.obj
- 0003:0001041e       ?log_video@@3_NA           000000014003541e     main.obj
- 0003:0001041f       ?busy@@3_NA                000000014003541f     vera_spi.obj
- 0003:00010420       ?paste_text_data@@3PADA    0000000140035420     main.obj
- 0003:00020420       ?perf_frame_count@@3HA     0000000140045420     main.obj
- 0003:00020424       ?echo_mode@@3W4echo_mode_t@@A 0000000140045424     main.obj
- 0003:00020428       ?prg_file@@3PEAU_iobuf@@EA 0000000140045428     main.obj
- 0003:00020430       ?record_gif@@3W4gif_recorder_state_t@@A 0000000140045430     main.obj
- 0003:00020434       ?textureInitialized@@3HA   0000000140045434     rendertext.obj
- 0003:00020438       ?ps2_port@@3PAUps2_port_t@@A 0000000140045438     ps2.obj
- 0003:00020458       ?fontTexture@@3PEAUSDL_Texture@@EA 0000000140045458     rendertext.obj
- 0003:00020460       ?yPos@@3HA                 0000000140045460     rendertext.obj
- 0003:00020464       ?xPos@@3HA                 0000000140045464     rendertext.obj
- 0003:00020468       ?sdcard_file@@3PEAU_iobuf@@EA 0000000140045468     sdcard.obj
- 0003:00020470       ?outcounter@@3HA           0000000140045470     vera_spi.obj
- 0003:00020474       ?ss@@3_NA                  0000000140045474     vera_spi.obj
- 0003:00020475       ?received_byte@@3EA        0000000140045475     vera_spi.obj
- 0003:00020476       ?sending_byte@@3EA         0000000140045476     vera_spi.obj
- 0003:00020477       ?io_addrsel@@3_NA          0000000140045477     video.obj
- 0003:00020478       ?uart_in_file@@3PEAU_iobuf@@EA 0000000140045478     vera_uart.obj
- 0003:00020480       ?uart_out_file@@3PEAU_iobuf@@EA 0000000140045480     vera_uart.obj
- 0003:00020488       ?scan_pos_y@@3GA           0000000140045488     video.obj
- 0003:00020490       ?video_palette@@3U0@A      0000000140045490     video.obj
- 0003:00020894       ?scan_pos_x@@3MA           0000000140045894     video.obj
- 0003:000208a0       ?sprite_properties@@3PAUvideo_sprite_properties@@A 00000001400458a0     video.obj
- 0003:00021ca0       ?layer_properties@@3PAUvideo_layer_properties@@A 0000000140046ca0     video.obj
- 0003:0016f2e0       ?_OptionsStorage@?1??__local_stdio_scanf_options@@9@4_KA 00000001401942e0     debugger.obj
- 0003:0016f530       __dyn_tls_dtor_callback    0000000140194530     <common>
- 0003:0016f538       __dyn_tls_init_callback    0000000140194538     <common>
+ 0003:000003e0       ?oper@@3PAUYM2151Operator@@A 00000001400253e0     ym2151.obj
+ 0003:000014e0       ?chanout@@3PAHA            00000001400264e0     ym2151.obj
+ 0003:00001500       ?m2@@3HA                   0000000140026500     ym2151.obj
+ 0003:00001504       ?c2@@3HA                   0000000140026504     ym2151.obj
+ 0003:00001508       ?c1@@3HA                   0000000140026508     ym2151.obj
+ 0003:0000150c       ?joystick2_data@@3_NA      000000014002650c     joystick.obj
+ 0003:0000150d       ?joystick_clock@@3_NA      000000014002650d     joystick.obj
+ 0003:0000150e       ?joystick1_data@@3_NA      000000014002650e     joystick.obj
+ 0003:0000150f       ?joystick_latch@@3_NA      000000014002650f     joystick.obj
+ 0003:00001510       ?javascript_text_data@@3PADA 0000000140026510     javascript_interface.obj
+ 0003:00011510       ?run_after_load@@3_NA      0000000140036510     main.obj
+ 0003:00011511       ?pasting_bas@@3_NA         0000000140036511     main.obj
+ 0003:00011512       ?do_compile@@3_NA          0000000140036512     main.obj
+ 0003:00011513       ?dump_vram@@3_NA           0000000140036513     main.obj
+ 0003:00011514       ?instruction_counter@@3HA  0000000140036514     main.obj
+ 0003:00011518       ?paste_text@@3PEADEA       0000000140036518     main.obj
+ 0003:00011520       ?log_speed@@3_NA           0000000140036520     main.obj
+ 0003:00011521       ?dump_cpu@@3_NA            0000000140036521     main.obj
+ 0003:00011522       ?keymap@@3EA               0000000140036522     main.obj
+ 0003:00011523       ?log_keyboard@@3_NA        0000000140036523     main.obj
+ 0003:00011524       ?last_perf_update@@3HA     0000000140036524     main.obj
+ 0003:00011528       ?gif_path@@3PEADEA         0000000140036528     main.obj
+ 0003:00011530       ?window_title@@3PADA       0000000140036530     main.obj
+ 0003:0001154e       ?debugger_enabled@@3_NA    000000014003654e     main.obj
+ 0003:0001154f       ?log_video@@3_NA           000000014003654f     main.obj
+ 0003:00011550       ?paste_text_data@@3PADA    0000000140036550     main.obj
+ 0003:00021550       ?perf_frame_count@@3HA     0000000140046550     main.obj
+ 0003:00021554       ?echo_mode@@3W4echo_mode_t@@A 0000000140046554     main.obj
+ 0003:00021558       ?prg_file@@3PEAU_iobuf@@EA 0000000140046558     main.obj
+ 0003:00021560       ?record_gif@@3W4gif_recorder_state_t@@A 0000000140046560     main.obj
+ 0003:00021564       ?textureInitialized@@3HA   0000000140046564     rendertext.obj
+ 0003:00021568       ?ps2_port@@3PAUps2_port_t@@A 0000000140046568     ps2.obj
+ 0003:00021588       ?fontTexture@@3PEAUSDL_Texture@@EA 0000000140046588     rendertext.obj
+ 0003:00021590       ?yPos@@3HA                 0000000140046590     rendertext.obj
+ 0003:00021594       ?xPos@@3HA                 0000000140046594     rendertext.obj
+ 0003:00021598       ?sdcard_file@@3PEAU_iobuf@@EA 0000000140046598     sdcard.obj
+ 0003:000215a0       ?busy@@3_NA                00000001400465a0     vera_spi.obj
+ 0003:000215a1       ?ss@@3_NA                  00000001400465a1     vera_spi.obj
+ 0003:000215a2       ?received_byte@@3EA        00000001400465a2     vera_spi.obj
+ 0003:000215a3       ?sending_byte@@3EA         00000001400465a3     vera_spi.obj
+ 0003:000215a4       ?outcounter@@3HA           00000001400465a4     vera_spi.obj
+ 0003:000215a8       ?uart_in_file@@3PEAU_iobuf@@EA 00000001400465a8     vera_uart.obj
+ 0003:000215b0       ?uart_out_file@@3PEAU_iobuf@@EA 00000001400465b0     vera_uart.obj
+ 0003:000215b8       ?scan_pos_y@@3GA           00000001400465b8     video.obj
+ 0003:000215ba       ?io_addrsel@@3_NA          00000001400465ba     video.obj
+ 0003:000215c0       ?video_palette@@3U0@A      00000001400465c0     video.obj
+ 0003:000219c4       ?scan_pos_x@@3MA           00000001400469c4     video.obj
+ 0003:000219d0       ?sprite_properties@@3PAUvideo_sprite_properties@@A 00000001400469d0     video.obj
+ 0003:00022dd0       ?layer_properties@@3PAUvideo_layer_properties@@A 0000000140047dd0     video.obj
+ 0003:00170410       ?_OptionsStorage@?1??__local_stdio_scanf_options@@9@4_KA 0000000140195410     debugger.obj
+ 0003:00170660       __dyn_tls_dtor_callback    0000000140195660     <common>
+ 0003:00170668       __dyn_tls_init_callback    0000000140195668     <common>
 
  entry point at        0001:00018268
 
  Static symbols
 
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     SDL2:SDL2.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-time-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-locale-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
- 0000:ffe66000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     SDL2:SDL2.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     msvcprt:MSVCP140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     kernel32:KERNEL32.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffe65000       .debug$S                   0000000140000000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0001:00000000       ??__Eemulator@@YAXXZ       0000000140001000 f   main.obj
  0001:0000031c       $LN12                      000000014000131c     65c02incpp.obj
  0001:00000d3c       $LN65                      0000000140001d3c     65c02incpp.obj
@@ -2442,534 +2448,534 @@
  0003:00000321       ?module_local_atexit_table_initialized@@3_NA 0000000140025321     MSVCRT:utility.obj
  0003:00000328       ?module_local_atexit_table@@3U_onexit_table_t@@A 0000000140025328     MSVCRT:utility.obj
  0003:00000340       ?module_local_at_quick_exit_table@@3U_onexit_table_t@@A 0000000140025340     MSVCRT:utility.obj
- 0003:00021d18       ?value@@3GA                0000000140046d18     fake65c02.obj
- 0003:00021d1a       ?opcode@@3EA               0000000140046d1a     fake65c02.obj
- 0003:00021d1b       ?penaltyaddr@@3EA          0000000140046d1b     fake65c02.obj
- 0003:00021d1c       ?clockticks6502@@3IA       0000000140046d1c     fake65c02.obj
- 0003:00021d20       ?temp_buffer@@3PADA        0000000140046d20     65c02incpp.obj
- 0003:00021d70       ?ea@@3GA                   0000000140046d70     fake65c02.obj
- 0003:00021d72       ?a@@3EA                    0000000140046d72     fake65c02.obj
- 0003:00021d73       ?status@@3EA               0000000140046d73     fake65c02.obj
- 0003:00021d74       ?penaltyop@@3EA            0000000140046d74     fake65c02.obj
- 0003:00021d75       ?y@@3EA                    0000000140046d75     fake65c02.obj
- 0003:00021d76       ?sp@@3EA                   0000000140046d76     fake65c02.obj
- 0003:00021d77       ?x@@3EA                    0000000140046d77     fake65c02.obj
- 0003:00021d78       ?pc@@3GA                   0000000140046d78     fake65c02.obj
- 0003:00021d7a       ?old_clock@@3_NA           0000000140046d7a     joystick.obj
- 0003:00021d7b       ?clock_count@@3EA          0000000140046d7b     joystick.obj
- 0003:00021d7c       ?reladdr@@3GA              0000000140046d7c     fake65c02.obj
- 0003:00021d7e       ?writing@@3_NA             0000000140046d7e     joystick.obj
- 0003:00021d7f       ?buttons@@3EA              0000000140046d7f     ps2.obj
- 0003:00021d80       ?result@@3GA               0000000140046d80     fake65c02.obj
- 0003:00021d82       ?initialized@@3_NA         0000000140046d82     spi.obj
- 0003:00021d83       ?byte_in@@3EA              0000000140046d83     vera_uart.obj
- 0003:00021d84       ?oldpc@@3GA                0000000140046d84     fake65c02.obj
- 0003:00021d86       ?isr@@3EA                  0000000140046d86     video.obj
- 0003:00021d87       ?ien@@3EA                  0000000140046d87     video.obj
- 0003:00021d88       ?joystick1_state@@3GA      0000000140046d88     joystick.obj
- 0003:00021d8a       ?sprite_line_empty@@3_NA   0000000140046d8a     video.obj
- 0003:00021d8b       ?is_fullscreen@@3_NA       0000000140046d8b     video.obj
- 0003:00021d8c       ?joystick2_state@@3GA      0000000140046d8c     joystick.obj
- 0003:00021d90       ?joystick2@@3PEAU_SDL_GameController@@EA 0000000140046d90     joystick.obj
- 0003:00021d98       ?joystick1@@3PEAU_SDL_GameController@@EA 0000000140046d98     joystick.obj
- 0003:00021da0       ?mouse_diff_y@@3FA         0000000140046da0     ps2.obj
- 0003:00021da4       ?mouse_diff_x@@3FA         0000000140046da4     ps2.obj
- 0003:00021da8       ?cmd_receive_counter@@3HA  0000000140046da8     sdcard.obj
- 0003:00021db0       ?state@@3PAU<unnamed-type-state>@@A 0000000140046db0     ps2.obj
- 0003:00021e18       ?bauddiv@@3GA              0000000140046e18     vera_uart.obj
- 0003:00021e1c       ?countdown_in@@3MA         0000000140046e1c     vera_uart.obj
- 0003:00021e20       ?countdown_out@@3MA        0000000140046e20     vera_uart.obj
- 0003:00021e24       ?io_inc@@3PAEA             0000000140046e24     video.obj
- 0003:00021e28       ?via2registers@@3PAEA      0000000140046e28     via.obj
- 0003:00021e38       ?via1registers@@3PAEA      0000000140046e38     via.obj
- 0003:00021e48       ?io_addr@@3PAIA            0000000140046e48     video.obj
- 0003:00021e50       ?layer_line@@3PAY0CIA@EA   0000000140046e50     video.obj
- 0003:00022350       ?reg_composer@@3PAEA       0000000140047350     video.obj
- 0003:00022370       ?gif_writer@@3UGifWriter@@A 0000000140047370     video.obj
- 0003:00022388       ?window@@3PEAUSDL_Window@@EA 0000000140047388     video.obj
- 0003:00022390       ?sprite_line_z@@3PAEA      0000000140047390     video.obj
- 0003:00022610       ?reg_layer@@3PAY0BA@EA     0000000140047610     video.obj
- 0003:00022630       ?video_ram@@3PAEA          0000000140047630     video.obj
- 0003:00042630       ?reg_sprites@@3PAEA        0000000140067630     video.obj
- 0003:00042640       ?layer_line_empty@@3PA_NA  0000000140067640     video.obj
- 0003:00042648       ?renderer@@3PEAUSDL_Renderer@@EA 0000000140067648     video.obj
- 0003:00042650       ?palette@@3PAEA            0000000140067650     video.obj
- 0003:00042850       ?sprite_data@@3PAY07EA     0000000140067850     video.obj
- 0003:00043050       ?sdlTexture@@3PEAUSDL_Texture@@EA 0000000140068050     video.obj
- 0003:00043060       ?sprite_line_col@@3PAEA    0000000140068060     video.obj
- 0003:000432e0       ?framebuffer@@3PAEA        00000001400682e0     video.obj
- 0003:0016f2e8       ?frames@?BI@??emulator_loop@@YAPEAXPEAX@Z@4HA 00000001401942e8     main.obj
- 0003:0016f2ec       ?response_counter@?1??sdcard_handle@@YAEE@Z@4HA 00000001401942ec     sdcard.obj
- 0003:0016f2f0       ?response@?1??sdcard_handle@@YAEE@Z@4PEBEEB 00000001401942f0     sdcard.obj
- 0003:0016f2f8       ?response_length@?1??sdcard_handle@@YAEE@Z@4HA 00000001401942f8     sdcard.obj
- 0003:0016f2fc       ?last_clk@?1??spi_step@@YAXXZ@4_NA 00000001401942fc     spi.obj
- 0003:0016f300       ?init_counter@?BE@??spi_step@@YAXXZ@4HA 0000000140194300     spi.obj
- 0003:0016f304       ?bit_counter@?1??spi_step@@YAXXZ@4HA 0000000140194304     spi.obj
- 0003:0016f308       ?cmd_down@?1??video_update@@YA_NXZ@4_NA 0000000140194308     video.obj
- 0003:0016f30c       ?cmd@?1??sdcard_handle@@YAEE@Z@4PAEA 000000014019430c     sdcard.obj
- 0003:0016f320       ?read_block_respose@?BM@??sdcard_handle@@YAEE@Z@4PAEA 0000000140194320     sdcard.obj
- 0003:0016f524       ?inbyte@?1??spi_step@@YAXXZ@4EA 0000000140194524     spi.obj
- 0003:0016f525       ?last_ss@?1??spi_step@@YAXXZ@4_NA 0000000140194525     spi.obj
- 0003:0016f526       ?outbyte@?1??spi_step@@YAXXZ@4EA 0000000140194526     spi.obj
- 0003:0016f528       ?mouse_y@?EB@??video_update@@YA_NXZ@4HA 0000000140194528     video.obj
- 0003:0016f52c       ?mouse_x@?EB@??video_update@@YA_NXZ@4HA 000000014019452c     video.obj
- 0004:00000000       $pdata$??_Gtype_info@@UEAAPEAXI@Z 0000000140195000     MSVCRT:std_type_info_static.obj
- 0004:0000000c       $pdata$??2@YAPEAX_K@Z      000000014019500c     MSVCRT:new_scalar.obj
- 0004:00000018       $pdata$atexit              0000000140195018     MSVCRT:utility.obj
- 0004:00000024       $pdata$_onexit             0000000140195024     MSVCRT:utility.obj
- 0004:00000030       $pdata$__scrt_is_nonwritable_in_current_image 0000000140195030     MSVCRT:utility.obj
- 0004:0000003c       $pdata$__scrt_is_nonwritable_in_current_image$filt$0 000000014019503c     MSVCRT:utility.obj
- 0004:00000048       $pdata$__scrt_acquire_startup_lock 0000000140195048     MSVCRT:utility.obj
- 0004:00000054       $pdata$__scrt_release_startup_lock 0000000140195054     MSVCRT:utility.obj
- 0004:00000060       $pdata$__scrt_initialize_crt 0000000140195060     MSVCRT:utility.obj
- 0004:0000006c       $pdata$__scrt_uninitialize_crt 000000014019506c     MSVCRT:utility.obj
- 0004:00000078       $pdata$__scrt_initialize_onexit_tables 0000000140195078     MSVCRT:utility.obj
- 0004:00000084       $pdata$?pre_c_initialization@@YAHXZ 0000000140195084     MSVCRT:exe_main.obj
- 0004:00000090       $pdata$?post_pgo_initialization@@YAHXZ 0000000140195090     MSVCRT:exe_main.obj
- 0004:0000009c       $pdata$?pre_cpp_initialization@@YAXXZ 000000014019509c     MSVCRT:exe_main.obj
- 0004:000000a8       $pdata$?__scrt_common_main_seh@@YAHXZ 00000001401950a8     MSVCRT:exe_main.obj
- 0004:000000b4       $pdata$?filt$0@?0??__scrt_common_main_seh@@YAHXZ@4HA 00000001401950b4     MSVCRT:exe_main.obj
- 0004:000000c0       $pdata$mainCRTStartup      00000001401950c0     MSVCRT:exe_main.obj
- 0004:000000cc       $pdata$??0bad_alloc@std@@QEAA@AEBV01@@Z 00000001401950cc     MSVCRT:throw_bad_alloc.obj
- 0004:000000d8       $pdata$??_Gbad_array_new_length@std@@UEAAPEAXI@Z 00000001401950d8     MSVCRT:throw_bad_alloc.obj
- 0004:000000d8       $pdata$??_Gbad_alloc@std@@UEAAPEAXI@Z 00000001401950d8     MSVCRT:throw_bad_alloc.obj
- 0004:000000e4       $pdata$??0bad_array_new_length@std@@QEAA@AEBV01@@Z 00000001401950e4     MSVCRT:throw_bad_alloc.obj
- 0004:000000f0       $pdata$?__scrt_throw_std_bad_alloc@@YAXXZ 00000001401950f0     MSVCRT:throw_bad_alloc.obj
- 0004:000000fc       $pdata$?__scrt_throw_std_bad_array_new_length@@YAXXZ 00000001401950fc     MSVCRT:throw_bad_alloc.obj
- 0004:00000108       $pdata$__isa_available_init 0000000140195108     MSVCRT:cpu_disp.obj
- 0004:00000114       $pdata$__scrt_is_managed_app 0000000140195114     MSVCRT:utility_desktop.obj
- 0004:00000120       $pdata$__scrt_fastfail     0000000140195120     MSVCRT:utility_desktop.obj
- 0004:0000012c       $pdata$__scrt_unhandled_exception_filter 000000014019512c     MSVCRT:utility_desktop.obj
- 0004:00000138       $pdata$__security_init_cookie 0000000140195138     MSVCRT:gs_support.obj
- 0004:00000144       $pdata$__scrt_initialize_default_local_stdio_options 0000000140195144     MSVCRT:default_local_stdio_options.obj
- 0004:00000150       $pdata$_RTC_Initialize     0000000140195150     MSVCRT:initsect.obj
- 0004:0000015c       $pdata$_RTC_Terminate      000000014019515c     MSVCRT:initsect.obj
- 0004:00000174       $pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z 0000000140195174     65c02incpp.obj
- 0004:00000180       $pdata$?catch$4@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z@4HA 0000000140195180     65c02incpp.obj
- 0004:0000018c       $pdata$??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 000000014019518c     65c02incpp.obj
- 0004:00000198       $pdata$??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 0000000140195198     65c02incpp.obj
- 0004:000001a4       $pdata$?disassemble@emulate65c02@@QEAAPEADXZ 00000001401951a4     65c02incpp.obj
- 0004:000001b0       $pdata$?BBS7_ZprFF@@YAXPEAUemulate65c02@@@Z 00000001401951b0     65c02incpp.obj
- 0004:000001bc       $pdata$?INC_abxFE@@YAXPEAUemulate65c02@@@Z 00000001401951bc     65c02incpp.obj
- 0004:000001c8       $pdata$?SBC_abxFD@@YAXPEAUemulate65c02@@@Z 00000001401951c8     65c02incpp.obj
- 0004:000001d4       $pdata$?NOP_absFC@@YAXPEAUemulate65c02@@@Z 00000001401951d4     65c02incpp.obj
- 0004:000001d4       $pdata$?NOP_absDC@@YAXPEAUemulate65c02@@@Z 00000001401951d4     65c02incpp.obj
- 0004:000001d4       $pdata$?NOP_abs5C@@YAXPEAUemulate65c02@@@Z 00000001401951d4     65c02incpp.obj
- 0004:000001e0       $pdata$?PLXFA@@YAXPEAUemulate65c02@@@Z 00000001401951e0     65c02incpp.obj
- 0004:000001ec       $pdata$?SBC_abyF9@@YAXPEAUemulate65c02@@@Z 00000001401951ec     65c02incpp.obj
- 0004:000001f8       $pdata$?SMB7_zpF7@@YAXPEAUemulate65c02@@@Z 00000001401951f8     65c02incpp.obj
- 0004:00000204       $pdata$?INC_zpxF6@@YAXPEAUemulate65c02@@@Z 0000000140195204     65c02incpp.obj
- 0004:00000210       $pdata$?SBC_zpxF5@@YAXPEAUemulate65c02@@@Z 0000000140195210     65c02incpp.obj
- 0004:0000021c       $pdata$?NOP_zpxF4@@YAXPEAUemulate65c02@@@Z 000000014019521c     65c02incpp.obj
- 0004:0000021c       $pdata$?NOP_zpxD4@@YAXPEAUemulate65c02@@@Z 000000014019521c     65c02incpp.obj
- 0004:0000021c       $pdata$?NOP_zpx54@@YAXPEAUemulate65c02@@@Z 000000014019521c     65c02incpp.obj
- 0004:00000228       $pdata$?SBC_izpF2@@YAXPEAUemulate65c02@@@Z 0000000140195228     65c02incpp.obj
- 0004:00000234       $pdata$?SBC_izyF1@@YAXPEAUemulate65c02@@@Z 0000000140195234     65c02incpp.obj
- 0004:00000240       $pdata$?BEQ_relF0@@YAXPEAUemulate65c02@@@Z 0000000140195240     65c02incpp.obj
- 0004:0000024c       $pdata$?BBS6_zprEF@@YAXPEAUemulate65c02@@@Z 000000014019524c     65c02incpp.obj
- 0004:00000258       $pdata$?INC_absEE@@YAXPEAUemulate65c02@@@Z 0000000140195258     65c02incpp.obj
- 0004:00000264       $pdata$?SBC_absED@@YAXPEAUemulate65c02@@@Z 0000000140195264     65c02incpp.obj
- 0004:00000270       $pdata$?CPX_absEC@@YAXPEAUemulate65c02@@@Z 0000000140195270     65c02incpp.obj
- 0004:0000027c       $pdata$?SBC_immE9@@YAXPEAUemulate65c02@@@Z 000000014019527c     65c02incpp.obj
- 0004:00000288       $pdata$?SMB6_zpE7@@YAXPEAUemulate65c02@@@Z 0000000140195288     65c02incpp.obj
- 0004:00000294       $pdata$?INC_zpE6@@YAXPEAUemulate65c02@@@Z 0000000140195294     65c02incpp.obj
- 0004:000002a0       $pdata$?SBC_zpE5@@YAXPEAUemulate65c02@@@Z 00000001401952a0     65c02incpp.obj
- 0004:000002ac       $pdata$?CPX_zpE4@@YAXPEAUemulate65c02@@@Z 00000001401952ac     65c02incpp.obj
- 0004:000002b8       $pdata$?SBC_izxE1@@YAXPEAUemulate65c02@@@Z 00000001401952b8     65c02incpp.obj
- 0004:000002c4       $pdata$?CPX_immE0@@YAXPEAUemulate65c02@@@Z 00000001401952c4     65c02incpp.obj
- 0004:000002d0       $pdata$?BBS5_zprDF@@YAXPEAUemulate65c02@@@Z 00000001401952d0     65c02incpp.obj
- 0004:000002dc       $pdata$?DEC_abxDE@@YAXPEAUemulate65c02@@@Z 00000001401952dc     65c02incpp.obj
- 0004:000002e8       $pdata$?CMP_abxDD@@YAXPEAUemulate65c02@@@Z 00000001401952e8     65c02incpp.obj
- 0004:000002f4       $pdata$?PHXDA@@YAXPEAUemulate65c02@@@Z 00000001401952f4     65c02incpp.obj
- 0004:00000300       $pdata$?CMP_abyD9@@YAXPEAUemulate65c02@@@Z 0000000140195300     65c02incpp.obj
- 0004:0000030c       $pdata$?SMB5_zpD7@@YAXPEAUemulate65c02@@@Z 000000014019530c     65c02incpp.obj
- 0004:00000318       $pdata$?DEC_zpxD6@@YAXPEAUemulate65c02@@@Z 0000000140195318     65c02incpp.obj
- 0004:00000324       $pdata$?CMP_zpxD5@@YAXPEAUemulate65c02@@@Z 0000000140195324     65c02incpp.obj
- 0004:00000330       $pdata$?CMP_izpD2@@YAXPEAUemulate65c02@@@Z 0000000140195330     65c02incpp.obj
- 0004:0000033c       $pdata$?CMP_izyD1@@YAXPEAUemulate65c02@@@Z 000000014019533c     65c02incpp.obj
- 0004:00000348       $pdata$?BNE_relD0@@YAXPEAUemulate65c02@@@Z 0000000140195348     65c02incpp.obj
- 0004:00000354       $pdata$?BBS4_zprCF@@YAXPEAUemulate65c02@@@Z 0000000140195354     65c02incpp.obj
- 0004:00000360       $pdata$?DEC_absCE@@YAXPEAUemulate65c02@@@Z 0000000140195360     65c02incpp.obj
- 0004:0000036c       $pdata$?CMP_absCD@@YAXPEAUemulate65c02@@@Z 000000014019536c     65c02incpp.obj
- 0004:00000378       $pdata$?CPY_absCC@@YAXPEAUemulate65c02@@@Z 0000000140195378     65c02incpp.obj
- 0004:00000384       $pdata$?CMP_immC9@@YAXPEAUemulate65c02@@@Z 0000000140195384     65c02incpp.obj
- 0004:00000390       $pdata$?SMB4_zpC7@@YAXPEAUemulate65c02@@@Z 0000000140195390     65c02incpp.obj
- 0004:0000039c       $pdata$?DEC_zpC6@@YAXPEAUemulate65c02@@@Z 000000014019539c     65c02incpp.obj
- 0004:000003a8       $pdata$?CMP_zpC5@@YAXPEAUemulate65c02@@@Z 00000001401953a8     65c02incpp.obj
- 0004:000003b4       $pdata$?CPY_zpC4@@YAXPEAUemulate65c02@@@Z 00000001401953b4     65c02incpp.obj
- 0004:000003c0       $pdata$?CMP_izxC1@@YAXPEAUemulate65c02@@@Z 00000001401953c0     65c02incpp.obj
- 0004:000003cc       $pdata$?CPY_immC0@@YAXPEAUemulate65c02@@@Z 00000001401953cc     65c02incpp.obj
- 0004:000003d8       $pdata$?BBS3_zprBF@@YAXPEAUemulate65c02@@@Z 00000001401953d8     65c02incpp.obj
- 0004:000003e4       $pdata$?LDX_abyBE@@YAXPEAUemulate65c02@@@Z 00000001401953e4     65c02incpp.obj
- 0004:000003f0       $pdata$?LDA_abxBD@@YAXPEAUemulate65c02@@@Z 00000001401953f0     65c02incpp.obj
- 0004:000003fc       $pdata$?LDY_abxBC@@YAXPEAUemulate65c02@@@Z 00000001401953fc     65c02incpp.obj
- 0004:00000408       $pdata$?LDA_abyB9@@YAXPEAUemulate65c02@@@Z 0000000140195408     65c02incpp.obj
- 0004:00000414       $pdata$?SMB3_zpB7@@YAXPEAUemulate65c02@@@Z 0000000140195414     65c02incpp.obj
- 0004:00000420       $pdata$?LDX_zpyB6@@YAXPEAUemulate65c02@@@Z 0000000140195420     65c02incpp.obj
- 0004:0000042c       $pdata$?LDA_zpxB5@@YAXPEAUemulate65c02@@@Z 000000014019542c     65c02incpp.obj
- 0004:00000438       $pdata$?LDY_zpxB4@@YAXPEAUemulate65c02@@@Z 0000000140195438     65c02incpp.obj
- 0004:00000444       $pdata$?LDA_izpB2@@YAXPEAUemulate65c02@@@Z 0000000140195444     65c02incpp.obj
- 0004:00000450       $pdata$?LDA_izyB1@@YAXPEAUemulate65c02@@@Z 0000000140195450     65c02incpp.obj
- 0004:0000045c       $pdata$?BCS_relB0@@YAXPEAUemulate65c02@@@Z 000000014019545c     65c02incpp.obj
- 0004:00000468       $pdata$?BBS2_zprAF@@YAXPEAUemulate65c02@@@Z 0000000140195468     65c02incpp.obj
- 0004:00000474       $pdata$?LDX_absAE@@YAXPEAUemulate65c02@@@Z 0000000140195474     65c02incpp.obj
- 0004:00000480       $pdata$?LDA_absAD@@YAXPEAUemulate65c02@@@Z 0000000140195480     65c02incpp.obj
- 0004:0000048c       $pdata$?LDY_absAC@@YAXPEAUemulate65c02@@@Z 000000014019548c     65c02incpp.obj
- 0004:00000498       $pdata$?LDA_immA9@@YAXPEAUemulate65c02@@@Z 0000000140195498     65c02incpp.obj
- 0004:000004a4       $pdata$?SMB2_zpA7@@YAXPEAUemulate65c02@@@Z 00000001401954a4     65c02incpp.obj
- 0004:000004b0       $pdata$?LDX_zpA6@@YAXPEAUemulate65c02@@@Z 00000001401954b0     65c02incpp.obj
- 0004:000004bc       $pdata$?LDA_zpA5@@YAXPEAUemulate65c02@@@Z 00000001401954bc     65c02incpp.obj
- 0004:000004c8       $pdata$?LDY_zpA4@@YAXPEAUemulate65c02@@@Z 00000001401954c8     65c02incpp.obj
- 0004:000004d4       $pdata$?LDX_immA2@@YAXPEAUemulate65c02@@@Z 00000001401954d4     65c02incpp.obj
- 0004:000004e0       $pdata$?LDA_izxA1@@YAXPEAUemulate65c02@@@Z 00000001401954e0     65c02incpp.obj
- 0004:000004ec       $pdata$?LDY_immA0@@YAXPEAUemulate65c02@@@Z 00000001401954ec     65c02incpp.obj
- 0004:000004f8       $pdata$?BBS1_zpr9F@@YAXPEAUemulate65c02@@@Z 00000001401954f8     65c02incpp.obj
- 0004:00000504       $pdata$?STZ_abs9C@@YAXPEAUemulate65c02@@@Z 0000000140195504     65c02incpp.obj
- 0004:00000510       $pdata$?STA_aby99@@YAXPEAUemulate65c02@@@Z 0000000140195510     65c02incpp.obj
- 0004:0000051c       $pdata$?SMB1_zp97@@YAXPEAUemulate65c02@@@Z 000000014019551c     65c02incpp.obj
- 0004:00000528       $pdata$?STX_zpy96@@YAXPEAUemulate65c02@@@Z 0000000140195528     65c02incpp.obj
- 0004:00000534       $pdata$?STA_zpx95@@YAXPEAUemulate65c02@@@Z 0000000140195534     65c02incpp.obj
- 0004:00000540       $pdata$?STY_zpx94@@YAXPEAUemulate65c02@@@Z 0000000140195540     65c02incpp.obj
- 0004:0000054c       $pdata$?STA_izp92@@YAXPEAUemulate65c02@@@Z 000000014019554c     65c02incpp.obj
- 0004:00000558       $pdata$?STA_izy91@@YAXPEAUemulate65c02@@@Z 0000000140195558     65c02incpp.obj
- 0004:00000564       $pdata$?BCC_rel90@@YAXPEAUemulate65c02@@@Z 0000000140195564     65c02incpp.obj
- 0004:00000570       $pdata$?BBS0_zpr8F@@YAXPEAUemulate65c02@@@Z 0000000140195570     65c02incpp.obj
- 0004:0000057c       $pdata$?STX_abs8E@@YAXPEAUemulate65c02@@@Z 000000014019557c     65c02incpp.obj
- 0004:00000588       $pdata$?STA_abs8D@@YAXPEAUemulate65c02@@@Z 0000000140195588     65c02incpp.obj
- 0004:00000594       $pdata$?STY_abs8C@@YAXPEAUemulate65c02@@@Z 0000000140195594     65c02incpp.obj
- 0004:000005a0       $pdata$?BIT_imm89@@YAXPEAUemulate65c02@@@Z 00000001401955a0     65c02incpp.obj
- 0004:000005ac       $pdata$?SMB0_zp87@@YAXPEAUemulate65c02@@@Z 00000001401955ac     65c02incpp.obj
- 0004:000005b8       $pdata$?STX_zp86@@YAXPEAUemulate65c02@@@Z 00000001401955b8     65c02incpp.obj
- 0004:000005c4       $pdata$?STA_zp85@@YAXPEAUemulate65c02@@@Z 00000001401955c4     65c02incpp.obj
- 0004:000005d0       $pdata$?STY_zp84@@YAXPEAUemulate65c02@@@Z 00000001401955d0     65c02incpp.obj
- 0004:000005dc       $pdata$?STA_izx81@@YAXPEAUemulate65c02@@@Z 00000001401955dc     65c02incpp.obj
- 0004:000005e8       $pdata$?BRA_rel80@@YAXPEAUemulate65c02@@@Z 00000001401955e8     65c02incpp.obj
- 0004:000005f4       $pdata$?BBR7_zpr7F@@YAXPEAUemulate65c02@@@Z 00000001401955f4     65c02incpp.obj
- 0004:00000600       $pdata$?ROR_abx7E@@YAXPEAUemulate65c02@@@Z 0000000140195600     65c02incpp.obj
- 0004:0000060c       $pdata$?ADC_abx7D@@YAXPEAUemulate65c02@@@Z 000000014019560c     65c02incpp.obj
- 0004:00000618       $pdata$?JMP_iax7C@@YAXPEAUemulate65c02@@@Z 0000000140195618     65c02incpp.obj
- 0004:00000624       $pdata$?PLY7A@@YAXPEAUemulate65c02@@@Z 0000000140195624     65c02incpp.obj
- 0004:00000630       $pdata$?ADC_aby79@@YAXPEAUemulate65c02@@@Z 0000000140195630     65c02incpp.obj
- 0004:0000063c       $pdata$?RMB7_zp77@@YAXPEAUemulate65c02@@@Z 000000014019563c     65c02incpp.obj
- 0004:00000648       $pdata$?ROR_zpx76@@YAXPEAUemulate65c02@@@Z 0000000140195648     65c02incpp.obj
- 0004:00000654       $pdata$?ADC_zpx75@@YAXPEAUemulate65c02@@@Z 0000000140195654     65c02incpp.obj
- 0004:00000660       $pdata$?STZ_zpx74@@YAXPEAUemulate65c02@@@Z 0000000140195660     65c02incpp.obj
- 0004:0000066c       $pdata$?ADC_izp72@@YAXPEAUemulate65c02@@@Z 000000014019566c     65c02incpp.obj
- 0004:00000678       $pdata$?ADC_izy71@@YAXPEAUemulate65c02@@@Z 0000000140195678     65c02incpp.obj
- 0004:00000684       $pdata$?BVS_rel70@@YAXPEAUemulate65c02@@@Z 0000000140195684     65c02incpp.obj
- 0004:00000690       $pdata$?BBR6_zpr6F@@YAXPEAUemulate65c02@@@Z 0000000140195690     65c02incpp.obj
- 0004:0000069c       $pdata$?ROR_abs6E@@YAXPEAUemulate65c02@@@Z 000000014019569c     65c02incpp.obj
- 0004:000006a8       $pdata$?ADC_abs6D@@YAXPEAUemulate65c02@@@Z 00000001401956a8     65c02incpp.obj
- 0004:000006b4       $pdata$?JMP_ind6C@@YAXPEAUemulate65c02@@@Z 00000001401956b4     65c02incpp.obj
- 0004:000006c0       $pdata$?ADC_imm69@@YAXPEAUemulate65c02@@@Z 00000001401956c0     65c02incpp.obj
- 0004:000006cc       $pdata$?PLA68@@YAXPEAUemulate65c02@@@Z 00000001401956cc     65c02incpp.obj
- 0004:000006d8       $pdata$?RMB6_zp67@@YAXPEAUemulate65c02@@@Z 00000001401956d8     65c02incpp.obj
- 0004:000006e4       $pdata$?ROR_zp66@@YAXPEAUemulate65c02@@@Z 00000001401956e4     65c02incpp.obj
- 0004:000006f0       $pdata$?ADC_zp65@@YAXPEAUemulate65c02@@@Z 00000001401956f0     65c02incpp.obj
- 0004:000006fc       $pdata$?STZ_zp64@@YAXPEAUemulate65c02@@@Z 00000001401956fc     65c02incpp.obj
- 0004:00000708       $pdata$?ADC_izx61@@YAXPEAUemulate65c02@@@Z 0000000140195708     65c02incpp.obj
- 0004:00000714       $pdata$?RTS60@@YAXPEAUemulate65c02@@@Z 0000000140195714     65c02incpp.obj
- 0004:00000720       $pdata$?BBR5_zpr5F@@YAXPEAUemulate65c02@@@Z 0000000140195720     65c02incpp.obj
- 0004:0000072c       $pdata$?LSR_abx5E@@YAXPEAUemulate65c02@@@Z 000000014019572c     65c02incpp.obj
- 0004:00000738       $pdata$?EOR_abx5D@@YAXPEAUemulate65c02@@@Z 0000000140195738     65c02incpp.obj
- 0004:00000744       $pdata$?PHY5A@@YAXPEAUemulate65c02@@@Z 0000000140195744     65c02incpp.obj
- 0004:00000750       $pdata$?EOR_aby59@@YAXPEAUemulate65c02@@@Z 0000000140195750     65c02incpp.obj
- 0004:0000075c       $pdata$?RMB5_zp57@@YAXPEAUemulate65c02@@@Z 000000014019575c     65c02incpp.obj
- 0004:00000768       $pdata$?LSR_zpx56@@YAXPEAUemulate65c02@@@Z 0000000140195768     65c02incpp.obj
- 0004:00000774       $pdata$?EOR_zpx55@@YAXPEAUemulate65c02@@@Z 0000000140195774     65c02incpp.obj
- 0004:00000780       $pdata$?EOR_izp52@@YAXPEAUemulate65c02@@@Z 0000000140195780     65c02incpp.obj
- 0004:0000078c       $pdata$?EOR_izy51@@YAXPEAUemulate65c02@@@Z 000000014019578c     65c02incpp.obj
- 0004:00000798       $pdata$?BVC_rel50@@YAXPEAUemulate65c02@@@Z 0000000140195798     65c02incpp.obj
- 0004:000007a4       $pdata$?BBR4_zpr4F@@YAXPEAUemulate65c02@@@Z 00000001401957a4     65c02incpp.obj
- 0004:000007b0       $pdata$?LSR_abs4E@@YAXPEAUemulate65c02@@@Z 00000001401957b0     65c02incpp.obj
- 0004:000007bc       $pdata$?EOR_abs4D@@YAXPEAUemulate65c02@@@Z 00000001401957bc     65c02incpp.obj
- 0004:000007c8       $pdata$?JMP_abs4C@@YAXPEAUemulate65c02@@@Z 00000001401957c8     65c02incpp.obj
- 0004:000007d4       $pdata$?EOR_imm49@@YAXPEAUemulate65c02@@@Z 00000001401957d4     65c02incpp.obj
- 0004:000007e0       $pdata$?PHA48@@YAXPEAUemulate65c02@@@Z 00000001401957e0     65c02incpp.obj
- 0004:000007ec       $pdata$?RMB4_zp47@@YAXPEAUemulate65c02@@@Z 00000001401957ec     65c02incpp.obj
- 0004:000007f8       $pdata$?LSR_zp46@@YAXPEAUemulate65c02@@@Z 00000001401957f8     65c02incpp.obj
- 0004:00000804       $pdata$?EOR_zp45@@YAXPEAUemulate65c02@@@Z 0000000140195804     65c02incpp.obj
- 0004:00000810       $pdata$?NOP_zp44@@YAXPEAUemulate65c02@@@Z 0000000140195810     65c02incpp.obj
- 0004:0000081c       $pdata$?EOR_izx41@@YAXPEAUemulate65c02@@@Z 000000014019581c     65c02incpp.obj
- 0004:00000828       $pdata$?RTI40@@YAXPEAUemulate65c02@@@Z 0000000140195828     65c02incpp.obj
- 0004:00000834       $pdata$?BBR3_zpr3F@@YAXPEAUemulate65c02@@@Z 0000000140195834     65c02incpp.obj
- 0004:00000840       $pdata$?ROL_abx3E@@YAXPEAUemulate65c02@@@Z 0000000140195840     65c02incpp.obj
- 0004:0000084c       $pdata$?AND_abx3D@@YAXPEAUemulate65c02@@@Z 000000014019584c     65c02incpp.obj
- 0004:00000858       $pdata$?BIT_abx3C@@YAXPEAUemulate65c02@@@Z 0000000140195858     65c02incpp.obj
- 0004:00000864       $pdata$?AND_aby39@@YAXPEAUemulate65c02@@@Z 0000000140195864     65c02incpp.obj
- 0004:00000870       $pdata$?RMB3_zp37@@YAXPEAUemulate65c02@@@Z 0000000140195870     65c02incpp.obj
- 0004:0000087c       $pdata$?ROL_zpx36@@YAXPEAUemulate65c02@@@Z 000000014019587c     65c02incpp.obj
- 0004:00000888       $pdata$?AND_zpx35@@YAXPEAUemulate65c02@@@Z 0000000140195888     65c02incpp.obj
- 0004:00000894       $pdata$?BIT_zpx34@@YAXPEAUemulate65c02@@@Z 0000000140195894     65c02incpp.obj
- 0004:000008a0       $pdata$?AND_izp32@@YAXPEAUemulate65c02@@@Z 00000001401958a0     65c02incpp.obj
- 0004:000008ac       $pdata$?AND_izy31@@YAXPEAUemulate65c02@@@Z 00000001401958ac     65c02incpp.obj
- 0004:000008b8       $pdata$?BMI_rel30@@YAXPEAUemulate65c02@@@Z 00000001401958b8     65c02incpp.obj
- 0004:000008c4       $pdata$?BBR2_zpr2F@@YAXPEAUemulate65c02@@@Z 00000001401958c4     65c02incpp.obj
- 0004:000008d0       $pdata$?ROL_abs2E@@YAXPEAUemulate65c02@@@Z 00000001401958d0     65c02incpp.obj
- 0004:000008dc       $pdata$?AND_abs2D@@YAXPEAUemulate65c02@@@Z 00000001401958dc     65c02incpp.obj
- 0004:000008e8       $pdata$?BIT_abs2C@@YAXPEAUemulate65c02@@@Z 00000001401958e8     65c02incpp.obj
- 0004:000008f4       $pdata$?AND_imm29@@YAXPEAUemulate65c02@@@Z 00000001401958f4     65c02incpp.obj
- 0004:00000900       $pdata$?PLP28@@YAXPEAUemulate65c02@@@Z 0000000140195900     65c02incpp.obj
- 0004:0000090c       $pdata$?RMB2_zp27@@YAXPEAUemulate65c02@@@Z 000000014019590c     65c02incpp.obj
- 0004:00000918       $pdata$?ROL_zp26@@YAXPEAUemulate65c02@@@Z 0000000140195918     65c02incpp.obj
- 0004:00000924       $pdata$?AND_zp25@@YAXPEAUemulate65c02@@@Z 0000000140195924     65c02incpp.obj
- 0004:00000930       $pdata$?BIT_zp24@@YAXPEAUemulate65c02@@@Z 0000000140195930     65c02incpp.obj
- 0004:0000093c       $pdata$?AND_izx21@@YAXPEAUemulate65c02@@@Z 000000014019593c     65c02incpp.obj
- 0004:00000948       $pdata$?JSR_abs20@@YAXPEAUemulate65c02@@@Z 0000000140195948     65c02incpp.obj
- 0004:00000954       $pdata$?BBR1_zpr1F@@YAXPEAUemulate65c02@@@Z 0000000140195954     65c02incpp.obj
- 0004:00000960       $pdata$?ASL_abx1E@@YAXPEAUemulate65c02@@@Z 0000000140195960     65c02incpp.obj
- 0004:0000096c       $pdata$?ORA_abx1D@@YAXPEAUemulate65c02@@@Z 000000014019596c     65c02incpp.obj
- 0004:00000978       $pdata$?TRB_abs1C@@YAXPEAUemulate65c02@@@Z 0000000140195978     65c02incpp.obj
- 0004:00000984       $pdata$?ORA_aby19@@YAXPEAUemulate65c02@@@Z 0000000140195984     65c02incpp.obj
- 0004:00000990       $pdata$?RMB1_zp17@@YAXPEAUemulate65c02@@@Z 0000000140195990     65c02incpp.obj
- 0004:0000099c       $pdata$?ASL_zpx16@@YAXPEAUemulate65c02@@@Z 000000014019599c     65c02incpp.obj
- 0004:000009a8       $pdata$?ORA_zpx15@@YAXPEAUemulate65c02@@@Z 00000001401959a8     65c02incpp.obj
- 0004:000009b4       $pdata$?TRB_zp14@@YAXPEAUemulate65c02@@@Z 00000001401959b4     65c02incpp.obj
- 0004:000009c0       $pdata$?ORA_izp12@@YAXPEAUemulate65c02@@@Z 00000001401959c0     65c02incpp.obj
- 0004:000009cc       $pdata$?ORA_izy11@@YAXPEAUemulate65c02@@@Z 00000001401959cc     65c02incpp.obj
- 0004:000009d8       $pdata$?BPL_rel10@@YAXPEAUemulate65c02@@@Z 00000001401959d8     65c02incpp.obj
- 0004:000009e4       $pdata$?BBR0_zpr0F@@YAXPEAUemulate65c02@@@Z 00000001401959e4     65c02incpp.obj
- 0004:000009f0       $pdata$?ASL_abs0E@@YAXPEAUemulate65c02@@@Z 00000001401959f0     65c02incpp.obj
- 0004:000009fc       $pdata$?ORA_abs0D@@YAXPEAUemulate65c02@@@Z 00000001401959fc     65c02incpp.obj
- 0004:00000a08       $pdata$?TSB_abs0C@@YAXPEAUemulate65c02@@@Z 0000000140195a08     65c02incpp.obj
- 0004:00000a14       $pdata$?ORA_imm09@@YAXPEAUemulate65c02@@@Z 0000000140195a14     65c02incpp.obj
- 0004:00000a20       $pdata$?PHP08@@YAXPEAUemulate65c02@@@Z 0000000140195a20     65c02incpp.obj
- 0004:00000a2c       $pdata$?RMB0_zp07@@YAXPEAUemulate65c02@@@Z 0000000140195a2c     65c02incpp.obj
- 0004:00000a38       $pdata$?ASL_zp06@@YAXPEAUemulate65c02@@@Z 0000000140195a38     65c02incpp.obj
- 0004:00000a44       $pdata$?ORA_zp05@@YAXPEAUemulate65c02@@@Z 0000000140195a44     65c02incpp.obj
- 0004:00000a50       $pdata$?TSB_zp04@@YAXPEAUemulate65c02@@@Z 0000000140195a50     65c02incpp.obj
- 0004:00000a5c       $pdata$?ORA_izx01@@YAXPEAUemulate65c02@@@Z 0000000140195a5c     65c02incpp.obj
- 0004:00000a68       $pdata$?BRK00@@YAXPEAUemulate65c02@@@Z 0000000140195a68     65c02incpp.obj
- 0004:00000a74       $pdata$??0range_error@std@@QEAA@AEBV01@@Z 0000000140195a74     65c02incpp.obj
- 0004:00000a80       $pdata$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140195a80     65c02incpp.obj
- 0004:00000a8c       $pdata$0$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140195a8c     65c02incpp.obj
- 0004:00000a98       $pdata$1$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140195a98     65c02incpp.obj
- 0004:00000aa4       $pdata$2$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140195aa4     65c02incpp.obj
- 0004:00000ab0       $pdata$?decode_addr_writeABX@emulate65c02@@QEAAXE@Z 0000000140195ab0     65c02incpp.obj
- 0004:00000abc       $pdata$?decode_addr_readABX@emulate65c02@@QEAAEXZ 0000000140195abc     65c02incpp.obj
- 0004:00000ac8       $pdata$?decode_addr_readABY@emulate65c02@@QEAAEXZ 0000000140195ac8     65c02incpp.obj
- 0004:00000ad4       $pdata$?decode_addr_readIZP@emulate65c02@@QEAAEXZ 0000000140195ad4     65c02incpp.obj
- 0004:00000ae0       $pdata$?decode_addr_readIZY@emulate65c02@@QEAAEXZ 0000000140195ae0     65c02incpp.obj
- 0004:00000aec       $pdata$?decode_addr_readIZX@emulate65c02@@QEAAEXZ 0000000140195aec     65c02incpp.obj
- 0004:00000af8       $pdata$?write6502@emulate65c02@@QEAAXGE@Z 0000000140195af8     65c02incpp.obj
- 0004:00000b04       $pdata$?do_adc@emulate65c02@@QEAAXH@Z 0000000140195b04     65c02incpp.obj
- 0004:00000b10       $pdata$??0runtime_error@std@@QEAA@AEBV01@@Z 0000000140195b10     65c02incpp.obj
- 0004:00000b1c       $pdata$??_Grange_error@std@@UEAAPEAXI@Z 0000000140195b1c     65c02incpp.obj
- 0004:00000b1c       $pdata$??_Gexception@std@@UEAAPEAXI@Z 0000000140195b1c     65c02incpp.obj
- 0004:00000b1c       $pdata$??_Gruntime_error@std@@UEAAPEAXI@Z 0000000140195b1c     65c02incpp.obj
- 0004:00000b28       $pdata$??0range_error@std@@QEAA@PEBD@Z 0000000140195b28     65c02incpp.obj
- 0004:00000b34       $pdata$??0exception@std@@QEAA@AEBV01@@Z 0000000140195b34     65c02incpp.obj
- 0004:00000b40       $pdata$sprintf             0000000140195b40     65c02incpp.obj
- 0004:00000b4c       $pdata$printf              0000000140195b4c     65c02incpp.obj
- 0004:00000b58       $pdata$??_G?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@UEAAPEAXI@Z 0000000140195b58     compile.obj
- 0004:00000b64       $pdata$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140195b64     compile.obj
- 0004:00000b70       $pdata$0$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140195b70     compile.obj
- 0004:00000b7c       $pdata$1$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140195b7c     compile.obj
- 0004:00000b88       $pdata$??$_Buynode@ULabelFixup@@@?$_List_buy@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAU?$_List_node@ULabelFixup@@PEAX@1@PEAU21@0$$QEAULabelFixup@@@Z 0000000140195b88     compile.obj
- 0004:00000b94       $pdata$??$_Setp@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@?$shared_ptr@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@AEAAXPEAV?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@1@U?$integral_constant@_N$0A@@1@@Z 0000000140195b94     compile.obj
- 0004:00000ba0       $pdata$?catch$1@?0???$_Setp@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@?$shared_ptr@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@AEAAXPEAV?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@1@U?$integral_constant@_N$0A@@1@@Z@4HA 0000000140195ba0     compile.obj
- 0004:00000bac       $pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z 0000000140195bac     compile.obj
- 0004:00000bb8       $pdata$?catch$4@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA 0000000140195bb8     compile.obj
- 0004:00000bc4       $pdata$?_Buynode0@?$_List_alloc@U?$_List_base_types@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@QEAAPEAU?$_List_node@ULabelFixup@@PEAX@2@PEAU32@0@Z 0000000140195bc4     compile.obj
- 0004:00000bd0       $pdata$?build_solid@emulate65c02@@QEAAGXZ 0000000140195bd0     compile.obj
- 0004:00000bdc       $pdata$?dtor$54@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195bdc     compile.obj
- 0004:00000be8       $pdata$?dtor$58@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195be8     compile.obj
- 0004:00000bf4       $pdata$?dtor$62@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195bf4     compile.obj
- 0004:00000c00       $pdata$?dtor$66@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c00     compile.obj
- 0004:00000c0c       $pdata$?dtor$70@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c0c     compile.obj
- 0004:00000c18       $pdata$?dtor$74@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c18     compile.obj
- 0004:00000c24       $pdata$?dtor$78@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c24     compile.obj
- 0004:00000c30       $pdata$?dtor$82@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c30     compile.obj
- 0004:00000c3c       $pdata$?dtor$86@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c3c     compile.obj
- 0004:00000c48       $pdata$?dtor$90@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c48     compile.obj
- 0004:00000c54       $pdata$?dtor$94@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c54     compile.obj
- 0004:00000c60       $pdata$?dtor$98@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c60     compile.obj
- 0004:00000c6c       $pdata$?dtor$102@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c6c     compile.obj
- 0004:00000c78       $pdata$?dtor$106@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c78     compile.obj
- 0004:00000c84       $pdata$?dtor$110@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c84     compile.obj
- 0004:00000c90       $pdata$?dtor$114@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c90     compile.obj
- 0004:00000c9c       $pdata$?dtor$118@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195c9c     compile.obj
- 0004:00000ca8       $pdata$?dtor$122@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195ca8     compile.obj
- 0004:00000cb4       $pdata$?dtor$126@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195cb4     compile.obj
- 0004:00000cc0       $pdata$?dtor$130@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195cc0     compile.obj
- 0004:00000ccc       $pdata$?dtor$134@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195ccc     compile.obj
- 0004:00000cd8       $pdata$?dtor$138@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195cd8     compile.obj
- 0004:00000ce4       $pdata$?dtor$142@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195ce4     compile.obj
- 0004:00000cf0       $pdata$?dtor$146@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195cf0     compile.obj
- 0004:00000cfc       $pdata$?dtor$150@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195cfc     compile.obj
- 0004:00000d08       $pdata$?dtor$154@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d08     compile.obj
- 0004:00000d14       $pdata$?dtor$158@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d14     compile.obj
- 0004:00000d20       $pdata$?dtor$162@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d20     compile.obj
- 0004:00000d2c       $pdata$?dtor$166@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d2c     compile.obj
- 0004:00000d38       $pdata$?dtor$170@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d38     compile.obj
- 0004:00000d44       $pdata$?dtor$174@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d44     compile.obj
- 0004:00000d50       $pdata$?dtor$178@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d50     compile.obj
- 0004:00000d5c       $pdata$?dtor$182@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d5c     compile.obj
- 0004:00000d68       $pdata$?dtor$186@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d68     compile.obj
- 0004:00000d74       $pdata$?dtor$190@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d74     compile.obj
- 0004:00000d80       $pdata$?dtor$194@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d80     compile.obj
- 0004:00000d8c       $pdata$?dtor$198@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d8c     compile.obj
- 0004:00000d98       $pdata$?dtor$202@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195d98     compile.obj
- 0004:00000da4       $pdata$?dtor$206@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195da4     compile.obj
- 0004:00000db0       $pdata$?dtor$210@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195db0     compile.obj
- 0004:00000dbc       $pdata$?dtor$214@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195dbc     compile.obj
- 0004:00000dc8       $pdata$?dtor$218@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195dc8     compile.obj
- 0004:00000dd4       $pdata$?dtor$222@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195dd4     compile.obj
- 0004:00000de0       $pdata$?dtor$226@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195de0     compile.obj
- 0004:00000dec       $pdata$?dtor$230@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195dec     compile.obj
- 0004:00000df8       $pdata$?dtor$234@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195df8     compile.obj
- 0004:00000e04       $pdata$?dtor$238@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e04     compile.obj
- 0004:00000e10       $pdata$?dtor$242@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e10     compile.obj
- 0004:00000e1c       $pdata$?dtor$246@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e1c     compile.obj
- 0004:00000e28       $pdata$?dtor$250@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e28     compile.obj
- 0004:00000e34       $pdata$?dtor$254@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e34     compile.obj
- 0004:00000e40       $pdata$?dtor$258@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e40     compile.obj
- 0004:00000e4c       $pdata$?dtor$262@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e4c     compile.obj
- 0004:00000e58       $pdata$?dtor$266@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140195e58     compile.obj
- 0004:00000e64       $pdata$??1Label@@QEAA@XZ   0000000140195e64     compile.obj
- 0004:00000e70       $pdata$?compile_branch@emulate65c02@@QEAAXHHAEAULabelBase@@_N@Z 0000000140195e70     compile.obj
- 0004:00000e7c       $pdata$?comp_ab_label@emulate65c02@@QEAAXAEAULabelBase@@E@Z 0000000140195e7c     compile.obj
- 0004:00000e88       $pdata$?exec@emulate65c02@@QEAAXH@Z 0000000140195e88     compile.obj
- 0004:00000e94       $pdata$?add_fixup@Label@@UEAAXH_NH@Z 0000000140195e94     compile.obj
- 0004:00000ea0       $pdata$?DEBUGAddress@@YAXHHHHUSDL_Color@@@Z 0000000140195ea0     debugger.obj
- 0004:00000eac       $pdata$?DEBUGNumber@@YAXHHHHUSDL_Color@@@Z 0000000140195eac     debugger.obj
- 0004:00000eb8       $pdata$?DEBUGRenderRegisters@@YAHXZ 0000000140195eb8     debugger.obj
- 0004:00000ec4       $pdata$2$?DEBUGRenderRegisters@@YAHXZ 0000000140195ec4     debugger.obj
- 0004:00000ed0       $pdata$3$?DEBUGRenderRegisters@@YAHXZ 0000000140195ed0     debugger.obj
- 0004:00000edc       $pdata$?DEBUGRenderCode@@YAXHH@Z 0000000140195edc     debugger.obj
- 0004:00000ee8       $pdata$?DEBUGRenderDisplay@@YAXHH@Z 0000000140195ee8     debugger.obj
- 0004:00000ef4       $pdata$2$?DEBUGRenderDisplay@@YAXHH@Z 0000000140195ef4     debugger.obj
- 0004:00000f00       $pdata$6$?DEBUGRenderDisplay@@YAXHH@Z 0000000140195f00     debugger.obj
- 0004:00000f0c       $pdata$7$?DEBUGRenderDisplay@@YAXHH@Z 0000000140195f0c     debugger.obj
- 0004:00000f18       $pdata$8$?DEBUGRenderDisplay@@YAXHH@Z 0000000140195f18     debugger.obj
- 0004:00000f24       $pdata$?DEBUGExecCmd@@YAXXZ 0000000140195f24     debugger.obj
- 0004:00000f30       $pdata$?DEBUGGetCurrentStatus@@YAHXZ 0000000140195f30     debugger.obj
- 0004:00000f3c       $pdata$?reset@emulate65c02@@QEAAXXZ 0000000140195f3c     debugger.obj
- 0004:00000f48       $pdata$sscanf              0000000140195f48     debugger.obj
- 0004:00000f54       $pdata$snprintf            0000000140195f54     debugger.obj
- 0004:00000f60       $pdata$?trb@@YAXXZ         0000000140195f60     fake65c02.obj
- 0004:00000f6c       $pdata$?tsb@@YAXXZ         0000000140195f6c     fake65c02.obj
- 0004:00000f78       $pdata$?ply@@YAXXZ         0000000140195f78     fake65c02.obj
- 0004:00000f84       $pdata$?phy@@YAXXZ         0000000140195f84     fake65c02.obj
- 0004:00000f90       $pdata$?plx@@YAXXZ         0000000140195f90     fake65c02.obj
- 0004:00000f9c       $pdata$?phx@@YAXXZ         0000000140195f9c     fake65c02.obj
- 0004:00000fa8       $pdata$?ainx@@YAXXZ        0000000140195fa8     fake65c02.obj
- 0004:00000fb4       $pdata$?ind0@@YAXXZ        0000000140195fb4     fake65c02.obj
- 0004:00000fc0       $pdata$?sbc@@YAXXZ         0000000140195fc0     fake65c02.obj
- 0004:00000fcc       $pdata$0$?sbc@@YAXXZ       0000000140195fcc     fake65c02.obj
- 0004:00000fd8       $pdata$1$?sbc@@YAXXZ       0000000140195fd8     fake65c02.obj
- 0004:00000fe4       $pdata$?rts@@YAXXZ         0000000140195fe4     fake65c02.obj
- 0004:00000ff0       $pdata$?rti@@YAXXZ         0000000140195ff0     fake65c02.obj
- 0004:00000ffc       $pdata$?ror@@YAXXZ         0000000140195ffc     fake65c02.obj
- 0004:00001008       $pdata$?rol@@YAXXZ         0000000140196008     fake65c02.obj
- 0004:00001014       $pdata$?plp@@YAXXZ         0000000140196014     fake65c02.obj
- 0004:00001020       $pdata$?pla@@YAXXZ         0000000140196020     fake65c02.obj
- 0004:0000102c       $pdata$?php@@YAXXZ         000000014019602c     fake65c02.obj
- 0004:00001038       $pdata$?pha@@YAXXZ         0000000140196038     fake65c02.obj
- 0004:00001044       $pdata$?ora@@YAXXZ         0000000140196044     fake65c02.obj
- 0004:00001050       $pdata$?lsr@@YAXXZ         0000000140196050     fake65c02.obj
- 0004:0000105c       $pdata$?ldy@@YAXXZ         000000014019605c     fake65c02.obj
- 0004:00001068       $pdata$?ldx@@YAXXZ         0000000140196068     fake65c02.obj
- 0004:00001074       $pdata$?lda@@YAXXZ         0000000140196074     fake65c02.obj
- 0004:00001080       $pdata$?jsr@@YAXXZ         0000000140196080     fake65c02.obj
- 0004:0000108c       $pdata$?inc@@YAXXZ         000000014019608c     fake65c02.obj
- 0004:00001098       $pdata$?eor@@YAXXZ         0000000140196098     fake65c02.obj
- 0004:000010a4       $pdata$?dec@@YAXXZ         00000001401960a4     fake65c02.obj
- 0004:000010b0       $pdata$?cpy@@YAXXZ         00000001401960b0     fake65c02.obj
- 0004:000010bc       $pdata$?cpx@@YAXXZ         00000001401960bc     fake65c02.obj
- 0004:000010c8       $pdata$?cmp@@YAXXZ         00000001401960c8     fake65c02.obj
- 0004:000010d4       $pdata$?brk@@YAXXZ         00000001401960d4     fake65c02.obj
- 0004:000010e0       $pdata$?bit@@YAXXZ         00000001401960e0     fake65c02.obj
- 0004:000010ec       $pdata$?asl@@YAXXZ         00000001401960ec     fake65c02.obj
- 0004:000010f8       $pdata$?_and_@@YAXXZ       00000001401960f8     fake65c02.obj
- 0004:00001104       $pdata$?adc@@YAXXZ         0000000140196104     fake65c02.obj
- 0004:00001110       $pdata$?indy@@YAXXZ        0000000140196110     fake65c02.obj
- 0004:0000111c       $pdata$?indx@@YAXXZ        000000014019611c     fake65c02.obj
- 0004:00001128       $pdata$?ind@@YAXXZ         0000000140196128     fake65c02.obj
- 0004:00001134       $pdata$?absy@@YAXXZ        0000000140196134     fake65c02.obj
- 0004:00001140       $pdata$?absx@@YAXXZ        0000000140196140     fake65c02.obj
- 0004:0000114c       $pdata$?abso@@YAXXZ        000000014019614c     fake65c02.obj
- 0004:00001158       $pdata$?rel@@YAXXZ         0000000140196158     fake65c02.obj
- 0004:00001164       $pdata$?zpy@@YAXXZ         0000000140196164     fake65c02.obj
- 0004:00001170       $pdata$?zpx@@YAXXZ         0000000140196170     fake65c02.obj
- 0004:0000117c       $pdata$?zp@@YAXXZ          000000014019617c     fake65c02.obj
- 0004:00001188       $pdata$?get_joystick_state@@YAGPEAU_SDL_GameController@@W4joy_status@@@Z 0000000140196188     joystick.obj
- 0004:00001194       $pdata$fprintf             0000000140196194     joystick.obj
- 0004:000011a0       $pdata$?handle_keyboard@@YAX_NHW4SDL_Scancode@@@Z 00000001401961a0     keyboard.obj
- 0004:000011ac       $pdata$?LOAD@@YAXXZ        00000001401961ac     loadsave.obj
- 0004:000011b8       $pdata$0$?LOAD@@YAXXZ      00000001401961b8     loadsave.obj
- 0004:000011c4       $pdata$1$?LOAD@@YAXXZ      00000001401961c4     loadsave.obj
- 0004:000011d0       $pdata$2$?LOAD@@YAXXZ      00000001401961d0     loadsave.obj
- 0004:000011dc       $pdata$3$?LOAD@@YAXXZ      00000001401961dc     loadsave.obj
- 0004:000011e8       $pdata$?create_directory_listing@@YAHPEAE@Z 00000001401961e8     loadsave.obj
- 0004:000011f4       $pdata$1$?create_directory_listing@@YAHPEAE@Z 00000001401961f4     loadsave.obj
- 0004:00001200       $pdata$4$?create_directory_listing@@YAHPEAE@Z 0000000140196200     loadsave.obj
- 0004:0000120c       $pdata$5$?create_directory_listing@@YAHPEAE@Z 000000014019620c     loadsave.obj
- 0004:00001218       $pdata$6$?create_directory_listing@@YAHPEAE@Z 0000000140196218     loadsave.obj
- 0004:00001224       $pdata$_wopendir           0000000140196224     loadsave.obj
- 0004:00001230       $pdata$0$_wopendir         0000000140196230     loadsave.obj
- 0004:0000123c       $pdata$4$_wopendir         000000014019623c     loadsave.obj
- 0004:00001248       $pdata$6$_wopendir         0000000140196248     loadsave.obj
- 0004:00001254       $pdata$7$_wopendir         0000000140196254     loadsave.obj
- 0004:00001260       $pdata$?emulator_loop@@YAPEAXPEAX@Z 0000000140196260     main.obj
- 0004:0000126c       $pdata$main                000000014019626c     main.obj
- 0004:00001278       $pdata$??__Femulator@@YAXXZ 0000000140196278     main.obj
- 0004:00001284       $pdata$?usage_keymap@@YAXXZ 0000000140196284     main.obj
- 0004:00001290       $pdata$?usage@@YAXXZ       0000000140196290     main.obj
- 0004:0000129c       $pdata$?machine_dump@@YAXXZ 000000014019629c     main.obj
- 0004:000012a8       $pdata$0$?machine_dump@@YAXXZ 00000001401962a8     main.obj
- 0004:000012b4       $pdata$1$?machine_dump@@YAXXZ 00000001401962b4     main.obj
- 0004:000012c0       $pdata$?step6502@emulate65c02@@QEAAXXZ 00000001401962c0     main.obj
- 0004:000012cc       $pdata$0$?step6502@emulate65c02@@QEAAXXZ 00000001401962cc     main.obj
- 0004:000012d8       $pdata$1$?step6502@emulate65c02@@QEAAXXZ 00000001401962d8     main.obj
- 0004:000012e4       $pdata$?machine_reset@@YAXXZ 00000001401962e4     main.obj
- 0004:000012f0       $pdata$?mouse_send_state@@YAXXZ 00000001401962f0     ps2.obj
- 0004:000012fc       $pdata$?mouse_send@@YA_NHHH@Z 00000001401962fc     ps2.obj
- 0004:00001308       $pdata$?DEBUGInitChars@@YAXPEAUSDL_Renderer@@@Z 0000000140196308     rendertext.obj
- 0004:00001314       $pdata$?DEBUGWrite@@YAXPEAUSDL_Renderer@@HHHUSDL_Color@@@Z 0000000140196314     rendertext.obj
- 0004:00001320       $pdata$?sdcard_handle@@YAEE@Z 0000000140196320     sdcard.obj
- 0004:0000132c       $pdata$?video_space_write@@YAXIE@Z 000000014019632c     video.obj
- 0004:00001338       $pdata$3$?video_space_write@@YAXIE@Z 0000000140196338     video.obj
- 0004:00001344       $pdata$4$?video_space_write@@YAXIE@Z 0000000140196344     video.obj
- 0004:00001350       $pdata$5$?video_space_write@@YAXIE@Z 0000000140196350     video.obj
- 0004:0000135c       $pdata$?video_space_read@@YAEI@Z 000000014019635c     video.obj
- 0004:00001368       $pdata$0$?video_space_read@@YAEI@Z 0000000140196368     video.obj
- 0004:00001374       $pdata$2$?video_space_read@@YAEI@Z 0000000140196374     video.obj
- 0004:00001380       $pdata$4$?video_space_read@@YAEI@Z 0000000140196380     video.obj
- 0004:0000138c       $pdata$6$?video_space_read@@YAEI@Z 000000014019638c     video.obj
- 0004:00001398       $pdata$8$?video_space_read@@YAEI@Z 0000000140196398     video.obj
- 0004:000013a4       $pdata$10$?video_space_read@@YAEI@Z 00000001401963a4     video.obj
- 0004:000013b0       $pdata$11$?video_space_read@@YAEI@Z 00000001401963b0     video.obj
- 0004:000013bc       $pdata$?render_line@@YAXG@Z 00000001401963bc     video.obj
- 0004:000013c8       $pdata$1$?render_line@@YAXG@Z 00000001401963c8     video.obj
- 0004:000013d4       $pdata$3$?render_line@@YAXG@Z 00000001401963d4     video.obj
- 0004:000013e0       $pdata$4$?render_line@@YAXG@Z 00000001401963e0     video.obj
- 0004:000013ec       $pdata$5$?render_line@@YAXG@Z 00000001401963ec     video.obj
- 0004:000013f8       $pdata$6$?render_line@@YAXG@Z 00000001401963f8     video.obj
- 0004:00001404       $pdata$?render_layer_line@@YAXEG@Z 0000000140196404     video.obj
- 0004:00001410       $pdata$?render_sprite_line@@YAXG@Z 0000000140196410     video.obj
- 0004:0000141c       $pdata$?refresh_palette@@YAXXZ 000000014019641c     video.obj
- 0004:00001428       $pdata$?refresh_layer_properties@@YAXE@Z 0000000140196428     video.obj
- 0004:00001434       $pdata$?GifEnd@@YA_NPEAUGifWriter@@@Z 0000000140196434     video.obj
- 0004:00001440       $pdata$?GifWriteFrame@@YA_NPEAUGifWriter@@PEBEIIIH_N@Z 0000000140196440     video.obj
- 0004:0000144c       $pdata$?GifWriteLzwImage@@YAXPEAU_iobuf@@PEAEIIIIIPEAUGifPalette@@@Z 000000014019644c     video.obj
- 0004:00001458       $pdata$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140196458     video.obj
- 0004:00001464       $pdata$4$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140196464     video.obj
- 0004:00001470       $pdata$5$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140196470     video.obj
- 0004:0000147c       $pdata$?GifPartitionByMedian@@YAXPEAEHHHH@Z 000000014019647c     video.obj
- 0004:00001488       $pdata$1$?GifPartitionByMedian@@YAXPEAEHHHH@Z 0000000140196488     video.obj
- 0004:00001494       $pdata$2$?GifPartitionByMedian@@YAXPEAEHHHH@Z 0000000140196494     video.obj
- 0004:000014a0       $pdata$?GifPartition@@YAHPEAEHHHH@Z 00000001401964a0     video.obj
- 0004:000014ac       $pdata$?GifGetClosestPaletteColor@@YAXPEAUGifPalette@@HHHPEAH1H@Z 00000001401964ac     video.obj
- 0004:000014b8       $pdata$?video_init@@YA_NHPEBD@Z 00000001401964b8     video.obj
- 0004:000014c4       $pdata$?video_reset@@YAXXZ 00000001401964c4     video.obj
- 0004:000014d0       $pdata$?video_update@@YA_NXZ 00000001401964d0     video.obj
- 0004:000014dc       $pdata$1$?video_update@@YA_NXZ 00000001401964dc     video.obj
- 0004:000014e8       $pdata$3$?video_update@@YA_NXZ 00000001401964e8     video.obj
- 0004:000014f4       $pdata$?video_read@@YAEE_N@Z 00000001401964f4     video.obj
- 0004:00001500       $pdata$1$?video_read@@YAEE_N@Z 0000000140196500     video.obj
- 0004:0000150c       $pdata$2$?video_read@@YAEE_N@Z 000000014019650c     video.obj
- 0004:00001518       $pdata$?video_write@@YAXEE@Z 0000000140196518     video.obj
- 0004:00001524       $pdata$0$?video_write@@YAXEE@Z 0000000140196524     video.obj
- 0004:00001530       $pdata$1$?video_write@@YAXEE@Z 0000000140196530     video.obj
- 0005:00000060       $R000000                   0000000140197060     * linker generated manifest res *
+ 0003:00022e48       ?value@@3GA                0000000140047e48     fake65c02.obj
+ 0003:00022e4a       ?opcode@@3EA               0000000140047e4a     fake65c02.obj
+ 0003:00022e4b       ?penaltyaddr@@3EA          0000000140047e4b     fake65c02.obj
+ 0003:00022e4c       ?clockticks6502@@3IA       0000000140047e4c     fake65c02.obj
+ 0003:00022e50       ?temp_buffer@@3PADA        0000000140047e50     65c02incpp.obj
+ 0003:00022ea0       ?ea@@3GA                   0000000140047ea0     fake65c02.obj
+ 0003:00022ea2       ?a@@3EA                    0000000140047ea2     fake65c02.obj
+ 0003:00022ea3       ?status@@3EA               0000000140047ea3     fake65c02.obj
+ 0003:00022ea4       ?penaltyop@@3EA            0000000140047ea4     fake65c02.obj
+ 0003:00022ea5       ?y@@3EA                    0000000140047ea5     fake65c02.obj
+ 0003:00022ea6       ?sp@@3EA                   0000000140047ea6     fake65c02.obj
+ 0003:00022ea7       ?x@@3EA                    0000000140047ea7     fake65c02.obj
+ 0003:00022ea8       ?pc@@3GA                   0000000140047ea8     fake65c02.obj
+ 0003:00022eaa       ?old_clock@@3_NA           0000000140047eaa     joystick.obj
+ 0003:00022eab       ?clock_count@@3EA          0000000140047eab     joystick.obj
+ 0003:00022eac       ?reladdr@@3GA              0000000140047eac     fake65c02.obj
+ 0003:00022eae       ?writing@@3_NA             0000000140047eae     joystick.obj
+ 0003:00022eaf       ?buttons@@3EA              0000000140047eaf     ps2.obj
+ 0003:00022eb0       ?result@@3GA               0000000140047eb0     fake65c02.obj
+ 0003:00022eb2       ?initialized@@3_NA         0000000140047eb2     spi.obj
+ 0003:00022eb3       ?byte_in@@3EA              0000000140047eb3     vera_uart.obj
+ 0003:00022eb4       ?oldpc@@3GA                0000000140047eb4     fake65c02.obj
+ 0003:00022eb6       ?isr@@3EA                  0000000140047eb6     video.obj
+ 0003:00022eb7       ?ien@@3EA                  0000000140047eb7     video.obj
+ 0003:00022eb8       ?joystick1_state@@3GA      0000000140047eb8     joystick.obj
+ 0003:00022eba       ?sprite_line_empty@@3_NA   0000000140047eba     video.obj
+ 0003:00022ebb       ?is_fullscreen@@3_NA       0000000140047ebb     video.obj
+ 0003:00022ebc       ?joystick2_state@@3GA      0000000140047ebc     joystick.obj
+ 0003:00022ec0       ?joystick2@@3PEAU_SDL_GameController@@EA 0000000140047ec0     joystick.obj
+ 0003:00022ec8       ?joystick1@@3PEAU_SDL_GameController@@EA 0000000140047ec8     joystick.obj
+ 0003:00022ed0       ?mouse_diff_y@@3FA         0000000140047ed0     ps2.obj
+ 0003:00022ed4       ?mouse_diff_x@@3FA         0000000140047ed4     ps2.obj
+ 0003:00022ed8       ?cmd_receive_counter@@3HA  0000000140047ed8     sdcard.obj
+ 0003:00022ee0       ?state@@3PAU<unnamed-type-state>@@A 0000000140047ee0     ps2.obj
+ 0003:00022f48       ?bauddiv@@3GA              0000000140047f48     vera_uart.obj
+ 0003:00022f4c       ?countdown_in@@3MA         0000000140047f4c     vera_uart.obj
+ 0003:00022f50       ?countdown_out@@3MA        0000000140047f50     vera_uart.obj
+ 0003:00022f54       ?io_inc@@3PAEA             0000000140047f54     video.obj
+ 0003:00022f58       ?via2registers@@3PAEA      0000000140047f58     via.obj
+ 0003:00022f68       ?via1registers@@3PAEA      0000000140047f68     via.obj
+ 0003:00022f78       ?io_addr@@3PAIA            0000000140047f78     video.obj
+ 0003:00022f80       ?layer_line@@3PAY0CIA@EA   0000000140047f80     video.obj
+ 0003:00023480       ?reg_composer@@3PAEA       0000000140048480     video.obj
+ 0003:000234a0       ?gif_writer@@3UGifWriter@@A 00000001400484a0     video.obj
+ 0003:000234b8       ?window@@3PEAUSDL_Window@@EA 00000001400484b8     video.obj
+ 0003:000234c0       ?sprite_line_z@@3PAEA      00000001400484c0     video.obj
+ 0003:00023740       ?reg_layer@@3PAY0BA@EA     0000000140048740     video.obj
+ 0003:00023760       ?video_ram@@3PAEA          0000000140048760     video.obj
+ 0003:00043760       ?reg_sprites@@3PAEA        0000000140068760     video.obj
+ 0003:00043770       ?layer_line_empty@@3PA_NA  0000000140068770     video.obj
+ 0003:00043778       ?renderer@@3PEAUSDL_Renderer@@EA 0000000140068778     video.obj
+ 0003:00043780       ?palette@@3PAEA            0000000140068780     video.obj
+ 0003:00043980       ?sprite_data@@3PAY07EA     0000000140068980     video.obj
+ 0003:00044180       ?sdlTexture@@3PEAUSDL_Texture@@EA 0000000140069180     video.obj
+ 0003:00044190       ?sprite_line_col@@3PAEA    0000000140069190     video.obj
+ 0003:00044410       ?framebuffer@@3PAEA        0000000140069410     video.obj
+ 0003:00170418       ?frames@?BI@??emulator_loop@@YAPEAXPEAX@Z@4HA 0000000140195418     main.obj
+ 0003:0017041c       ?response_counter@?1??sdcard_handle@@YAEE@Z@4HA 000000014019541c     sdcard.obj
+ 0003:00170420       ?response@?1??sdcard_handle@@YAEE@Z@4PEBEEB 0000000140195420     sdcard.obj
+ 0003:00170428       ?response_length@?1??sdcard_handle@@YAEE@Z@4HA 0000000140195428     sdcard.obj
+ 0003:0017042c       ?last_clk@?1??spi_step@@YAXXZ@4_NA 000000014019542c     spi.obj
+ 0003:00170430       ?init_counter@?BE@??spi_step@@YAXXZ@4HA 0000000140195430     spi.obj
+ 0003:00170434       ?bit_counter@?1??spi_step@@YAXXZ@4HA 0000000140195434     spi.obj
+ 0003:00170438       ?cmd_down@?1??video_update@@YA_NXZ@4_NA 0000000140195438     video.obj
+ 0003:0017043c       ?cmd@?1??sdcard_handle@@YAEE@Z@4PAEA 000000014019543c     sdcard.obj
+ 0003:00170450       ?read_block_respose@?BM@??sdcard_handle@@YAEE@Z@4PAEA 0000000140195450     sdcard.obj
+ 0003:00170654       ?inbyte@?1??spi_step@@YAXXZ@4EA 0000000140195654     spi.obj
+ 0003:00170655       ?last_ss@?1??spi_step@@YAXXZ@4_NA 0000000140195655     spi.obj
+ 0003:00170656       ?outbyte@?1??spi_step@@YAXXZ@4EA 0000000140195656     spi.obj
+ 0003:00170658       ?mouse_y@?EB@??video_update@@YA_NXZ@4HA 0000000140195658     video.obj
+ 0003:0017065c       ?mouse_x@?EB@??video_update@@YA_NXZ@4HA 000000014019565c     video.obj
+ 0004:00000000       $pdata$??_Gtype_info@@UEAAPEAXI@Z 0000000140196000     MSVCRT:std_type_info_static.obj
+ 0004:0000000c       $pdata$??2@YAPEAX_K@Z      000000014019600c     MSVCRT:new_scalar.obj
+ 0004:00000018       $pdata$atexit              0000000140196018     MSVCRT:utility.obj
+ 0004:00000024       $pdata$_onexit             0000000140196024     MSVCRT:utility.obj
+ 0004:00000030       $pdata$__scrt_is_nonwritable_in_current_image 0000000140196030     MSVCRT:utility.obj
+ 0004:0000003c       $pdata$__scrt_is_nonwritable_in_current_image$filt$0 000000014019603c     MSVCRT:utility.obj
+ 0004:00000048       $pdata$__scrt_acquire_startup_lock 0000000140196048     MSVCRT:utility.obj
+ 0004:00000054       $pdata$__scrt_release_startup_lock 0000000140196054     MSVCRT:utility.obj
+ 0004:00000060       $pdata$__scrt_initialize_crt 0000000140196060     MSVCRT:utility.obj
+ 0004:0000006c       $pdata$__scrt_uninitialize_crt 000000014019606c     MSVCRT:utility.obj
+ 0004:00000078       $pdata$__scrt_initialize_onexit_tables 0000000140196078     MSVCRT:utility.obj
+ 0004:00000084       $pdata$?pre_c_initialization@@YAHXZ 0000000140196084     MSVCRT:exe_main.obj
+ 0004:00000090       $pdata$?post_pgo_initialization@@YAHXZ 0000000140196090     MSVCRT:exe_main.obj
+ 0004:0000009c       $pdata$?pre_cpp_initialization@@YAXXZ 000000014019609c     MSVCRT:exe_main.obj
+ 0004:000000a8       $pdata$?__scrt_common_main_seh@@YAHXZ 00000001401960a8     MSVCRT:exe_main.obj
+ 0004:000000b4       $pdata$?filt$0@?0??__scrt_common_main_seh@@YAHXZ@4HA 00000001401960b4     MSVCRT:exe_main.obj
+ 0004:000000c0       $pdata$mainCRTStartup      00000001401960c0     MSVCRT:exe_main.obj
+ 0004:000000cc       $pdata$??0bad_alloc@std@@QEAA@AEBV01@@Z 00000001401960cc     MSVCRT:throw_bad_alloc.obj
+ 0004:000000d8       $pdata$??_Gbad_array_new_length@std@@UEAAPEAXI@Z 00000001401960d8     MSVCRT:throw_bad_alloc.obj
+ 0004:000000d8       $pdata$??_Gbad_alloc@std@@UEAAPEAXI@Z 00000001401960d8     MSVCRT:throw_bad_alloc.obj
+ 0004:000000e4       $pdata$??0bad_array_new_length@std@@QEAA@AEBV01@@Z 00000001401960e4     MSVCRT:throw_bad_alloc.obj
+ 0004:000000f0       $pdata$?__scrt_throw_std_bad_alloc@@YAXXZ 00000001401960f0     MSVCRT:throw_bad_alloc.obj
+ 0004:000000fc       $pdata$?__scrt_throw_std_bad_array_new_length@@YAXXZ 00000001401960fc     MSVCRT:throw_bad_alloc.obj
+ 0004:00000108       $pdata$__isa_available_init 0000000140196108     MSVCRT:cpu_disp.obj
+ 0004:00000114       $pdata$__scrt_is_managed_app 0000000140196114     MSVCRT:utility_desktop.obj
+ 0004:00000120       $pdata$__scrt_fastfail     0000000140196120     MSVCRT:utility_desktop.obj
+ 0004:0000012c       $pdata$__scrt_unhandled_exception_filter 000000014019612c     MSVCRT:utility_desktop.obj
+ 0004:00000138       $pdata$__security_init_cookie 0000000140196138     MSVCRT:gs_support.obj
+ 0004:00000144       $pdata$__scrt_initialize_default_local_stdio_options 0000000140196144     MSVCRT:default_local_stdio_options.obj
+ 0004:00000150       $pdata$_RTC_Initialize     0000000140196150     MSVCRT:initsect.obj
+ 0004:0000015c       $pdata$_RTC_Terminate      000000014019615c     MSVCRT:initsect.obj
+ 0004:00000174       $pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z 0000000140196174     65c02incpp.obj
+ 0004:00000180       $pdata$?catch$4@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z@4HA 0000000140196180     65c02incpp.obj
+ 0004:0000018c       $pdata$??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 000000014019618c     65c02incpp.obj
+ 0004:00000198       $pdata$??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ 0000000140196198     65c02incpp.obj
+ 0004:000001a4       $pdata$?disassemble@emulate65c02@@QEAAPEADXZ 00000001401961a4     65c02incpp.obj
+ 0004:000001b0       $pdata$?BBS7_ZprFF@@YAXPEAUemulate65c02@@@Z 00000001401961b0     65c02incpp.obj
+ 0004:000001bc       $pdata$?INC_abxFE@@YAXPEAUemulate65c02@@@Z 00000001401961bc     65c02incpp.obj
+ 0004:000001c8       $pdata$?SBC_abxFD@@YAXPEAUemulate65c02@@@Z 00000001401961c8     65c02incpp.obj
+ 0004:000001d4       $pdata$?NOP_absFC@@YAXPEAUemulate65c02@@@Z 00000001401961d4     65c02incpp.obj
+ 0004:000001d4       $pdata$?NOP_absDC@@YAXPEAUemulate65c02@@@Z 00000001401961d4     65c02incpp.obj
+ 0004:000001d4       $pdata$?NOP_abs5C@@YAXPEAUemulate65c02@@@Z 00000001401961d4     65c02incpp.obj
+ 0004:000001e0       $pdata$?PLXFA@@YAXPEAUemulate65c02@@@Z 00000001401961e0     65c02incpp.obj
+ 0004:000001ec       $pdata$?SBC_abyF9@@YAXPEAUemulate65c02@@@Z 00000001401961ec     65c02incpp.obj
+ 0004:000001f8       $pdata$?SMB7_zpF7@@YAXPEAUemulate65c02@@@Z 00000001401961f8     65c02incpp.obj
+ 0004:00000204       $pdata$?INC_zpxF6@@YAXPEAUemulate65c02@@@Z 0000000140196204     65c02incpp.obj
+ 0004:00000210       $pdata$?SBC_zpxF5@@YAXPEAUemulate65c02@@@Z 0000000140196210     65c02incpp.obj
+ 0004:0000021c       $pdata$?NOP_zpxF4@@YAXPEAUemulate65c02@@@Z 000000014019621c     65c02incpp.obj
+ 0004:0000021c       $pdata$?NOP_zpxD4@@YAXPEAUemulate65c02@@@Z 000000014019621c     65c02incpp.obj
+ 0004:0000021c       $pdata$?NOP_zpx54@@YAXPEAUemulate65c02@@@Z 000000014019621c     65c02incpp.obj
+ 0004:00000228       $pdata$?SBC_izpF2@@YAXPEAUemulate65c02@@@Z 0000000140196228     65c02incpp.obj
+ 0004:00000234       $pdata$?SBC_izyF1@@YAXPEAUemulate65c02@@@Z 0000000140196234     65c02incpp.obj
+ 0004:00000240       $pdata$?BEQ_relF0@@YAXPEAUemulate65c02@@@Z 0000000140196240     65c02incpp.obj
+ 0004:0000024c       $pdata$?BBS6_zprEF@@YAXPEAUemulate65c02@@@Z 000000014019624c     65c02incpp.obj
+ 0004:00000258       $pdata$?INC_absEE@@YAXPEAUemulate65c02@@@Z 0000000140196258     65c02incpp.obj
+ 0004:00000264       $pdata$?SBC_absED@@YAXPEAUemulate65c02@@@Z 0000000140196264     65c02incpp.obj
+ 0004:00000270       $pdata$?CPX_absEC@@YAXPEAUemulate65c02@@@Z 0000000140196270     65c02incpp.obj
+ 0004:0000027c       $pdata$?SBC_immE9@@YAXPEAUemulate65c02@@@Z 000000014019627c     65c02incpp.obj
+ 0004:00000288       $pdata$?SMB6_zpE7@@YAXPEAUemulate65c02@@@Z 0000000140196288     65c02incpp.obj
+ 0004:00000294       $pdata$?INC_zpE6@@YAXPEAUemulate65c02@@@Z 0000000140196294     65c02incpp.obj
+ 0004:000002a0       $pdata$?SBC_zpE5@@YAXPEAUemulate65c02@@@Z 00000001401962a0     65c02incpp.obj
+ 0004:000002ac       $pdata$?CPX_zpE4@@YAXPEAUemulate65c02@@@Z 00000001401962ac     65c02incpp.obj
+ 0004:000002b8       $pdata$?SBC_izxE1@@YAXPEAUemulate65c02@@@Z 00000001401962b8     65c02incpp.obj
+ 0004:000002c4       $pdata$?CPX_immE0@@YAXPEAUemulate65c02@@@Z 00000001401962c4     65c02incpp.obj
+ 0004:000002d0       $pdata$?BBS5_zprDF@@YAXPEAUemulate65c02@@@Z 00000001401962d0     65c02incpp.obj
+ 0004:000002dc       $pdata$?DEC_abxDE@@YAXPEAUemulate65c02@@@Z 00000001401962dc     65c02incpp.obj
+ 0004:000002e8       $pdata$?CMP_abxDD@@YAXPEAUemulate65c02@@@Z 00000001401962e8     65c02incpp.obj
+ 0004:000002f4       $pdata$?PHXDA@@YAXPEAUemulate65c02@@@Z 00000001401962f4     65c02incpp.obj
+ 0004:00000300       $pdata$?CMP_abyD9@@YAXPEAUemulate65c02@@@Z 0000000140196300     65c02incpp.obj
+ 0004:0000030c       $pdata$?SMB5_zpD7@@YAXPEAUemulate65c02@@@Z 000000014019630c     65c02incpp.obj
+ 0004:00000318       $pdata$?DEC_zpxD6@@YAXPEAUemulate65c02@@@Z 0000000140196318     65c02incpp.obj
+ 0004:00000324       $pdata$?CMP_zpxD5@@YAXPEAUemulate65c02@@@Z 0000000140196324     65c02incpp.obj
+ 0004:00000330       $pdata$?CMP_izpD2@@YAXPEAUemulate65c02@@@Z 0000000140196330     65c02incpp.obj
+ 0004:0000033c       $pdata$?CMP_izyD1@@YAXPEAUemulate65c02@@@Z 000000014019633c     65c02incpp.obj
+ 0004:00000348       $pdata$?BNE_relD0@@YAXPEAUemulate65c02@@@Z 0000000140196348     65c02incpp.obj
+ 0004:00000354       $pdata$?BBS4_zprCF@@YAXPEAUemulate65c02@@@Z 0000000140196354     65c02incpp.obj
+ 0004:00000360       $pdata$?DEC_absCE@@YAXPEAUemulate65c02@@@Z 0000000140196360     65c02incpp.obj
+ 0004:0000036c       $pdata$?CMP_absCD@@YAXPEAUemulate65c02@@@Z 000000014019636c     65c02incpp.obj
+ 0004:00000378       $pdata$?CPY_absCC@@YAXPEAUemulate65c02@@@Z 0000000140196378     65c02incpp.obj
+ 0004:00000384       $pdata$?CMP_immC9@@YAXPEAUemulate65c02@@@Z 0000000140196384     65c02incpp.obj
+ 0004:00000390       $pdata$?SMB4_zpC7@@YAXPEAUemulate65c02@@@Z 0000000140196390     65c02incpp.obj
+ 0004:0000039c       $pdata$?DEC_zpC6@@YAXPEAUemulate65c02@@@Z 000000014019639c     65c02incpp.obj
+ 0004:000003a8       $pdata$?CMP_zpC5@@YAXPEAUemulate65c02@@@Z 00000001401963a8     65c02incpp.obj
+ 0004:000003b4       $pdata$?CPY_zpC4@@YAXPEAUemulate65c02@@@Z 00000001401963b4     65c02incpp.obj
+ 0004:000003c0       $pdata$?CMP_izxC1@@YAXPEAUemulate65c02@@@Z 00000001401963c0     65c02incpp.obj
+ 0004:000003cc       $pdata$?CPY_immC0@@YAXPEAUemulate65c02@@@Z 00000001401963cc     65c02incpp.obj
+ 0004:000003d8       $pdata$?BBS3_zprBF@@YAXPEAUemulate65c02@@@Z 00000001401963d8     65c02incpp.obj
+ 0004:000003e4       $pdata$?LDX_abyBE@@YAXPEAUemulate65c02@@@Z 00000001401963e4     65c02incpp.obj
+ 0004:000003f0       $pdata$?LDA_abxBD@@YAXPEAUemulate65c02@@@Z 00000001401963f0     65c02incpp.obj
+ 0004:000003fc       $pdata$?LDY_abxBC@@YAXPEAUemulate65c02@@@Z 00000001401963fc     65c02incpp.obj
+ 0004:00000408       $pdata$?LDA_abyB9@@YAXPEAUemulate65c02@@@Z 0000000140196408     65c02incpp.obj
+ 0004:00000414       $pdata$?SMB3_zpB7@@YAXPEAUemulate65c02@@@Z 0000000140196414     65c02incpp.obj
+ 0004:00000420       $pdata$?LDX_zpyB6@@YAXPEAUemulate65c02@@@Z 0000000140196420     65c02incpp.obj
+ 0004:0000042c       $pdata$?LDA_zpxB5@@YAXPEAUemulate65c02@@@Z 000000014019642c     65c02incpp.obj
+ 0004:00000438       $pdata$?LDY_zpxB4@@YAXPEAUemulate65c02@@@Z 0000000140196438     65c02incpp.obj
+ 0004:00000444       $pdata$?LDA_izpB2@@YAXPEAUemulate65c02@@@Z 0000000140196444     65c02incpp.obj
+ 0004:00000450       $pdata$?LDA_izyB1@@YAXPEAUemulate65c02@@@Z 0000000140196450     65c02incpp.obj
+ 0004:0000045c       $pdata$?BCS_relB0@@YAXPEAUemulate65c02@@@Z 000000014019645c     65c02incpp.obj
+ 0004:00000468       $pdata$?BBS2_zprAF@@YAXPEAUemulate65c02@@@Z 0000000140196468     65c02incpp.obj
+ 0004:00000474       $pdata$?LDX_absAE@@YAXPEAUemulate65c02@@@Z 0000000140196474     65c02incpp.obj
+ 0004:00000480       $pdata$?LDA_absAD@@YAXPEAUemulate65c02@@@Z 0000000140196480     65c02incpp.obj
+ 0004:0000048c       $pdata$?LDY_absAC@@YAXPEAUemulate65c02@@@Z 000000014019648c     65c02incpp.obj
+ 0004:00000498       $pdata$?LDA_immA9@@YAXPEAUemulate65c02@@@Z 0000000140196498     65c02incpp.obj
+ 0004:000004a4       $pdata$?SMB2_zpA7@@YAXPEAUemulate65c02@@@Z 00000001401964a4     65c02incpp.obj
+ 0004:000004b0       $pdata$?LDX_zpA6@@YAXPEAUemulate65c02@@@Z 00000001401964b0     65c02incpp.obj
+ 0004:000004bc       $pdata$?LDA_zpA5@@YAXPEAUemulate65c02@@@Z 00000001401964bc     65c02incpp.obj
+ 0004:000004c8       $pdata$?LDY_zpA4@@YAXPEAUemulate65c02@@@Z 00000001401964c8     65c02incpp.obj
+ 0004:000004d4       $pdata$?LDX_immA2@@YAXPEAUemulate65c02@@@Z 00000001401964d4     65c02incpp.obj
+ 0004:000004e0       $pdata$?LDA_izxA1@@YAXPEAUemulate65c02@@@Z 00000001401964e0     65c02incpp.obj
+ 0004:000004ec       $pdata$?LDY_immA0@@YAXPEAUemulate65c02@@@Z 00000001401964ec     65c02incpp.obj
+ 0004:000004f8       $pdata$?BBS1_zpr9F@@YAXPEAUemulate65c02@@@Z 00000001401964f8     65c02incpp.obj
+ 0004:00000504       $pdata$?STZ_abs9C@@YAXPEAUemulate65c02@@@Z 0000000140196504     65c02incpp.obj
+ 0004:00000510       $pdata$?STA_aby99@@YAXPEAUemulate65c02@@@Z 0000000140196510     65c02incpp.obj
+ 0004:0000051c       $pdata$?SMB1_zp97@@YAXPEAUemulate65c02@@@Z 000000014019651c     65c02incpp.obj
+ 0004:00000528       $pdata$?STX_zpy96@@YAXPEAUemulate65c02@@@Z 0000000140196528     65c02incpp.obj
+ 0004:00000534       $pdata$?STA_zpx95@@YAXPEAUemulate65c02@@@Z 0000000140196534     65c02incpp.obj
+ 0004:00000540       $pdata$?STY_zpx94@@YAXPEAUemulate65c02@@@Z 0000000140196540     65c02incpp.obj
+ 0004:0000054c       $pdata$?STA_izp92@@YAXPEAUemulate65c02@@@Z 000000014019654c     65c02incpp.obj
+ 0004:00000558       $pdata$?STA_izy91@@YAXPEAUemulate65c02@@@Z 0000000140196558     65c02incpp.obj
+ 0004:00000564       $pdata$?BCC_rel90@@YAXPEAUemulate65c02@@@Z 0000000140196564     65c02incpp.obj
+ 0004:00000570       $pdata$?BBS0_zpr8F@@YAXPEAUemulate65c02@@@Z 0000000140196570     65c02incpp.obj
+ 0004:0000057c       $pdata$?STX_abs8E@@YAXPEAUemulate65c02@@@Z 000000014019657c     65c02incpp.obj
+ 0004:00000588       $pdata$?STA_abs8D@@YAXPEAUemulate65c02@@@Z 0000000140196588     65c02incpp.obj
+ 0004:00000594       $pdata$?STY_abs8C@@YAXPEAUemulate65c02@@@Z 0000000140196594     65c02incpp.obj
+ 0004:000005a0       $pdata$?BIT_imm89@@YAXPEAUemulate65c02@@@Z 00000001401965a0     65c02incpp.obj
+ 0004:000005ac       $pdata$?SMB0_zp87@@YAXPEAUemulate65c02@@@Z 00000001401965ac     65c02incpp.obj
+ 0004:000005b8       $pdata$?STX_zp86@@YAXPEAUemulate65c02@@@Z 00000001401965b8     65c02incpp.obj
+ 0004:000005c4       $pdata$?STA_zp85@@YAXPEAUemulate65c02@@@Z 00000001401965c4     65c02incpp.obj
+ 0004:000005d0       $pdata$?STY_zp84@@YAXPEAUemulate65c02@@@Z 00000001401965d0     65c02incpp.obj
+ 0004:000005dc       $pdata$?STA_izx81@@YAXPEAUemulate65c02@@@Z 00000001401965dc     65c02incpp.obj
+ 0004:000005e8       $pdata$?BRA_rel80@@YAXPEAUemulate65c02@@@Z 00000001401965e8     65c02incpp.obj
+ 0004:000005f4       $pdata$?BBR7_zpr7F@@YAXPEAUemulate65c02@@@Z 00000001401965f4     65c02incpp.obj
+ 0004:00000600       $pdata$?ROR_abx7E@@YAXPEAUemulate65c02@@@Z 0000000140196600     65c02incpp.obj
+ 0004:0000060c       $pdata$?ADC_abx7D@@YAXPEAUemulate65c02@@@Z 000000014019660c     65c02incpp.obj
+ 0004:00000618       $pdata$?JMP_iax7C@@YAXPEAUemulate65c02@@@Z 0000000140196618     65c02incpp.obj
+ 0004:00000624       $pdata$?PLY7A@@YAXPEAUemulate65c02@@@Z 0000000140196624     65c02incpp.obj
+ 0004:00000630       $pdata$?ADC_aby79@@YAXPEAUemulate65c02@@@Z 0000000140196630     65c02incpp.obj
+ 0004:0000063c       $pdata$?RMB7_zp77@@YAXPEAUemulate65c02@@@Z 000000014019663c     65c02incpp.obj
+ 0004:00000648       $pdata$?ROR_zpx76@@YAXPEAUemulate65c02@@@Z 0000000140196648     65c02incpp.obj
+ 0004:00000654       $pdata$?ADC_zpx75@@YAXPEAUemulate65c02@@@Z 0000000140196654     65c02incpp.obj
+ 0004:00000660       $pdata$?STZ_zpx74@@YAXPEAUemulate65c02@@@Z 0000000140196660     65c02incpp.obj
+ 0004:0000066c       $pdata$?ADC_izp72@@YAXPEAUemulate65c02@@@Z 000000014019666c     65c02incpp.obj
+ 0004:00000678       $pdata$?ADC_izy71@@YAXPEAUemulate65c02@@@Z 0000000140196678     65c02incpp.obj
+ 0004:00000684       $pdata$?BVS_rel70@@YAXPEAUemulate65c02@@@Z 0000000140196684     65c02incpp.obj
+ 0004:00000690       $pdata$?BBR6_zpr6F@@YAXPEAUemulate65c02@@@Z 0000000140196690     65c02incpp.obj
+ 0004:0000069c       $pdata$?ROR_abs6E@@YAXPEAUemulate65c02@@@Z 000000014019669c     65c02incpp.obj
+ 0004:000006a8       $pdata$?ADC_abs6D@@YAXPEAUemulate65c02@@@Z 00000001401966a8     65c02incpp.obj
+ 0004:000006b4       $pdata$?JMP_ind6C@@YAXPEAUemulate65c02@@@Z 00000001401966b4     65c02incpp.obj
+ 0004:000006c0       $pdata$?ADC_imm69@@YAXPEAUemulate65c02@@@Z 00000001401966c0     65c02incpp.obj
+ 0004:000006cc       $pdata$?PLA68@@YAXPEAUemulate65c02@@@Z 00000001401966cc     65c02incpp.obj
+ 0004:000006d8       $pdata$?RMB6_zp67@@YAXPEAUemulate65c02@@@Z 00000001401966d8     65c02incpp.obj
+ 0004:000006e4       $pdata$?ROR_zp66@@YAXPEAUemulate65c02@@@Z 00000001401966e4     65c02incpp.obj
+ 0004:000006f0       $pdata$?ADC_zp65@@YAXPEAUemulate65c02@@@Z 00000001401966f0     65c02incpp.obj
+ 0004:000006fc       $pdata$?STZ_zp64@@YAXPEAUemulate65c02@@@Z 00000001401966fc     65c02incpp.obj
+ 0004:00000708       $pdata$?ADC_izx61@@YAXPEAUemulate65c02@@@Z 0000000140196708     65c02incpp.obj
+ 0004:00000714       $pdata$?RTS60@@YAXPEAUemulate65c02@@@Z 0000000140196714     65c02incpp.obj
+ 0004:00000720       $pdata$?BBR5_zpr5F@@YAXPEAUemulate65c02@@@Z 0000000140196720     65c02incpp.obj
+ 0004:0000072c       $pdata$?LSR_abx5E@@YAXPEAUemulate65c02@@@Z 000000014019672c     65c02incpp.obj
+ 0004:00000738       $pdata$?EOR_abx5D@@YAXPEAUemulate65c02@@@Z 0000000140196738     65c02incpp.obj
+ 0004:00000744       $pdata$?PHY5A@@YAXPEAUemulate65c02@@@Z 0000000140196744     65c02incpp.obj
+ 0004:00000750       $pdata$?EOR_aby59@@YAXPEAUemulate65c02@@@Z 0000000140196750     65c02incpp.obj
+ 0004:0000075c       $pdata$?RMB5_zp57@@YAXPEAUemulate65c02@@@Z 000000014019675c     65c02incpp.obj
+ 0004:00000768       $pdata$?LSR_zpx56@@YAXPEAUemulate65c02@@@Z 0000000140196768     65c02incpp.obj
+ 0004:00000774       $pdata$?EOR_zpx55@@YAXPEAUemulate65c02@@@Z 0000000140196774     65c02incpp.obj
+ 0004:00000780       $pdata$?EOR_izp52@@YAXPEAUemulate65c02@@@Z 0000000140196780     65c02incpp.obj
+ 0004:0000078c       $pdata$?EOR_izy51@@YAXPEAUemulate65c02@@@Z 000000014019678c     65c02incpp.obj
+ 0004:00000798       $pdata$?BVC_rel50@@YAXPEAUemulate65c02@@@Z 0000000140196798     65c02incpp.obj
+ 0004:000007a4       $pdata$?BBR4_zpr4F@@YAXPEAUemulate65c02@@@Z 00000001401967a4     65c02incpp.obj
+ 0004:000007b0       $pdata$?LSR_abs4E@@YAXPEAUemulate65c02@@@Z 00000001401967b0     65c02incpp.obj
+ 0004:000007bc       $pdata$?EOR_abs4D@@YAXPEAUemulate65c02@@@Z 00000001401967bc     65c02incpp.obj
+ 0004:000007c8       $pdata$?JMP_abs4C@@YAXPEAUemulate65c02@@@Z 00000001401967c8     65c02incpp.obj
+ 0004:000007d4       $pdata$?EOR_imm49@@YAXPEAUemulate65c02@@@Z 00000001401967d4     65c02incpp.obj
+ 0004:000007e0       $pdata$?PHA48@@YAXPEAUemulate65c02@@@Z 00000001401967e0     65c02incpp.obj
+ 0004:000007ec       $pdata$?RMB4_zp47@@YAXPEAUemulate65c02@@@Z 00000001401967ec     65c02incpp.obj
+ 0004:000007f8       $pdata$?LSR_zp46@@YAXPEAUemulate65c02@@@Z 00000001401967f8     65c02incpp.obj
+ 0004:00000804       $pdata$?EOR_zp45@@YAXPEAUemulate65c02@@@Z 0000000140196804     65c02incpp.obj
+ 0004:00000810       $pdata$?NOP_zp44@@YAXPEAUemulate65c02@@@Z 0000000140196810     65c02incpp.obj
+ 0004:0000081c       $pdata$?EOR_izx41@@YAXPEAUemulate65c02@@@Z 000000014019681c     65c02incpp.obj
+ 0004:00000828       $pdata$?RTI40@@YAXPEAUemulate65c02@@@Z 0000000140196828     65c02incpp.obj
+ 0004:00000834       $pdata$?BBR3_zpr3F@@YAXPEAUemulate65c02@@@Z 0000000140196834     65c02incpp.obj
+ 0004:00000840       $pdata$?ROL_abx3E@@YAXPEAUemulate65c02@@@Z 0000000140196840     65c02incpp.obj
+ 0004:0000084c       $pdata$?AND_abx3D@@YAXPEAUemulate65c02@@@Z 000000014019684c     65c02incpp.obj
+ 0004:00000858       $pdata$?BIT_abx3C@@YAXPEAUemulate65c02@@@Z 0000000140196858     65c02incpp.obj
+ 0004:00000864       $pdata$?AND_aby39@@YAXPEAUemulate65c02@@@Z 0000000140196864     65c02incpp.obj
+ 0004:00000870       $pdata$?RMB3_zp37@@YAXPEAUemulate65c02@@@Z 0000000140196870     65c02incpp.obj
+ 0004:0000087c       $pdata$?ROL_zpx36@@YAXPEAUemulate65c02@@@Z 000000014019687c     65c02incpp.obj
+ 0004:00000888       $pdata$?AND_zpx35@@YAXPEAUemulate65c02@@@Z 0000000140196888     65c02incpp.obj
+ 0004:00000894       $pdata$?BIT_zpx34@@YAXPEAUemulate65c02@@@Z 0000000140196894     65c02incpp.obj
+ 0004:000008a0       $pdata$?AND_izp32@@YAXPEAUemulate65c02@@@Z 00000001401968a0     65c02incpp.obj
+ 0004:000008ac       $pdata$?AND_izy31@@YAXPEAUemulate65c02@@@Z 00000001401968ac     65c02incpp.obj
+ 0004:000008b8       $pdata$?BMI_rel30@@YAXPEAUemulate65c02@@@Z 00000001401968b8     65c02incpp.obj
+ 0004:000008c4       $pdata$?BBR2_zpr2F@@YAXPEAUemulate65c02@@@Z 00000001401968c4     65c02incpp.obj
+ 0004:000008d0       $pdata$?ROL_abs2E@@YAXPEAUemulate65c02@@@Z 00000001401968d0     65c02incpp.obj
+ 0004:000008dc       $pdata$?AND_abs2D@@YAXPEAUemulate65c02@@@Z 00000001401968dc     65c02incpp.obj
+ 0004:000008e8       $pdata$?BIT_abs2C@@YAXPEAUemulate65c02@@@Z 00000001401968e8     65c02incpp.obj
+ 0004:000008f4       $pdata$?AND_imm29@@YAXPEAUemulate65c02@@@Z 00000001401968f4     65c02incpp.obj
+ 0004:00000900       $pdata$?PLP28@@YAXPEAUemulate65c02@@@Z 0000000140196900     65c02incpp.obj
+ 0004:0000090c       $pdata$?RMB2_zp27@@YAXPEAUemulate65c02@@@Z 000000014019690c     65c02incpp.obj
+ 0004:00000918       $pdata$?ROL_zp26@@YAXPEAUemulate65c02@@@Z 0000000140196918     65c02incpp.obj
+ 0004:00000924       $pdata$?AND_zp25@@YAXPEAUemulate65c02@@@Z 0000000140196924     65c02incpp.obj
+ 0004:00000930       $pdata$?BIT_zp24@@YAXPEAUemulate65c02@@@Z 0000000140196930     65c02incpp.obj
+ 0004:0000093c       $pdata$?AND_izx21@@YAXPEAUemulate65c02@@@Z 000000014019693c     65c02incpp.obj
+ 0004:00000948       $pdata$?JSR_abs20@@YAXPEAUemulate65c02@@@Z 0000000140196948     65c02incpp.obj
+ 0004:00000954       $pdata$?BBR1_zpr1F@@YAXPEAUemulate65c02@@@Z 0000000140196954     65c02incpp.obj
+ 0004:00000960       $pdata$?ASL_abx1E@@YAXPEAUemulate65c02@@@Z 0000000140196960     65c02incpp.obj
+ 0004:0000096c       $pdata$?ORA_abx1D@@YAXPEAUemulate65c02@@@Z 000000014019696c     65c02incpp.obj
+ 0004:00000978       $pdata$?TRB_abs1C@@YAXPEAUemulate65c02@@@Z 0000000140196978     65c02incpp.obj
+ 0004:00000984       $pdata$?ORA_aby19@@YAXPEAUemulate65c02@@@Z 0000000140196984     65c02incpp.obj
+ 0004:00000990       $pdata$?RMB1_zp17@@YAXPEAUemulate65c02@@@Z 0000000140196990     65c02incpp.obj
+ 0004:0000099c       $pdata$?ASL_zpx16@@YAXPEAUemulate65c02@@@Z 000000014019699c     65c02incpp.obj
+ 0004:000009a8       $pdata$?ORA_zpx15@@YAXPEAUemulate65c02@@@Z 00000001401969a8     65c02incpp.obj
+ 0004:000009b4       $pdata$?TRB_zp14@@YAXPEAUemulate65c02@@@Z 00000001401969b4     65c02incpp.obj
+ 0004:000009c0       $pdata$?ORA_izp12@@YAXPEAUemulate65c02@@@Z 00000001401969c0     65c02incpp.obj
+ 0004:000009cc       $pdata$?ORA_izy11@@YAXPEAUemulate65c02@@@Z 00000001401969cc     65c02incpp.obj
+ 0004:000009d8       $pdata$?BPL_rel10@@YAXPEAUemulate65c02@@@Z 00000001401969d8     65c02incpp.obj
+ 0004:000009e4       $pdata$?BBR0_zpr0F@@YAXPEAUemulate65c02@@@Z 00000001401969e4     65c02incpp.obj
+ 0004:000009f0       $pdata$?ASL_abs0E@@YAXPEAUemulate65c02@@@Z 00000001401969f0     65c02incpp.obj
+ 0004:000009fc       $pdata$?ORA_abs0D@@YAXPEAUemulate65c02@@@Z 00000001401969fc     65c02incpp.obj
+ 0004:00000a08       $pdata$?TSB_abs0C@@YAXPEAUemulate65c02@@@Z 0000000140196a08     65c02incpp.obj
+ 0004:00000a14       $pdata$?ORA_imm09@@YAXPEAUemulate65c02@@@Z 0000000140196a14     65c02incpp.obj
+ 0004:00000a20       $pdata$?PHP08@@YAXPEAUemulate65c02@@@Z 0000000140196a20     65c02incpp.obj
+ 0004:00000a2c       $pdata$?RMB0_zp07@@YAXPEAUemulate65c02@@@Z 0000000140196a2c     65c02incpp.obj
+ 0004:00000a38       $pdata$?ASL_zp06@@YAXPEAUemulate65c02@@@Z 0000000140196a38     65c02incpp.obj
+ 0004:00000a44       $pdata$?ORA_zp05@@YAXPEAUemulate65c02@@@Z 0000000140196a44     65c02incpp.obj
+ 0004:00000a50       $pdata$?TSB_zp04@@YAXPEAUemulate65c02@@@Z 0000000140196a50     65c02incpp.obj
+ 0004:00000a5c       $pdata$?ORA_izx01@@YAXPEAUemulate65c02@@@Z 0000000140196a5c     65c02incpp.obj
+ 0004:00000a68       $pdata$?BRK00@@YAXPEAUemulate65c02@@@Z 0000000140196a68     65c02incpp.obj
+ 0004:00000a74       $pdata$??0range_error@std@@QEAA@AEBV01@@Z 0000000140196a74     65c02incpp.obj
+ 0004:00000a80       $pdata$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140196a80     65c02incpp.obj
+ 0004:00000a8c       $pdata$0$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140196a8c     65c02incpp.obj
+ 0004:00000a98       $pdata$1$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140196a98     65c02incpp.obj
+ 0004:00000aa4       $pdata$2$?set_target@Label@@UEAAXPEAUemulate65c02@@H@Z 0000000140196aa4     65c02incpp.obj
+ 0004:00000ab0       $pdata$?decode_addr_writeABX@emulate65c02@@QEAAXE@Z 0000000140196ab0     65c02incpp.obj
+ 0004:00000abc       $pdata$?decode_addr_readABX@emulate65c02@@QEAAEXZ 0000000140196abc     65c02incpp.obj
+ 0004:00000ac8       $pdata$?decode_addr_readABY@emulate65c02@@QEAAEXZ 0000000140196ac8     65c02incpp.obj
+ 0004:00000ad4       $pdata$?decode_addr_readIZP@emulate65c02@@QEAAEXZ 0000000140196ad4     65c02incpp.obj
+ 0004:00000ae0       $pdata$?decode_addr_readIZY@emulate65c02@@QEAAEXZ 0000000140196ae0     65c02incpp.obj
+ 0004:00000aec       $pdata$?decode_addr_readIZX@emulate65c02@@QEAAEXZ 0000000140196aec     65c02incpp.obj
+ 0004:00000af8       $pdata$?write6502@emulate65c02@@QEAAXGE@Z 0000000140196af8     65c02incpp.obj
+ 0004:00000b04       $pdata$?do_adc@emulate65c02@@QEAAXH@Z 0000000140196b04     65c02incpp.obj
+ 0004:00000b10       $pdata$??0runtime_error@std@@QEAA@AEBV01@@Z 0000000140196b10     65c02incpp.obj
+ 0004:00000b1c       $pdata$??_Grange_error@std@@UEAAPEAXI@Z 0000000140196b1c     65c02incpp.obj
+ 0004:00000b1c       $pdata$??_Gexception@std@@UEAAPEAXI@Z 0000000140196b1c     65c02incpp.obj
+ 0004:00000b1c       $pdata$??_Gruntime_error@std@@UEAAPEAXI@Z 0000000140196b1c     65c02incpp.obj
+ 0004:00000b28       $pdata$??0range_error@std@@QEAA@PEBD@Z 0000000140196b28     65c02incpp.obj
+ 0004:00000b34       $pdata$??0exception@std@@QEAA@AEBV01@@Z 0000000140196b34     65c02incpp.obj
+ 0004:00000b40       $pdata$sprintf             0000000140196b40     65c02incpp.obj
+ 0004:00000b4c       $pdata$printf              0000000140196b4c     65c02incpp.obj
+ 0004:00000b58       $pdata$??_G?$_Ref_count@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@UEAAPEAXI@Z 0000000140196b58     compile.obj
+ 0004:00000b64       $pdata$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140196b64     compile.obj
+ 0004:00000b70       $pdata$0$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140196b70     compile.obj
+ 0004:00000b7c       $pdata$1$??_G?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAXI@Z 0000000140196b7c     compile.obj
+ 0004:00000b88       $pdata$??$_Buynode@ULabelFixup@@@?$_List_buy@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@QEAAPEAU?$_List_node@ULabelFixup@@PEAX@1@PEAU21@0$$QEAULabelFixup@@@Z 0000000140196b88     compile.obj
+ 0004:00000b94       $pdata$??$_Setp@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@?$shared_ptr@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@AEAAXPEAV?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@1@U?$integral_constant@_N$0A@@1@@Z 0000000140196b94     compile.obj
+ 0004:00000ba0       $pdata$?catch$1@?0???$_Setp@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@?$shared_ptr@V?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@AEAAXPEAV?$list@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@1@U?$integral_constant@_N$0A@@1@@Z@4HA 0000000140196ba0     compile.obj
+ 0004:00000bac       $pdata$??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z 0000000140196bac     compile.obj
+ 0004:00000bb8       $pdata$?catch$4@?0???$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@D@Z@4HA 0000000140196bb8     compile.obj
+ 0004:00000bc4       $pdata$?_Buynode0@?$_List_alloc@U?$_List_base_types@ULabelFixup@@V?$allocator@ULabelFixup@@@std@@@std@@@std@@QEAAPEAU?$_List_node@ULabelFixup@@PEAX@2@PEAU32@0@Z 0000000140196bc4     compile.obj
+ 0004:00000bd0       $pdata$?build_solid@emulate65c02@@QEAAGXZ 0000000140196bd0     compile.obj
+ 0004:00000bdc       $pdata$?dtor$54@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196bdc     compile.obj
+ 0004:00000be8       $pdata$?dtor$58@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196be8     compile.obj
+ 0004:00000bf4       $pdata$?dtor$62@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196bf4     compile.obj
+ 0004:00000c00       $pdata$?dtor$66@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c00     compile.obj
+ 0004:00000c0c       $pdata$?dtor$70@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c0c     compile.obj
+ 0004:00000c18       $pdata$?dtor$74@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c18     compile.obj
+ 0004:00000c24       $pdata$?dtor$78@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c24     compile.obj
+ 0004:00000c30       $pdata$?dtor$82@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c30     compile.obj
+ 0004:00000c3c       $pdata$?dtor$86@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c3c     compile.obj
+ 0004:00000c48       $pdata$?dtor$90@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c48     compile.obj
+ 0004:00000c54       $pdata$?dtor$94@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c54     compile.obj
+ 0004:00000c60       $pdata$?dtor$98@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c60     compile.obj
+ 0004:00000c6c       $pdata$?dtor$102@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c6c     compile.obj
+ 0004:00000c78       $pdata$?dtor$106@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c78     compile.obj
+ 0004:00000c84       $pdata$?dtor$110@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c84     compile.obj
+ 0004:00000c90       $pdata$?dtor$114@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c90     compile.obj
+ 0004:00000c9c       $pdata$?dtor$118@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196c9c     compile.obj
+ 0004:00000ca8       $pdata$?dtor$122@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196ca8     compile.obj
+ 0004:00000cb4       $pdata$?dtor$126@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196cb4     compile.obj
+ 0004:00000cc0       $pdata$?dtor$130@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196cc0     compile.obj
+ 0004:00000ccc       $pdata$?dtor$134@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196ccc     compile.obj
+ 0004:00000cd8       $pdata$?dtor$138@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196cd8     compile.obj
+ 0004:00000ce4       $pdata$?dtor$142@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196ce4     compile.obj
+ 0004:00000cf0       $pdata$?dtor$146@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196cf0     compile.obj
+ 0004:00000cfc       $pdata$?dtor$150@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196cfc     compile.obj
+ 0004:00000d08       $pdata$?dtor$154@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d08     compile.obj
+ 0004:00000d14       $pdata$?dtor$158@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d14     compile.obj
+ 0004:00000d20       $pdata$?dtor$162@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d20     compile.obj
+ 0004:00000d2c       $pdata$?dtor$166@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d2c     compile.obj
+ 0004:00000d38       $pdata$?dtor$170@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d38     compile.obj
+ 0004:00000d44       $pdata$?dtor$174@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d44     compile.obj
+ 0004:00000d50       $pdata$?dtor$178@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d50     compile.obj
+ 0004:00000d5c       $pdata$?dtor$182@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d5c     compile.obj
+ 0004:00000d68       $pdata$?dtor$186@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d68     compile.obj
+ 0004:00000d74       $pdata$?dtor$190@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d74     compile.obj
+ 0004:00000d80       $pdata$?dtor$194@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d80     compile.obj
+ 0004:00000d8c       $pdata$?dtor$198@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d8c     compile.obj
+ 0004:00000d98       $pdata$?dtor$202@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196d98     compile.obj
+ 0004:00000da4       $pdata$?dtor$206@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196da4     compile.obj
+ 0004:00000db0       $pdata$?dtor$210@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196db0     compile.obj
+ 0004:00000dbc       $pdata$?dtor$214@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196dbc     compile.obj
+ 0004:00000dc8       $pdata$?dtor$218@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196dc8     compile.obj
+ 0004:00000dd4       $pdata$?dtor$222@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196dd4     compile.obj
+ 0004:00000de0       $pdata$?dtor$226@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196de0     compile.obj
+ 0004:00000dec       $pdata$?dtor$230@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196dec     compile.obj
+ 0004:00000df8       $pdata$?dtor$234@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196df8     compile.obj
+ 0004:00000e04       $pdata$?dtor$238@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e04     compile.obj
+ 0004:00000e10       $pdata$?dtor$242@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e10     compile.obj
+ 0004:00000e1c       $pdata$?dtor$246@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e1c     compile.obj
+ 0004:00000e28       $pdata$?dtor$250@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e28     compile.obj
+ 0004:00000e34       $pdata$?dtor$254@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e34     compile.obj
+ 0004:00000e40       $pdata$?dtor$258@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e40     compile.obj
+ 0004:00000e4c       $pdata$?dtor$262@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e4c     compile.obj
+ 0004:00000e58       $pdata$?dtor$266@?0??build_solid@emulate65c02@@QEAAGXZ@4HA 0000000140196e58     compile.obj
+ 0004:00000e64       $pdata$??1Label@@QEAA@XZ   0000000140196e64     compile.obj
+ 0004:00000e70       $pdata$?compile_branch@emulate65c02@@QEAAXHHAEAULabelBase@@_N@Z 0000000140196e70     compile.obj
+ 0004:00000e7c       $pdata$?comp_ab_label@emulate65c02@@QEAAXAEAULabelBase@@E@Z 0000000140196e7c     compile.obj
+ 0004:00000e88       $pdata$?exec@emulate65c02@@QEAAXH@Z 0000000140196e88     compile.obj
+ 0004:00000e94       $pdata$?add_fixup@Label@@UEAAXH_NH@Z 0000000140196e94     compile.obj
+ 0004:00000ea0       $pdata$?DEBUGAddress@@YAXHHHHUSDL_Color@@@Z 0000000140196ea0     debugger.obj
+ 0004:00000eac       $pdata$?DEBUGNumber@@YAXHHHHUSDL_Color@@@Z 0000000140196eac     debugger.obj
+ 0004:00000eb8       $pdata$?DEBUGRenderRegisters@@YAHXZ 0000000140196eb8     debugger.obj
+ 0004:00000ec4       $pdata$2$?DEBUGRenderRegisters@@YAHXZ 0000000140196ec4     debugger.obj
+ 0004:00000ed0       $pdata$3$?DEBUGRenderRegisters@@YAHXZ 0000000140196ed0     debugger.obj
+ 0004:00000edc       $pdata$?DEBUGRenderCode@@YAXHH@Z 0000000140196edc     debugger.obj
+ 0004:00000ee8       $pdata$?DEBUGRenderDisplay@@YAXHH@Z 0000000140196ee8     debugger.obj
+ 0004:00000ef4       $pdata$2$?DEBUGRenderDisplay@@YAXHH@Z 0000000140196ef4     debugger.obj
+ 0004:00000f00       $pdata$6$?DEBUGRenderDisplay@@YAXHH@Z 0000000140196f00     debugger.obj
+ 0004:00000f0c       $pdata$7$?DEBUGRenderDisplay@@YAXHH@Z 0000000140196f0c     debugger.obj
+ 0004:00000f18       $pdata$8$?DEBUGRenderDisplay@@YAXHH@Z 0000000140196f18     debugger.obj
+ 0004:00000f24       $pdata$?DEBUGExecCmd@@YAXXZ 0000000140196f24     debugger.obj
+ 0004:00000f30       $pdata$?DEBUGGetCurrentStatus@@YAHXZ 0000000140196f30     debugger.obj
+ 0004:00000f3c       $pdata$?reset@emulate65c02@@QEAAXXZ 0000000140196f3c     debugger.obj
+ 0004:00000f48       $pdata$sscanf              0000000140196f48     debugger.obj
+ 0004:00000f54       $pdata$snprintf            0000000140196f54     debugger.obj
+ 0004:00000f60       $pdata$?trb@@YAXXZ         0000000140196f60     fake65c02.obj
+ 0004:00000f6c       $pdata$?tsb@@YAXXZ         0000000140196f6c     fake65c02.obj
+ 0004:00000f78       $pdata$?ply@@YAXXZ         0000000140196f78     fake65c02.obj
+ 0004:00000f84       $pdata$?phy@@YAXXZ         0000000140196f84     fake65c02.obj
+ 0004:00000f90       $pdata$?plx@@YAXXZ         0000000140196f90     fake65c02.obj
+ 0004:00000f9c       $pdata$?phx@@YAXXZ         0000000140196f9c     fake65c02.obj
+ 0004:00000fa8       $pdata$?ainx@@YAXXZ        0000000140196fa8     fake65c02.obj
+ 0004:00000fb4       $pdata$?ind0@@YAXXZ        0000000140196fb4     fake65c02.obj
+ 0004:00000fc0       $pdata$?sbc@@YAXXZ         0000000140196fc0     fake65c02.obj
+ 0004:00000fcc       $pdata$0$?sbc@@YAXXZ       0000000140196fcc     fake65c02.obj
+ 0004:00000fd8       $pdata$1$?sbc@@YAXXZ       0000000140196fd8     fake65c02.obj
+ 0004:00000fe4       $pdata$?rts@@YAXXZ         0000000140196fe4     fake65c02.obj
+ 0004:00000ff0       $pdata$?rti@@YAXXZ         0000000140196ff0     fake65c02.obj
+ 0004:00000ffc       $pdata$?ror@@YAXXZ         0000000140196ffc     fake65c02.obj
+ 0004:00001008       $pdata$?rol@@YAXXZ         0000000140197008     fake65c02.obj
+ 0004:00001014       $pdata$?plp@@YAXXZ         0000000140197014     fake65c02.obj
+ 0004:00001020       $pdata$?pla@@YAXXZ         0000000140197020     fake65c02.obj
+ 0004:0000102c       $pdata$?php@@YAXXZ         000000014019702c     fake65c02.obj
+ 0004:00001038       $pdata$?pha@@YAXXZ         0000000140197038     fake65c02.obj
+ 0004:00001044       $pdata$?ora@@YAXXZ         0000000140197044     fake65c02.obj
+ 0004:00001050       $pdata$?lsr@@YAXXZ         0000000140197050     fake65c02.obj
+ 0004:0000105c       $pdata$?ldy@@YAXXZ         000000014019705c     fake65c02.obj
+ 0004:00001068       $pdata$?ldx@@YAXXZ         0000000140197068     fake65c02.obj
+ 0004:00001074       $pdata$?lda@@YAXXZ         0000000140197074     fake65c02.obj
+ 0004:00001080       $pdata$?jsr@@YAXXZ         0000000140197080     fake65c02.obj
+ 0004:0000108c       $pdata$?inc@@YAXXZ         000000014019708c     fake65c02.obj
+ 0004:00001098       $pdata$?eor@@YAXXZ         0000000140197098     fake65c02.obj
+ 0004:000010a4       $pdata$?dec@@YAXXZ         00000001401970a4     fake65c02.obj
+ 0004:000010b0       $pdata$?cpy@@YAXXZ         00000001401970b0     fake65c02.obj
+ 0004:000010bc       $pdata$?cpx@@YAXXZ         00000001401970bc     fake65c02.obj
+ 0004:000010c8       $pdata$?cmp@@YAXXZ         00000001401970c8     fake65c02.obj
+ 0004:000010d4       $pdata$?brk@@YAXXZ         00000001401970d4     fake65c02.obj
+ 0004:000010e0       $pdata$?bit@@YAXXZ         00000001401970e0     fake65c02.obj
+ 0004:000010ec       $pdata$?asl@@YAXXZ         00000001401970ec     fake65c02.obj
+ 0004:000010f8       $pdata$?_and_@@YAXXZ       00000001401970f8     fake65c02.obj
+ 0004:00001104       $pdata$?adc@@YAXXZ         0000000140197104     fake65c02.obj
+ 0004:00001110       $pdata$?indy@@YAXXZ        0000000140197110     fake65c02.obj
+ 0004:0000111c       $pdata$?indx@@YAXXZ        000000014019711c     fake65c02.obj
+ 0004:00001128       $pdata$?ind@@YAXXZ         0000000140197128     fake65c02.obj
+ 0004:00001134       $pdata$?absy@@YAXXZ        0000000140197134     fake65c02.obj
+ 0004:00001140       $pdata$?absx@@YAXXZ        0000000140197140     fake65c02.obj
+ 0004:0000114c       $pdata$?abso@@YAXXZ        000000014019714c     fake65c02.obj
+ 0004:00001158       $pdata$?rel@@YAXXZ         0000000140197158     fake65c02.obj
+ 0004:00001164       $pdata$?zpy@@YAXXZ         0000000140197164     fake65c02.obj
+ 0004:00001170       $pdata$?zpx@@YAXXZ         0000000140197170     fake65c02.obj
+ 0004:0000117c       $pdata$?zp@@YAXXZ          000000014019717c     fake65c02.obj
+ 0004:00001188       $pdata$?get_joystick_state@@YAGPEAU_SDL_GameController@@W4joy_status@@@Z 0000000140197188     joystick.obj
+ 0004:00001194       $pdata$fprintf             0000000140197194     joystick.obj
+ 0004:000011a0       $pdata$?handle_keyboard@@YAX_NHW4SDL_Scancode@@@Z 00000001401971a0     keyboard.obj
+ 0004:000011ac       $pdata$?LOAD@@YAXXZ        00000001401971ac     loadsave.obj
+ 0004:000011b8       $pdata$0$?LOAD@@YAXXZ      00000001401971b8     loadsave.obj
+ 0004:000011c4       $pdata$1$?LOAD@@YAXXZ      00000001401971c4     loadsave.obj
+ 0004:000011d0       $pdata$2$?LOAD@@YAXXZ      00000001401971d0     loadsave.obj
+ 0004:000011dc       $pdata$3$?LOAD@@YAXXZ      00000001401971dc     loadsave.obj
+ 0004:000011e8       $pdata$?create_directory_listing@@YAHPEAE@Z 00000001401971e8     loadsave.obj
+ 0004:000011f4       $pdata$1$?create_directory_listing@@YAHPEAE@Z 00000001401971f4     loadsave.obj
+ 0004:00001200       $pdata$4$?create_directory_listing@@YAHPEAE@Z 0000000140197200     loadsave.obj
+ 0004:0000120c       $pdata$5$?create_directory_listing@@YAHPEAE@Z 000000014019720c     loadsave.obj
+ 0004:00001218       $pdata$6$?create_directory_listing@@YAHPEAE@Z 0000000140197218     loadsave.obj
+ 0004:00001224       $pdata$_wopendir           0000000140197224     loadsave.obj
+ 0004:00001230       $pdata$0$_wopendir         0000000140197230     loadsave.obj
+ 0004:0000123c       $pdata$4$_wopendir         000000014019723c     loadsave.obj
+ 0004:00001248       $pdata$6$_wopendir         0000000140197248     loadsave.obj
+ 0004:00001254       $pdata$7$_wopendir         0000000140197254     loadsave.obj
+ 0004:00001260       $pdata$?emulator_loop@@YAPEAXPEAX@Z 0000000140197260     main.obj
+ 0004:0000126c       $pdata$main                000000014019726c     main.obj
+ 0004:00001278       $pdata$??__Femulator@@YAXXZ 0000000140197278     main.obj
+ 0004:00001284       $pdata$?usage_keymap@@YAXXZ 0000000140197284     main.obj
+ 0004:00001290       $pdata$?usage@@YAXXZ       0000000140197290     main.obj
+ 0004:0000129c       $pdata$?machine_dump@@YAXXZ 000000014019729c     main.obj
+ 0004:000012a8       $pdata$0$?machine_dump@@YAXXZ 00000001401972a8     main.obj
+ 0004:000012b4       $pdata$1$?machine_dump@@YAXXZ 00000001401972b4     main.obj
+ 0004:000012c0       $pdata$?step6502@emulate65c02@@QEAAXXZ 00000001401972c0     main.obj
+ 0004:000012cc       $pdata$0$?step6502@emulate65c02@@QEAAXXZ 00000001401972cc     main.obj
+ 0004:000012d8       $pdata$1$?step6502@emulate65c02@@QEAAXXZ 00000001401972d8     main.obj
+ 0004:000012e4       $pdata$?machine_reset@@YAXXZ 00000001401972e4     main.obj
+ 0004:000012f0       $pdata$?mouse_send_state@@YAXXZ 00000001401972f0     ps2.obj
+ 0004:000012fc       $pdata$?mouse_send@@YA_NHHH@Z 00000001401972fc     ps2.obj
+ 0004:00001308       $pdata$?DEBUGInitChars@@YAXPEAUSDL_Renderer@@@Z 0000000140197308     rendertext.obj
+ 0004:00001314       $pdata$?DEBUGWrite@@YAXPEAUSDL_Renderer@@HHHUSDL_Color@@@Z 0000000140197314     rendertext.obj
+ 0004:00001320       $pdata$?sdcard_handle@@YAEE@Z 0000000140197320     sdcard.obj
+ 0004:0000132c       $pdata$?video_space_write@@YAXIE@Z 000000014019732c     video.obj
+ 0004:00001338       $pdata$3$?video_space_write@@YAXIE@Z 0000000140197338     video.obj
+ 0004:00001344       $pdata$4$?video_space_write@@YAXIE@Z 0000000140197344     video.obj
+ 0004:00001350       $pdata$5$?video_space_write@@YAXIE@Z 0000000140197350     video.obj
+ 0004:0000135c       $pdata$?video_space_read@@YAEI@Z 000000014019735c     video.obj
+ 0004:00001368       $pdata$0$?video_space_read@@YAEI@Z 0000000140197368     video.obj
+ 0004:00001374       $pdata$2$?video_space_read@@YAEI@Z 0000000140197374     video.obj
+ 0004:00001380       $pdata$4$?video_space_read@@YAEI@Z 0000000140197380     video.obj
+ 0004:0000138c       $pdata$6$?video_space_read@@YAEI@Z 000000014019738c     video.obj
+ 0004:00001398       $pdata$8$?video_space_read@@YAEI@Z 0000000140197398     video.obj
+ 0004:000013a4       $pdata$10$?video_space_read@@YAEI@Z 00000001401973a4     video.obj
+ 0004:000013b0       $pdata$11$?video_space_read@@YAEI@Z 00000001401973b0     video.obj
+ 0004:000013bc       $pdata$?render_line@@YAXG@Z 00000001401973bc     video.obj
+ 0004:000013c8       $pdata$1$?render_line@@YAXG@Z 00000001401973c8     video.obj
+ 0004:000013d4       $pdata$3$?render_line@@YAXG@Z 00000001401973d4     video.obj
+ 0004:000013e0       $pdata$4$?render_line@@YAXG@Z 00000001401973e0     video.obj
+ 0004:000013ec       $pdata$5$?render_line@@YAXG@Z 00000001401973ec     video.obj
+ 0004:000013f8       $pdata$6$?render_line@@YAXG@Z 00000001401973f8     video.obj
+ 0004:00001404       $pdata$?render_layer_line@@YAXEG@Z 0000000140197404     video.obj
+ 0004:00001410       $pdata$?render_sprite_line@@YAXG@Z 0000000140197410     video.obj
+ 0004:0000141c       $pdata$?refresh_palette@@YAXXZ 000000014019741c     video.obj
+ 0004:00001428       $pdata$?refresh_layer_properties@@YAXE@Z 0000000140197428     video.obj
+ 0004:00001434       $pdata$?GifEnd@@YA_NPEAUGifWriter@@@Z 0000000140197434     video.obj
+ 0004:00001440       $pdata$?GifWriteFrame@@YA_NPEAUGifWriter@@PEBEIIIH_N@Z 0000000140197440     video.obj
+ 0004:0000144c       $pdata$?GifWriteLzwImage@@YAXPEAU_iobuf@@PEAEIIIIIPEAUGifPalette@@@Z 000000014019744c     video.obj
+ 0004:00001458       $pdata$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140197458     video.obj
+ 0004:00001464       $pdata$4$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140197464     video.obj
+ 0004:00001470       $pdata$5$?GifSplitPalette@@YAXPEAEHHHHHH_NPEAUGifPalette@@@Z 0000000140197470     video.obj
+ 0004:0000147c       $pdata$?GifPartitionByMedian@@YAXPEAEHHHH@Z 000000014019747c     video.obj
+ 0004:00001488       $pdata$1$?GifPartitionByMedian@@YAXPEAEHHHH@Z 0000000140197488     video.obj
+ 0004:00001494       $pdata$2$?GifPartitionByMedian@@YAXPEAEHHHH@Z 0000000140197494     video.obj
+ 0004:000014a0       $pdata$?GifPartition@@YAHPEAEHHHH@Z 00000001401974a0     video.obj
+ 0004:000014ac       $pdata$?GifGetClosestPaletteColor@@YAXPEAUGifPalette@@HHHPEAH1H@Z 00000001401974ac     video.obj
+ 0004:000014b8       $pdata$?video_init@@YA_NHPEBD@Z 00000001401974b8     video.obj
+ 0004:000014c4       $pdata$?video_reset@@YAXXZ 00000001401974c4     video.obj
+ 0004:000014d0       $pdata$?video_update@@YA_NXZ 00000001401974d0     video.obj
+ 0004:000014dc       $pdata$1$?video_update@@YA_NXZ 00000001401974dc     video.obj
+ 0004:000014e8       $pdata$3$?video_update@@YA_NXZ 00000001401974e8     video.obj
+ 0004:000014f4       $pdata$?video_read@@YAEE_N@Z 00000001401974f4     video.obj
+ 0004:00001500       $pdata$1$?video_read@@YAEE_N@Z 0000000140197500     video.obj
+ 0004:0000150c       $pdata$2$?video_read@@YAEE_N@Z 000000014019750c     video.obj
+ 0004:00001518       $pdata$?video_write@@YAXEE@Z 0000000140197518     video.obj
+ 0004:00001524       $pdata$0$?video_write@@YAXEE@Z 0000000140197524     video.obj
+ 0004:00001530       $pdata$1$?video_write@@YAXEE@Z 0000000140197530     video.obj
+ 0005:00000060       $R000000                   0000000140198060     * linker generated manifest res *

@@ -28,7 +28,8 @@ j2c_start_audio()
 {
 
 #ifdef WITH_YM2151
-	init_audio();
+	//won't build and I don't care about javascript!
+//	init_audio();
 #endif
 
 }

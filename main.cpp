@@ -909,7 +909,7 @@ emscripten_main_loop(void) {
 	emulator_loop(NULL);
 }
 
-bool do_compile = true;
+bool do_compile = false;
 
 void*
 emulator_loop(void *param)

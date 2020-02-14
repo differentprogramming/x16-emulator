@@ -23,6 +23,7 @@
     <ClCompile Include="..\compile.cpp" />
     <ClCompile Include="..\debugger.cpp" />
     <ClCompile Include="..\disasm.cpp" />
+    <ClCompile Include="..\extern\src\ym2151.c" />
     <ClCompile Include="..\fake65c02.cpp" />
     <ClCompile Include="..\javascript_interface.cpp" />
     <ClCompile Include="..\joystick.cpp" />
@@ -114,7 +115,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\SDL2-2.0.10\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..;$(ProjectDir)\..\extern\include;</IncludePath>
+    <IncludePath>$(ProjectDir)\..\SDL2-2.0.10\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..;$(ProjectDir)\..\extern\include;$(ProjectDir)\..\extern\src</IncludePath>
     <LibraryPath>$(ProjectDir)\..\SDL2-2.0.10\VisualC\x64\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -123,7 +124,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\SDL2-2.0.10\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..;$(ProjectDir)\..\extern\include;</IncludePath>
+    <IncludePath>$(ProjectDir)\..\SDL2-2.0.10\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\..;$(ProjectDir)\..\extern\include;$(ProjectDir)\..\extern\src</IncludePath>
     <LibraryPath>$(ProjectDir)\..\SDL2-2.0.10\VisualC\x64\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -186,7 +187,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_YM2151;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>

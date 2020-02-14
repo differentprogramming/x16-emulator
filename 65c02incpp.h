@@ -1618,6 +1618,26 @@ void name(LabelBase && first, int second, LabelBase &third, bool force_short=tru
 		})
 
 
+	ONE_ADD_CMP(ne_imm_16, dest, src, to, {
+		lda_ab(dest);
+		cmp_imm(src&0xff);
+		bne(to,force_short);
+		lda_ab(dest + 1);
+		cmp_imm((src>>8)&0xff);
+		bne(to, force_short);
+		})
+
+	ONE_ADD_CMP(eq_imm_16, dest, src, to, {
+		lda_ab(dest);
+		cmp_imm(src&0xff);
+		Label temp;
+		bne(temp);
+		lda_ab(dest + 1);
+		cmp_imm((src >>8)&0xff);
+		beq(to, force_short);
+		temp.here();
+		})
+
 	ONE_ADD_CMP(s_lt_imm_16, dest, src, to, {
 		lda_ab(dest);
 		cmp_imm(src&0xff);
@@ -1784,6 +1804,13 @@ void name(LabelBase && first, int second, LabelBase &third, bool force_short=tru
 		}
 		bmi(to, force_short);
 		})
+	ONE_ADD_CMP(lt_imm, dest, src, to, {
+		if (src != 0) {
+			lda_ab(dest);
+			cmp_imm(src & 0xff);
+			bcc(to, force_short);
+		}
+		})
 	ONE_ADD_CMP(s_ge_imm, dest, src, to, {
 		lda_ab(dest);
 		if (src != 0) {
@@ -1796,6 +1823,13 @@ void name(LabelBase && first, int second, LabelBase &third, bool force_short=tru
 		}
 		bpl(to,force_short);
 		})
+		ONE_ADD_CMP(ge_imm, dest, src, to, {
+			if (src != 0) {
+				lda_ab(dest);
+				cmp_imm(src & 0xff);
+				bcs(to, force_short);
+			} else bra(to, force_short);
+			})
 
 	ONE_ADD_CMP(s_gt_imm, src, dest, to, {
 		if (dest==0){
