@@ -5,7 +5,7 @@
 
 //With this defined the $02 NOP is one byte instead of 2
 //and $FF is a debug break instead of being a BBR
-//#define ADD_OFFICIAL_EMULATOR_BUGS
+#define ADD_OFFICIAL_EMULATOR_BUGS
 
 extern void fake_emulator(uint8_t op);
 //#define TRACE

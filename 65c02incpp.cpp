@@ -8,6 +8,10 @@
 #include "65c02incpp.h"
 #include <string>
 #include "debugger.h"
+#ifdef WITH_YM2151
+#include "ym2151.h"
+#endif
+
 
 void Label_Offset::set_target(emulate65c02 *emulate, int t)
 {

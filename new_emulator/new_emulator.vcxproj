@@ -23,7 +23,7 @@
     <ClCompile Include="..\compile.cpp" />
     <ClCompile Include="..\debugger.cpp" />
     <ClCompile Include="..\disasm.cpp" />
-    <ClCompile Include="..\extern\src\ym2151.c" />
+    <ClCompile Include="..\extern\src\ym2151.cpp" />
     <ClCompile Include="..\fake65c02.cpp" />
     <ClCompile Include="..\javascript_interface.cpp" />
     <ClCompile Include="..\joystick.cpp" />
