@@ -1,0 +1,16 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.gif binary
+*.bin binary
+*.BIN binary
+*.dll binary
+*.exe binary
+*.zip binary
+*.prg binary
+*.pdb binary
+*.7z binary
+*.obj binary
